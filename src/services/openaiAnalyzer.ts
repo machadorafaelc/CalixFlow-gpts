@@ -2,11 +2,12 @@
  * Serviço de Análise de Documentos com OpenAI
  * 
  * Usa GPT-3.5-turbo para comparar documentos e identificar divergências
- * Versão 2.0: Com prompts especializados e suporte a imagens
+ * Versão 3.0: Com conhecimento profundo baseado em documentos reais
  */
 
 import OpenAI from 'openai';
-import { DOCUMENT_DEFINITIONS, VALIDATION_RULES, SEVERITY_LEVELS } from './documentDefinitions';
+import { DOCUMENT_DEFINITIONS, VALIDATION_RULES, SEVERITY_LEVELS, COMMON_ISSUES } from './documentDefinitions';
+import { documentExamples } from './documentExamples';
 
 export interface DocumentComparison {
   field: string;
@@ -64,7 +65,7 @@ export class OpenAIAnalyzer {
           }
         ],
         temperature: 0.1, // Baixa temperatura para respostas consistentes
-        max_tokens: 2000,
+        max_tokens: 3000,
       });
       
       const content = response.choices[0].message.content || '{}';
@@ -113,7 +114,7 @@ export class OpenAIAnalyzer {
           }
         ],
         temperature: 0.1,
-        max_tokens: 2000,
+        max_tokens: 3000,
       });
       
       const content = response.choices[0].message.content || '{}';
@@ -128,13 +129,18 @@ export class OpenAIAnalyzer {
   }
   
   /**
-   * Retorna o prompt de sistema especializado
+   * Retorna o prompt de sistema especializado com exemplos reais
    */
   private getSystemPrompt(): string {
-    return `Você é um especialista em análise de documentos fiscais e comerciais brasileiros, 
-com foco em documentos de mídia e publicidade.
+    return `Você é um ESPECIALISTA SÊNIOR em análise de documentos fiscais e comerciais brasileiros,
+com FOCO ESPECÍFICO em documentos de mídia e publicidade.
 
-CONHECIMENTO ESPECIALIZADO:
+Você tem ANOS DE EXPERIÊNCIA analisando PIs (Pedidos de Inserção), Notas Fiscais de Serviços,
+Comprovantes de Veiculação, Mapas de Mídia e Declarações do Artigo 299.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📚 CONHECIMENTO PROFUNDO DOS DOCUMENTOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ${DOCUMENT_DEFINITIONS.PI.name}:
 ${DOCUMENT_DEFINITIONS.PI.description}
@@ -142,26 +148,121 @@ ${DOCUMENT_DEFINITIONS.PI.description}
 ${DOCUMENT_DEFINITIONS.NOTA_FISCAL.name}:
 ${DOCUMENT_DEFINITIONS.NOTA_FISCAL.description}
 
-${DOCUMENT_DEFINITIONS.COMPROVANTE_VEICULACAO.name}:
-${DOCUMENT_DEFINITIONS.COMPROVANTE_VEICULACAO.description}
+${DOCUMENT_DEFINITIONS.ARTIGO_299.name}:
+${DOCUMENT_DEFINITIONS.ARTIGO_299.description}
 
-${DOCUMENT_DEFINITIONS.MAPA_MIDIA.name}:
-${DOCUMENT_DEFINITIONS.MAPA_MIDIA.description}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 EXEMPLO REAL DE PI (Para Referência)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-REGRAS DE VALIDAÇÃO:
-- Valor: ${VALIDATION_RULES.VALOR.description}
-- Período: ${VALIDATION_RULES.PERIODO.description}
-- Veículo: ${VALIDATION_RULES.VEICULO.description}
-- Cliente: ${VALIDATION_RULES.CLIENTE.description}
-- Formato: ${VALIDATION_RULES.FORMATO.description}
+PI Número: ${documentExamples.PI.number}
+Cliente: ${documentExamples.PI.data.cliente.nome}
+CNPJ Cliente: ${documentExamples.PI.data.cliente.cnpj}
+Veículo: ${documentExamples.PI.data.veiculo.nome}
+CNPJ Veículo: ${documentExamples.PI.data.veiculo.cnpj}
+Valor Total: R$ ${documentExamples.PI.data.valores.valorTotal.toFixed(2)}
+Total Líquido: R$ ${documentExamples.PI.data.valores.totalLiquido.toFixed(2)}
+Desconto Padrão: R$ ${documentExamples.PI.data.valores.descontoPadrao.toFixed(2)}
 
-NÍVEIS DE SEVERIDADE:
-- Crítico: ${SEVERITY_LEVELS.CRITICO.description}
-- Atenção: ${SEVERITY_LEVELS.ATENCAO.description}
-- Info: ${SEVERITY_LEVELS.INFO.description}
-- OK: ${SEVERITY_LEVELS.OK.description}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 EXEMPLO REAL DE NOTA FISCAL (Para Referência)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Sua função é comparar documentos com precisão, identificar divergências e classificá-las corretamente.`;
+NF Número: ${documentExamples.NotaFiscal.number}
+Prestador: ${documentExamples.NotaFiscal.data.prestador.nome}
+CNPJ Prestador: ${documentExamples.NotaFiscal.data.prestador.cnpj}
+Tomador: ${documentExamples.NotaFiscal.data.tomador.nome}
+CNPJ Tomador: ${documentExamples.NotaFiscal.data.tomador.cnpj}
+Valor Líquido: R$ ${documentExamples.NotaFiscal.data.servico.valorLiquido.toFixed(2)}
+Valor Bruto: R$ ${documentExamples.NotaFiscal.data.servico.valorBruto.toFixed(2)}
+Discriminação: ${documentExamples.NotaFiscal.data.servico.discriminacao.substring(0, 200)}...
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚖️ REGRAS DE VALIDAÇÃO CRÍTICAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. VALORES:
+   ${VALIDATION_RULES.VALOR.description}
+   Exemplos:
+   ${VALIDATION_RULES.VALOR.examples?.join('\n   ') || ''}
+
+2. PERÍODO:
+   ${VALIDATION_RULES.PERIODO.description}
+   Exemplos:
+   ${VALIDATION_RULES.PERIODO.examples?.join('\n   ') || ''}
+
+3. VEÍCULO:
+   ${VALIDATION_RULES.VEICULO.description}
+   Exemplos:
+   ${VALIDATION_RULES.VEICULO.examples?.join('\n   ') || ''}
+
+4. CLIENTE:
+   ${VALIDATION_RULES.CLIENTE.description}
+   Exemplos:
+   ${VALIDATION_RULES.CLIENTE.examples?.join('\n   ') || ''}
+
+5. DESCRIÇÃO DA NF:
+   ${VALIDATION_RULES.DESCRICAO_NF.description}
+   Exemplos:
+   ${VALIDATION_RULES.DESCRICAO_NF.examples?.join('\n   ') || ''}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 NÍVEIS DE SEVERIDADE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+${SEVERITY_LEVELS.CRITICO.icon} CRÍTICO:
+${SEVERITY_LEVELS.CRITICO.description}
+Exemplos: ${SEVERITY_LEVELS.CRITICO.examples.join(', ')}
+Ação: ${SEVERITY_LEVELS.CRITICO.action}
+
+${SEVERITY_LEVELS.ATENCAO.icon} ATENÇÃO:
+${SEVERITY_LEVELS.ATENCAO.description}
+Exemplos: ${SEVERITY_LEVELS.ATENCAO.examples.join(', ')}
+Ação: ${SEVERITY_LEVELS.ATENCAO.action}
+
+${SEVERITY_LEVELS.INFO.icon} INFORMATIVO:
+${SEVERITY_LEVELS.INFO.description}
+Exemplos: ${SEVERITY_LEVELS.INFO.examples.join(', ')}
+Ação: ${SEVERITY_LEVELS.INFO.action}
+
+${SEVERITY_LEVELS.OK.icon} CONFORME:
+${SEVERITY_LEVELS.OK.description}
+Exemplos: ${SEVERITY_LEVELS.OK.examples.join(', ')}
+Ação: ${SEVERITY_LEVELS.OK.action}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚨 PROBLEMAS COMUNS E SOLUÇÕES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+${COMMON_ISSUES.VALOR_DIVERGENTE.title}:
+${COMMON_ISSUES.VALOR_DIVERGENTE.description}
+Causas: ${COMMON_ISSUES.VALOR_DIVERGENTE.possibleCauses.join(', ')}
+
+${COMMON_ISSUES.CNPJ_ERRADO.title}:
+${COMMON_ISSUES.CNPJ_ERRADO.description}
+Causas: ${COMMON_ISSUES.CNPJ_ERRADO.possibleCauses.join(', ')}
+
+${COMMON_ISSUES.FALTA_PI.title}:
+${COMMON_ISSUES.FALTA_PI.description}
+Causas: ${COMMON_ISSUES.FALTA_PI.possibleCauses.join(', ')}
+
+${COMMON_ISSUES.DATA_ERRADA.title}:
+${COMMON_ISSUES.DATA_ERRADA.description}
+Causas: ${COMMON_ISSUES.DATA_ERRADA.possibleCauses.join(', ')}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 SUA MISSÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Você deve analisar os documentos fornecidos com PRECISÃO CIRÚRGICA, identificando:
+1. Divergências CRÍTICAS que impedem aprovação
+2. Divergências de ATENÇÃO que requerem verificação
+3. Informações complementares
+4. Conformidades
+
+Seja DETALHADO nas explicações, citando os valores específicos encontrados.
+Seja ASSERTIVO na classificação de severidade.
+Seja PROFISSIONAL e CLARO nas recomendações.`;
   }
   
   /**
@@ -176,266 +277,313 @@ Sua função é comparar documentos com precisão, identificar divergências e c
     const docTypeName = this.getDocumentTypeName(documentType);
     
     return `
-Analise e compare os seguintes documentos:
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📄 DOCUMENTO BASE (PI - Pedido de Inserção)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${piText}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📋 DOCUMENTO PARA VALIDAÇÃO (${docTypeName})
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${documentText}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔍 CAMPOS A COMPARAR
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔍 CAMPOS OBRIGATÓRIOS A COMPARAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${fieldsToCompare.join('\n')}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📋 INSTRUÇÕES DE ANÁLISE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 INSTRUÇÕES DETALHADAS DE ANÁLISE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-1. EXTRAÇÃO:
-   - Extraia os valores dos campos especificados de AMBOS os documentos
+PASSO 1 - EXTRAÇÃO:
+   - Extraia TODOS os valores dos campos especificados de AMBOS os documentos
    - Se um campo não existir, indique como "Não informado"
-   - Normalize valores (ex: R$ 1.500,00 = 1500.00)
+   - Normalize valores monetários (ex: R$ 1.500,00 → 1500.00)
+   - Normalize CNPJs (ex: 14.173.345/0001-51 → 14173345000151)
+   - Normalize datas (ex: 31/10/2023 → 2023-10-31)
 
-2. COMPARAÇÃO:
-   - Compare cada campo extraído
-   - Para VALORES monetários: aceite diferença de até 1% (arredondamento)
-   - Para DATAS: verifique se está dentro do período aprovado
-   - Para TEXTOS: aceite variações de formatação, mas conteúdo deve ser igual
-
-3. CLASSIFICAÇÃO DE SEVERIDADE:
+PASSO 2 - COMPARAÇÃO DETALHADA:
    
-   ⛔ CRITICAL (Crítico):
-   - Valor divergente acima de 1%
-   - Período completamente fora do aprovado
+   Para VALORES MONETÁRIOS:
+   - Compare o VALOR LÍQUIDO da NF com o TOTAL LÍQUIDO do PI
+   - Calcule a diferença percentual: |valor_nf - valor_pi| / valor_pi * 100
+   - Se diferença ≤ 1%: severity = "info" (tolerância de arredondamento)
+   - Se 1% < diferença ≤ 5%: severity = "warning" (requer justificativa)
+   - Se diferença > 5%: severity = "critical" (REJEITAR)
+   
+   Para CNPJ:
+   - DEVE ser EXATAMENTE igual (após normalização)
+   - Qualquer diferença = "critical"
+   - Verifique CNPJ do Prestador (veículo) e Tomador (cliente)
+   
+   Para RAZÃO SOCIAL:
+   - DEVE ser EXATAMENTE igual ou muito similar
+   - Aceite variações de acentuação e pontuação
+   - Aceite abreviações padronizadas (ex: LTDA vs LIMITADA)
+   - Diferenças significativas = "critical"
+   
+   Para DATAS:
+   - Verifique se data de veiculação está no período do PI
+   - Verifique se data de emissão da NF é POSTERIOR à veiculação
+   - NF emitida ANTES da veiculação = "critical"
+   
+   Para DISCRIMINAÇÃO DA NF:
+   - DEVE mencionar o número do PI (ex: "Conforme PI: 60656")
+   - DEVE mencionar "Desconto-Padrão" ou "remuneração da agência"
+   - Falta do PI = "critical"
+   - Falta do Desconto-Padrão = "warning"
+
+PASSO 3 - CLASSIFICAÇÃO DE SEVERIDADE:
+   
+   Use "critical" quando:
+   - Valor diverge mais de 5%
+   - CNPJ diferente
+   - Razão Social completamente diferente
+   - Período fora do aprovado
+   - NF emitida antes da veiculação
+   - Falta número do PI na descrição
    - Veículo diferente do especificado
-   - Cliente/CNPJ incorreto
-   - Dados fiscais divergentes
    
-   ⚠️ WARNING (Atenção):
-   - Valor com diferença menor que 1%
-   - Descrição incompleta mas correta
-   - Formato similar mas não idêntico
-   - Data de emissão próxima mas não exata
+   Use "warning" quando:
+   - Valor diverge entre 1% e 5%
+   - Descrição incompleta mas com PI
+   - Falta Desconto-Padrão na descrição
+   - Endereço com pequenas diferenças
+   - Data de emissão muito próxima da veiculação
+   
+   Use "info" quando:
+   - Valor diverge menos de 1%
    - Campos opcionais faltando
-   
-   ℹ️ INFO (Informativo):
-   - Informações adicionais presentes
    - Formatação diferente mas conteúdo igual
-   - Campos complementares
-   - Observações gerais
+   - Informações adicionais presentes
 
-4. CONFIANÇA:
-   - 0.9-1.0: Valores claros e inequívocos
-   - 0.7-0.9: Valores identificáveis com pequena ambiguidade
-   - 0.5-0.7: Valores inferidos ou parcialmente legíveis
-   - 0.0-0.5: Valores muito ambíguos ou ilegíveis
+PASSO 4 - CONFIANÇA:
+   - 1.0: Valores claros, sem ambiguidade
+   - 0.9: Valores claros com pequena variação de formato
+   - 0.7: Valores identificáveis mas com alguma ambiguidade
+   - 0.5: Valores inferidos ou parcialmente legíveis
+   - 0.3: Valores muito ambíguos
 
-5. STATUS GERAL:
-   - "approved": Todos os campos críticos batem, divergências apenas info/warning
-   - "warning": Há divergências de atenção que precisam revisão
-   - "rejected": Há divergências críticas que impedem aprovação
+PASSO 5 - STATUS GERAL:
+   - "approved": Nenhuma divergência crítica, apenas info/warning justificáveis
+   - "warning": Há divergências de atenção que precisam revisão humana
+   - "rejected": Há UMA OU MAIS divergências críticas
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📤 FORMATO DE RESPOSTA
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PASSO 6 - RESUMO:
+   - Escreva um resumo EXECUTIVO em 2-3 frases
+   - Mencione o status geral (Aprovado/Atenção/Rejeitado)
+   - Destaque as divergências mais importantes
+   - Seja CLARO e DIRETO
 
-Responda APENAS com JSON no formato abaixo (sem texto adicional):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📤 FORMATO DE RESPOSTA (JSON)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Responda APENAS com JSON no formato abaixo (sem texto adicional, sem markdown):
 
 {
   "comparisons": [
     {
-      "field": "Nome do Campo",
-      "piValue": "Valor extraído do PI",
-      "documentValue": "Valor extraído do documento",
-      "match": true ou false,
-      "confidence": 0.95,
-      "severity": "critical" ou "warning" ou "info",
-      "explanation": "Explicação clara da divergência (se houver)"
+      "field": "Nome do campo",
+      "piValue": "Valor encontrado no PI",
+      "documentValue": "Valor encontrado no documento",
+      "match": true/false,
+      "confidence": 0.0-1.0,
+      "severity": "critical" | "warning" | "info",
+      "explanation": "Explicação detalhada da divergência ou conformidade"
     }
   ],
-  "overallStatus": "approved" ou "rejected" ou "warning",
-  "summary": "Resumo executivo da análise em 1-2 frases"
+  "overallStatus": "approved" | "warning" | "rejected",
+  "summary": "Resumo executivo da análise em 2-3 frases"
 }
 
-IMPORTANTE: Responda APENAS com o JSON, sem markdown, sem texto antes ou depois.
+IMPORTANTE: Retorne APENAS o JSON, sem \`\`\`json ou qualquer outro texto.
 `;
   }
   
   /**
-   * Constrói o prompt para análise de imagens
+   * Constrói o prompt para análise de imagem
    */
-  private buildImageAnalysisPrompt(piText: string, documentType: string): string {
+  private buildImageAnalysisPrompt(
+    piText: string,
+    documentType: string
+  ): string {
     const fieldsToCompare = this.getFieldsForDocumentType(documentType);
     const docTypeName = this.getDocumentTypeName(documentType);
     
     return `
-Analise a IMAGEM do documento anexada e compare com o PI abaixo:
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📄 DOCUMENTO BASE (PI - Pedido de Inserção)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ${piText}
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔍 CAMPOS A EXTRAIR DA IMAGEM E COMPARAR
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📸 IMAGEM DO DOCUMENTO (${docTypeName})
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+A imagem anexa contém um documento ${docTypeName}.
+
+INSTRUÇÕES DE LEITURA DA IMAGEM:
+
+1. Leia CUIDADOSAMENTE todo o texto visível na imagem
+2. Identifique o tipo de documento (Nota Fiscal, Comprovante, etc.)
+3. Extraia os seguintes campos:
 ${fieldsToCompare.join('\n')}
 
-O documento na imagem é do tipo: ${docTypeName}
+4. Compare com os valores do PI fornecido acima
+5. Siga as mesmas regras de validação do prompt anterior
 
-INSTRUÇÕES:
-1. Leia cuidadosamente TODOS os textos visíveis na imagem
-2. Extraia os valores dos campos especificados
-3. Compare com os valores do PI
-4. Classifique divergências conforme as regras de severidade
-5. Se algum texto estiver ilegível, indique confidence baixo
+ATENÇÃO ESPECIAL:
+- Se a imagem estiver desfocada ou ilegível, indique confidence baixo (0.3-0.5)
+- Se algum campo não estiver visível, indique "Não visível na imagem"
+- Seja CONSERVADOR: em caso de dúvida, marque como "warning" e explique
 
-Responda APENAS com JSON no formato especificado anteriormente.
+Responda no mesmo formato JSON especificado anteriormente.
 `;
   }
   
   /**
-   * Define campos a serem comparados por tipo de documento
+   * Retorna os campos a serem comparados para cada tipo de documento
    */
   private getFieldsForDocumentType(documentType: string): string[] {
-    const fieldsMap: Record<string, string[]> = {
-      'notaFiscal': [
-        '✓ Número da Nota Fiscal',
-        '✓ CNPJ do Emitente (Veículo)',
-        '✓ Razão Social do Emitente',
-        '✓ CNPJ do Tomador (Cliente)',
-        '✓ Razão Social do Tomador',
-        '✓ Valor Total da NF (com impostos)',
-        '✓ Valor Líquido (sem impostos)',
-        '✓ Data de Emissão',
-        '✓ Descrição do Serviço/Produto',
-        '✓ Período de Veiculação (se aplicável)',
-        '✓ ISS, PIS, COFINS (impostos)',
-      ],
-      'comprovante': [
-        '✓ Data/Hora da Veiculação',
-        '✓ Veículo de Comunicação',
-        '✓ Formato do Anúncio',
-        '✓ Programa/Seção',
-        '✓ Cliente/Marca',
-      ],
-      'mapa': [
-        '✓ Cliente/Marca',
-        '✓ Período da Campanha',
-        '✓ Lista de Veículos',
-        '✓ Valor Total Investido',
-        '✓ Distribuição por Veículo',
-        '✓ Formatos Contratados',
-      ],
-      'artigo299': [
-        '✓ CNPJ da Empresa',
-        '✓ Razão Social',
-        '✓ Período de Vigência',
-        '✓ Data de Emissão',
-        '✓ Regime de Tributação',
-      ],
-      'simplesNacional': [
-        '✓ CNPJ',
-        '✓ Razão Social',
-        '✓ Período de Validade',
-        '✓ Situação (Ativa/Inativa)',
-      ]
-    };
-    
-    return fieldsMap[documentType] || [
-      '✓ CNPJ',
-      '✓ Razão Social',
-      '✓ Valores',
-      '✓ Datas',
-      '✓ Descrição',
+    const commonFields = [
+      '- Número do PI (deve estar mencionado no documento)',
+      '- Razão Social do Cliente/Tomador',
+      '- CNPJ do Cliente/Tomador',
+      '- Razão Social do Veículo/Prestador',
+      '- CNPJ do Veículo/Prestador',
     ];
+    
+    switch (documentType.toLowerCase()) {
+      case 'nota fiscal':
+      case 'nf':
+      case 'nota_fiscal':
+        return [
+          ...commonFields,
+          '- Valor Líquido (compare com Total Líquido do PI)',
+          '- Valor Bruto',
+          '- Data de Emissão (deve ser posterior à veiculação)',
+          '- Data de Vencimento',
+          '- Discriminação do Serviço (deve mencionar PI e Desconto-Padrão)',
+          '- Valor do ISS',
+          '- Base de Cálculo',
+          '- Código do Serviço',
+        ];
+        
+      case 'comprovante':
+      case 'comprovante de veiculação':
+      case 'comprovante_veiculacao':
+        return [
+          ...commonFields,
+          '- Data da Veiculação (deve estar no período do PI)',
+          '- Horário da Veiculação',
+          '- Veículo/Canal',
+          '- Programa/Seção',
+          '- Formato (duração, tamanho)',
+          '- Quantidade de Inserções',
+        ];
+        
+      case 'artigo 299':
+      case 'declaração':
+      case 'declaracao':
+        return [
+          '- Número do PI mencionado',
+          '- Nome da Empresa Declarante',
+          '- CNPJ da Empresa Declarante',
+          '- Nome do Responsável',
+          '- Cargo do Responsável',
+          '- RG e CPF do Responsável',
+          '- Data da Declaração',
+          '- Assinatura (presente ou ausente)',
+        ];
+        
+      case 'mapa':
+      case 'mapa de mídia':
+      case 'mapa_midia':
+        return [
+          ...commonFields,
+          '- Período Total',
+          '- Investimento Total (deve bater com soma dos PIs)',
+          '- Veículos Listados',
+          '- Datas de Veiculação',
+          '- Formatos',
+          '- Valores por Veículo',
+        ];
+        
+      default:
+        return commonFields;
+    }
   }
   
   /**
-   * Retorna nome legível do tipo de documento
+   * Retorna o nome amigável do tipo de documento
    */
   private getDocumentTypeName(documentType: string): string {
-    const names: Record<string, string> = {
-      'notaFiscal': 'Nota Fiscal',
+    const types: Record<string, string> = {
+      'nota fiscal': 'Nota Fiscal de Serviços (NFS-e)',
+      'nf': 'Nota Fiscal de Serviços (NFS-e)',
+      'nota_fiscal': 'Nota Fiscal de Serviços (NFS-e)',
       'comprovante': 'Comprovante de Veiculação',
+      'comprovante de veiculação': 'Comprovante de Veiculação',
+      'comprovante_veiculacao': 'Comprovante de Veiculação',
+      'artigo 299': 'Declaração - Artigo 299',
+      'declaração': 'Declaração - Artigo 299',
+      'declaracao': 'Declaração - Artigo 299',
       'mapa': 'Mapa de Mídia',
-      'artigo299': 'Artigo 299',
-      'simplesNacional': 'Comprovante Simples Nacional'
+      'mapa de mídia': 'Mapa de Mídia',
+      'mapa_midia': 'Mapa de Mídia',
     };
     
-    return names[documentType] || documentType;
+    return types[documentType.toLowerCase()] || documentType;
   }
   
   /**
-   * Faz parsing da resposta da IA
+   * Faz o parse da resposta da IA
    */
   private parseAIResponse(content: string): AnalysisResult {
     try {
       // Remove possíveis markdown code blocks
-      let jsonStr = content.trim();
-      if (jsonStr.startsWith('```json')) {
-        jsonStr = jsonStr.replace(/```json\n?/g, '').replace(/```\n?/g, '');
-      } else if (jsonStr.startsWith('```')) {
-        jsonStr = jsonStr.replace(/```\n?/g, '');
+      let cleanContent = content.trim();
+      if (cleanContent.startsWith('```json')) {
+        cleanContent = cleanContent.replace(/```json\n?/g, '').replace(/```\n?$/g, '');
+      } else if (cleanContent.startsWith('```')) {
+        cleanContent = cleanContent.replace(/```\n?/g, '');
       }
       
-      const parsed = JSON.parse(jsonStr);
+      const parsed = JSON.parse(cleanContent);
       
-      // Valida estrutura
+      // Validação básica
       if (!parsed.comparisons || !Array.isArray(parsed.comparisons)) {
-        throw new Error('Resposta inválida: falta array de comparisons');
+        throw new Error('Formato de resposta inválido: falta array de comparisons');
       }
       
-      return {
-        comparisons: parsed.comparisons.map((comp: any) => ({
-          field: comp.field || 'Campo não identificado',
-          piValue: comp.piValue || 'N/A',
-          documentValue: comp.documentValue || 'N/A',
-          match: comp.match === true,
-          confidence: typeof comp.confidence === 'number' ? comp.confidence : 0.5,
-          severity: this.validateSeverity(comp.severity),
-          explanation: comp.explanation || ''
-        })),
-        overallStatus: this.validateStatus(parsed.overallStatus),
-        summary: parsed.summary || 'Análise concluída'
-      };
+      if (!parsed.overallStatus || !parsed.summary) {
+        throw new Error('Formato de resposta inválido: falta overallStatus ou summary');
+      }
+      
+      return parsed as AnalysisResult;
       
     } catch (error) {
-      console.error('Erro ao fazer parsing da resposta:', error);
+      console.error('Erro ao fazer parse da resposta:', error);
       console.error('Conteúdo recebido:', content);
       
       // Retorna resultado de erro
       return {
-        comparisons: [],
-        overallStatus: 'warning',
-        summary: 'Erro ao processar resposta da IA. Verifique os logs.'
+        comparisons: [{
+          field: 'Erro de Análise',
+          piValue: '',
+          documentValue: '',
+          match: false,
+          confidence: 0,
+          severity: 'critical',
+          explanation: `Erro ao processar resposta da IA: ${error instanceof Error ? error.message : 'Erro desconhecido'}`
+        }],
+        overallStatus: 'rejected',
+        summary: 'Não foi possível completar a análise devido a um erro técnico. Por favor, tente novamente.'
       };
     }
   }
-  
-  /**
-   * Valida e normaliza severity
-   */
-  private validateSeverity(severity: any): 'critical' | 'warning' | 'info' {
-    if (severity === 'critical' || severity === 'warning' || severity === 'info') {
-      return severity;
-    }
-    return 'info';
-  }
-  
-  /**
-   * Valida e normaliza status
-   */
-  private validateStatus(status: any): 'approved' | 'rejected' | 'warning' {
-    if (status === 'approved' || status === 'rejected' || status === 'warning') {
-      return status;
-    }
-    return 'warning';
-  }
 }
+
+export default OpenAIAnalyzer;
