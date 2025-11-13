@@ -135,8 +135,20 @@ export function DocumentCheckView() {
       const openaiAnalyzer = new OpenAIAnalyzer();
 
       // Extrai texto do PI
+      console.log('\n\n='.repeat(50));
+      console.log('🚨 INICIANDO EXTRAÇÃO DE TEXTO DO PI');
+      console.log('='.repeat(50));
+      console.log('Arquivo PI:', piDocument.file.name);
+      console.log('Tipo:', piDocument.file.type);
+      console.log('Tamanho:', piDocument.file.size, 'bytes');
+      
       setCheckResult(prev => prev ? { ...prev, progress: 10 } : null);
       const piText = await documentExtractor.extractText(piDocument.file);
+      
+      console.log('\n✅ TEXTO DO PI EXTRAÍDO:');
+      console.log('Primeiros 500 caracteres:', piText.substring(0, 500));
+      console.log('Total de caracteres:', piText.length);
+      console.log('='.repeat(50) + '\n');
 
       const results: AnalysisResult[] = [];
       let currentProgress = 20;
@@ -168,7 +180,15 @@ export function DocumentCheckView() {
         let analysisResult;
         
         // Extrai texto (OCR para imagens, parsing para PDFs)
+        console.log('\n' + '-'.repeat(50));
+        console.log('📝 EXTRAINDO DOCUMENTO:', doc.name);
+        console.log('Tipo:', doc.file.type);
+        
         const docText = await documentExtractor.extractText(doc.file);
+        
+        console.log('✅ Texto extraído:', docText.substring(0, 300));
+        console.log('Total:', docText.length, 'caracteres');
+        console.log('-'.repeat(50) + '\n');
         
         // Analisa com GPT-4o-mini (mais barato)
         analysisResult = await openaiAnalyzer.compareDocuments(
