@@ -180,7 +180,7 @@ export function ChatInterface({
         {
           tokenCount: response.tokenCount,
           model: response.model,
-          sources: response.sources
+          sources: response.sources || [] // Fallback para array vazio se undefined
         }
       );
       
