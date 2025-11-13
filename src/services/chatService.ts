@@ -10,7 +10,14 @@ import ragService from './ragService';
 
 export interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
-  content: string;
+  content: string | Array<{
+    type: 'text' | 'image_url';
+    text?: string;
+    image_url?: {
+      url: string;
+      detail?: 'low' | 'high' | 'auto';
+    };
+  }>;
 }
 
 export interface ChatOptions {
@@ -40,6 +47,50 @@ export class ChatService {
       apiKey,
       dangerouslyAllowBrowser: true, // Apenas para desenvolvimento/teste
     });
+  }
+  
+  /**
+   * Analisar imagem com GPT-4o-mini Vision
+   */
+  async analyzeImage(
+    imageUrl: string,
+    prompt: string = 'Descreva esta imagem em detalhes.'
+  ): Promise<string> {
+    try {
+      console.log('Analisando imagem com Vision...');
+      
+      const response = await this.openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [
+          {
+            role: 'user',
+            content: [
+              {
+                type: 'text',
+                text: prompt
+              },
+              {
+                type: 'image_url',
+                image_url: {
+                  url: imageUrl,
+                  detail: 'high'
+                }
+              }
+            ]
+          }
+        ] as any,
+        max_tokens: 1000
+      });
+      
+      const description = response.choices[0]?.message?.content || '';
+      console.log('Análise concluída:', description.substring(0, 100) + '...');
+      
+      return description;
+      
+    } catch (error: any) {
+      console.error('Erro ao analisar imagem:', error);
+      throw new Error('Erro ao analisar imagem: ' + error.message);
+    }
   }
   
   /**

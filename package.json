@@ -39,6 +39,7 @@
         "motion": "*",
         "next-themes": "^0.4.6",
         "openai": "^4.77.3",
+        "pdfjs-dist": "^5.4.394",
         "react": "^18.3.1",
         "react-day-picker": "^8.10.1",
         "react-dnd": "*",
