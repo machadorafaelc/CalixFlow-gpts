@@ -8,8 +8,12 @@
 import { ImageProcessor } from './imageProcessor';
 import * as pdfjsLib from 'pdfjs-dist';
 
-// Configurar worker do PDF.js
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+// Configurar worker do PDF.js usando o build local
+// Vite vai fazer bundle do worker automaticamente
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url
+).toString();
 
 export class DocumentExtractor {
   /**
