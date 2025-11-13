@@ -57,9 +57,16 @@ export class ChatService {
     prompt: string = 'Descreva esta imagem em detalhes.'
   ): Promise<string> {
     try {
-      console.log('Analisando imagem com Vision...');
+      console.log('🔍 Analisando imagem com Vision...');
+      console.log('URL da imagem:', imageUrl);
+      console.log('Prompt:', prompt);
       
-      const response = await this.openai.chat.completions.create({
+      // Criar promise com timeout de 60 segundos
+      const timeoutPromise = new Promise<never>((_, reject) => {
+        setTimeout(() => reject(new Error('Timeout: Análise de imagem demorou mais de 60 segundos')), 60000);
+      });
+      
+      const analysisPromise = this.openai.chat.completions.create({
         model: 'gpt-4o-mini',
         messages: [
           {
@@ -79,17 +86,28 @@ export class ChatService {
             ]
           }
         ] as any,
-        max_tokens: 1000
+        max_tokens: 1000,
+        timeout: 60000 // 60 segundos
       });
       
+      const response = await Promise.race([analysisPromise, timeoutPromise]);
+      
       const description = response.choices[0]?.message?.content || '';
-      console.log('Análise concluída:', description.substring(0, 100) + '...');
+      console.log('✅ Análise concluída com sucesso!');
+      console.log('Descrição:', description.substring(0, 200) + '...');
       
       return description;
       
     } catch (error: any) {
-      console.error('Erro ao analisar imagem:', error);
-      throw new Error('Erro ao analisar imagem: ' + error.message);
+      console.error('❌ Erro ao analisar imagem:', error);
+      console.error('Detalhes do erro:', {
+        message: error.message,
+        status: error.status,
+        type: error.type
+      });
+      
+      // Retornar mensagem mais amigável em vez de lançar erro
+      return `[Não foi possível analisar a imagem. Erro: ${error.message}]`;
     }
   }
   

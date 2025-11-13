@@ -147,12 +147,23 @@ export class ConversationService {
    */
   static async deleteConversation(conversationId: string): Promise<void> {
     try {
+      // Deletar todas as mensagens da conversa
+      const messagesQuery = query(
+        collection(db, 'messages'),
+        where('conversationId', '==', conversationId)
+      );
+      
+      const messagesSnapshot = await getDocs(messagesQuery);
+      const deletePromises = messagesSnapshot.docs.map(doc => deleteDoc(doc.ref));
+      await Promise.all(deletePromises);
+      
+      console.log(`${messagesSnapshot.size} mensagens deletadas`);
+      
+      // Deletar a conversa
       const docRef = doc(db, this.COLLECTION, conversationId);
       await deleteDoc(docRef);
       
       console.log('Conversa deletada:', conversationId);
-      
-      // TODO: Deletar também as mensagens relacionadas
       
     } catch (error) {
       console.error('Erro ao deletar conversa:', error);
@@ -195,19 +206,69 @@ export class ConversationService {
   }
   
   /**
-   * Gerar título automático baseado na primeira mensagem
+   * Gerar título automático baseado na primeira mensagem usando IA
    */
   static async generateTitle(firstMessage: string): Promise<string> {
-    // Pegar primeiras palavras da mensagem
-    const words = firstMessage.trim().split(' ').slice(0, 6);
-    let title = words.join(' ');
-    
-    // Limitar tamanho
-    if (title.length > 50) {
-      title = title.substring(0, 47) + '...';
+    try {
+      // Usar IA para gerar título descritivo
+      const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+      if (!apiKey) {
+        throw new Error('VITE_OPENAI_API_KEY não configurada');
+      }
+
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [
+            {
+              role: 'system',
+              content: 'Você é um assistente que gera títulos curtos e descritivos para conversas. Gere um título de no máximo 50 caracteres que resuma o tema principal da mensagem. Seja conciso e direto. Responda APENAS com o título, sem aspas ou pontuação extra.'
+            },
+            {
+              role: 'user',
+              content: `Gere um título para esta mensagem: "${firstMessage.substring(0, 200)}"`
+            }
+          ],
+          max_tokens: 20,
+          temperature: 0.7
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao gerar título com IA');
+      }
+
+      const data = await response.json();
+      let title = data.choices[0]?.message?.content?.trim() || '';
+      
+      // Remover aspas se houver
+      title = title.replace(/^["']|["']$/g, '');
+      
+      // Limitar tamanho
+      if (title.length > 50) {
+        title = title.substring(0, 47) + '...';
+      }
+      
+      return title || 'Nova conversa';
+      
+    } catch (error) {
+      console.error('Erro ao gerar título com IA:', error);
+      
+      // Fallback: usar primeiras palavras
+      const words = firstMessage.trim().split(' ').slice(0, 6);
+      let title = words.join(' ');
+      
+      if (title.length > 50) {
+        title = title.substring(0, 47) + '...';
+      }
+      
+      return title || 'Nova conversa';
     }
-    
-    return title || 'Nova conversa';
   }
 }
 
