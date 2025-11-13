@@ -27,6 +27,34 @@ export class DocumentService {
   private static COLLECTION = 'documents';
   
   /**
+   * Upload de anexo de mensagem (chat)
+   * Retorna a URL do arquivo no Storage
+   */
+  static async uploadChatAttachment(
+    conversationId: string,
+    file: File
+  ): Promise<string> {
+    try {
+      const fileName = `${Date.now()}_${file.name}`;
+      const storagePath = `chat/${conversationId}/attachments/${fileName}`;
+      const storageRef = ref(storage, storagePath);
+      
+      console.log('Fazendo upload de anexo:', file.name);
+      
+      await uploadBytes(storageRef, file);
+      const downloadURL = await getDownloadURL(storageRef);
+      
+      console.log('Anexo enviado:', downloadURL);
+      
+      return downloadURL;
+      
+    } catch (error) {
+      console.error('Erro ao fazer upload de anexo:', error);
+      throw new Error('Erro ao fazer upload do anexo');
+    }
+  }
+  
+  /**
    * Upload de documento
    */
   static async uploadDocument(

@@ -25,6 +25,7 @@ interface AnalysisResult {
     piValue: string;
     documentValue: string;
     severity: 'critical' | 'warning' | 'info';
+    match?: boolean;
   }[];
   summary: string;
 }
@@ -184,15 +185,14 @@ export function DocumentCheckView() {
           );
         }
 
-        // Converte para formato de resultado
-        const issues = analysisResult.comparisons
-          .filter(comp => !comp.match)
-          .map(comp => ({
-            field: comp.field,
-            piValue: comp.piValue,
-            documentValue: comp.documentValue,
-            severity: comp.severity
-          }));
+        // Converte para formato de resultado (MOSTRA TODOS OS CAMPOS, não apenas divergências)
+        const issues = analysisResult.comparisons.map(comp => ({
+          field: comp.field,
+          piValue: comp.piValue,
+          documentValue: comp.documentValue,
+          severity: comp.severity,
+          match: comp.match
+        }));
 
         results.push({
           documentType: doc.name,
@@ -502,7 +502,7 @@ export function DocumentCheckView() {
                         <div className="space-y-2 mt-4 pt-4 border-t border-gray-200">
                           <p className="text-stone-600 text-sm font-medium mb-3">Campos Verificados:</p>
                           {result.issues.map((issue, issueIndex) => {
-                            const isMatch = issue.piValue === issue.documentValue || issue.severity === 'info';
+                            const isMatch = issue.match || issue.severity === 'info';
                             const isCritical = issue.severity === 'critical';
                             const isWarning = issue.severity === 'warning';
                             

@@ -9,6 +9,7 @@ import { MessageSquare, Plus, Trash2, MoreVertical } from 'lucide-react';
 import { Button } from './ui/button';
 import { Conversation } from '../types/firestore';
 import { ConversationService } from '../services/conversationService';
+import { useAuth } from '../contexts/AuthContext';
 
 interface ConversationListProps {
   clientId: string;
@@ -26,15 +27,18 @@ export function ConversationList({
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState<string | null>(null);
+  const { user } = useAuth();
   
   useEffect(() => {
     loadConversations();
-  }, [clientId]);
+  }, [clientId, user]);
   
   const loadConversations = async () => {
+    if (!user) return;
+    
     try {
       setLoading(true);
-      const convs = await ConversationService.listConversations(clientId);
+      const convs = await ConversationService.listConversations(clientId, user.uid);
       setConversations(convs);
     } catch (error) {
       console.error('Erro ao carregar conversas:', error);
