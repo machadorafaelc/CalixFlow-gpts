@@ -4,6 +4,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { Sidebar } from './components/Sidebar';
 import { GPTsCalixView } from './components/GPTsCalixView';
 import { DocumentCheckView } from './components/DocumentCheckView';
+import { DashboardView } from './views/DashboardView';
 import { LoginView } from './components/LoginView';
 import { RegisterView } from './components/RegisterView';
 
@@ -21,6 +22,8 @@ function AppContent() {
         return <GPTsCalixView />;
       case 'document-check':
         return <DocumentCheckView />;
+      case 'dashboard':
+        return <DashboardView />;
       default:
         return <GPTsCalixView />;
     }

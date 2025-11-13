@@ -1,4 +1,4 @@
-import { Bot, FileCheck, LogOut, User } from 'lucide-react';
+import { Bot, FileCheck, LogOut, User, BarChart3 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from './ui/button';
 import calixLogo from 'figma:asset/f03f62b37801fa1aca88a766c230976358254a8f.png';
@@ -14,6 +14,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
   const menuItems = [
     { id: 'gpts', label: 'GPTs Cálix', icon: Bot },
     { id: 'document-check', label: 'Checagem de Documentos', icon: FileCheck },
+    { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
   ];
 
   const handleLogout = async () => {
