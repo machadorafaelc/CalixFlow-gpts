@@ -86,8 +86,7 @@ export class ChatService {
             ]
           }
         ] as any,
-        max_tokens: 1000,
-        timeout: 60000 // 60 segundos
+        max_tokens: 1000
       });
       
       const response = await Promise.race([analysisPromise, timeoutPromise]);
