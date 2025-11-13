@@ -499,51 +499,58 @@ export function DocumentCheckView() {
                           </Badge>
                         </div>
 
-                        {result.issues.length > 0 && (
-                          <div className="space-y-3 mt-4 pt-4 border-t border-gray-200">
-                            <p className="text-stone-600 text-sm">Divergências Identificadas:</p>
-                            {result.issues.map((issue, issueIndex) => (
-                              <div key={issueIndex} className={`p-4 rounded-lg ${
-                                issue.severity === 'critical' 
-                                  ? 'bg-red-50 border border-red-200' 
-                                  : issue.severity === 'warning'
-                                  ? 'bg-amber-50 border border-amber-200'
-                                  : 'bg-blue-50 border border-blue-200'
-                              }`}>
-                                <div className="flex items-start justify-between mb-2">
-                                  <p className={`text-sm ${
-                                    issue.severity === 'critical' 
-                                      ? 'text-red-900' 
-                                      : issue.severity === 'warning'
-                                      ? 'text-amber-900'
-                                      : 'text-blue-900'
-                                  }`}>
-                                    {issue.field}
-                                  </p>
-                                  <Badge variant="outline" className={`text-xs ${
-                                    issue.severity === 'critical' 
-                                      ? 'border-red-300 text-red-700' 
-                                      : issue.severity === 'warning'
-                                      ? 'border-amber-300 text-amber-700'
-                                      : 'border-blue-300 text-blue-700'
-                                  }`}>
-                                    {issue.severity === 'critical' ? 'Crítico' : issue.severity === 'warning' ? 'Atenção' : 'Info'}
-                                  </Badge>
+                        <div className="space-y-2 mt-4 pt-4 border-t border-gray-200">
+                          <p className="text-stone-600 text-sm font-medium mb-3">Campos Verificados:</p>
+                          {result.issues.map((issue, issueIndex) => {
+                            const isMatch = issue.piValue === issue.documentValue || issue.severity === 'info';
+                            const isCritical = issue.severity === 'critical';
+                            const isWarning = issue.severity === 'warning';
+                            
+                            return (
+                              <div key={issueIndex} className="flex items-start gap-3 p-3 rounded-lg bg-stone-50 border border-stone-200">
+                                {/* Emoji de Status */}
+                                <div className="text-2xl mt-0.5">
+                                  {isMatch ? '✅' : isCritical ? '❌' : '⚠️'}
                                 </div>
-                                <div className="grid grid-cols-2 gap-4 text-sm">
-                                  <div>
-                                    <p className="text-stone-500 text-xs mb-1">Valor no PI:</p>
-                                    <p className="text-stone-700">{issue.piValue}</p>
+                                
+                                {/* Conteúdo */}
+                                <div className="flex-1">
+                                  <div className="flex items-start justify-between mb-2">
+                                    <p className={`text-sm font-medium ${
+                                      isCritical ? 'text-red-900' : isWarning ? 'text-amber-900' : 'text-stone-800'
+                                    }`}>
+                                      {issue.field}
+                                    </p>
+                                    {!isMatch && (
+                                      <Badge variant="outline" className={`text-xs ${
+                                        isCritical ? 'border-red-300 text-red-700 bg-red-50' : 'border-amber-300 text-amber-700 bg-amber-50'
+                                      }`}>
+                                        {isCritical ? '🔴 Crítico' : '🟡 Atenção'}
+                                      </Badge>
+                                    )}
                                   </div>
-                                  <div>
-                                    <p className="text-stone-500 text-xs mb-1">Valor no Documento:</p>
-                                    <p className="text-stone-700">{issue.documentValue}</p>
+                                  
+                                  <div className="grid grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                      <p className="text-stone-500 text-xs mb-1">📄 Valor no PI:</p>
+                                      <p className="text-stone-700 font-mono text-xs bg-white px-2 py-1 rounded border border-stone-200">
+                                        {issue.piValue || 'Não informado'}
+                                      </p>
+                                    </div>
+                                    <div>
+                                      <p className="text-stone-500 text-xs mb-1">📝 Valor no Documento:</p>
+                                      <p className={`text-stone-700 font-mono text-xs px-2 py-1 rounded border ${
+                                        isMatch ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'
+                                      }`}>
+                                        {issue.documentValue || 'Não informado'}
+                                      </p>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            ))}
-                          </div>
-                        )}
+                            );
+                          })}
+                        </div>
                       </Card>
                     ))}
                   </div>
