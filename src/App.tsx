@@ -1,12 +1,15 @@
 import { useState } from 'react';
+import { AuthProvider } from './contexts/AuthContext';
+import { ProtectedRoute } from './components/ProtectedRoute';
 import { Sidebar } from './components/Sidebar';
 import { GPTsCalixView } from './components/GPTsCalixView';
 import { DocumentCheckView } from './components/DocumentCheckView';
 import { LoginView } from './components/LoginView';
+import { RegisterView } from './components/RegisterView';
 
-export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+function AppContent() {
   const [currentView, setCurrentView] = useState('gpts');
+  const [authView, setAuthView] = useState<'login' | 'register'>('login');
 
   const handleViewChange = (view: string) => {
     setCurrentView(view);
@@ -23,18 +26,30 @@ export default function App() {
     }
   };
 
-  // Mostrar tela de login se não estiver logado
-  if (!isLoggedIn) {
-    return <LoginView onLogin={() => setIsLoggedIn(true)} />;
-  }
+  // Componente de autenticação (login ou registro)
+  const authComponent = authView === 'login' ? (
+    <LoginView onSwitchToRegister={() => setAuthView('register')} />
+  ) : (
+    <RegisterView onSwitchToLogin={() => setAuthView('login')} />
+  );
 
   return (
-    <div className="size-full flex bg-stone-50/30">
-      <Sidebar 
-        currentView={currentView} 
-        onViewChange={handleViewChange} 
-      />
-      {renderView()}
-    </div>
+    <ProtectedRoute fallback={authComponent}>
+      <div className="size-full flex bg-stone-50/30">
+        <Sidebar 
+          currentView={currentView} 
+          onViewChange={handleViewChange} 
+        />
+        {renderView()}
+      </div>
+    </ProtectedRoute>
+  );
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }

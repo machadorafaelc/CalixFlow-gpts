@@ -1,0 +1,11 @@
+PROFORMA INVOICE
+PI Number: 12345
+Date: 2025-11-13
+Seller: ABC Company Ltd
+Buyer: XYZ Corporation
+Product: Widget Type A
+Quantity: 1000 units
+Unit Price: $10.00
+Total Amount: $10,000.00
+Payment Terms: 30 days
+Delivery: FOB Shanghai

@@ -1,16 +1,18 @@
 import { useState } from 'react';
-import { Eye, EyeOff, LogIn, AlertCircle } from 'lucide-react';
+import { Eye, EyeOff, LogIn, AlertCircle, UserPlus } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Alert, AlertDescription } from './ui/alert';
+import { useAuth } from '../contexts/AuthContext';
 import calixLogo from 'figma:asset/f03f62b37801fa1aca88a766c230976358254a8f.png';
 
 interface LoginViewProps {
-  onLogin: () => void;
+  onSwitchToRegister?: () => void;
 }
 
-export function LoginView({ onLogin }: LoginViewProps) {
+export function LoginView({ onSwitchToRegister }: LoginViewProps) {
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -22,14 +24,11 @@ export function LoginView({ onLogin }: LoginViewProps) {
     setError('');
     setIsLoading(true);
 
-    // Simula validação
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    // Validação simples para demonstração
-    if (email === 'usuario@calix.com' && password === 'calix2025') {
-      onLogin();
-    } else {
-      setError('E-mail ou senha incorretos. Por favor, tente novamente.');
+    try {
+      await login(email, password);
+      // O AuthContext vai atualizar o estado e redirecionar automaticamente
+    } catch (error: any) {
+      setError(error.message || 'Erro ao fazer login. Tente novamente.');
       setIsLoading(false);
     }
   };
@@ -78,11 +77,11 @@ export function LoginView({ onLogin }: LoginViewProps) {
             {/* Campo de E-mail */}
             <div className="space-y-2">
               <Label htmlFor="email" className="text-gray-700">
-                E-mail ou Usuário
+                E-mail
               </Label>
               <Input
                 id="email"
-                type="text"
+                type="email"
                 placeholder="seu@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -90,6 +89,7 @@ export function LoginView({ onLogin }: LoginViewProps) {
                   error ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''
                 }`}
                 required
+                autoComplete="email"
               />
             </div>
 
@@ -109,6 +109,7 @@ export function LoginView({ onLogin }: LoginViewProps) {
                     error ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''
                   }`}
                   required
+                  autoComplete="current-password"
                 />
                 <button
                   type="button"
@@ -154,18 +155,22 @@ export function LoginView({ onLogin }: LoginViewProps) {
             </Button>
           </form>
 
-          {/* Informações de Acesso para Demo */}
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-            <p className="text-xs text-gray-600 mb-2">
-              <strong>Acesso para demonstração:</strong>
-            </p>
-            <p className="text-xs text-gray-600">
-              E-mail: <code className="bg-white px-2 py-0.5 rounded text-purple-600">usuario@calix.com</code>
-            </p>
-            <p className="text-xs text-gray-600">
-              Senha: <code className="bg-white px-2 py-0.5 rounded text-purple-600">calix2025</code>
-            </p>
-          </div>
+          {/* Link para Registro */}
+          {onSwitchToRegister && (
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <p className="text-center text-sm text-gray-600">
+                Não tem uma conta?{' '}
+                <button
+                  type="button"
+                  onClick={onSwitchToRegister}
+                  className="text-purple-600 hover:text-purple-700 font-medium hover:underline transition-colors inline-flex items-center gap-1"
+                >
+                  <UserPlus className="h-4 w-4" />
+                  Criar conta
+                </button>
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Footer */}
