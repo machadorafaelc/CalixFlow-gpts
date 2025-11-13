@@ -5,6 +5,7 @@ import { Sidebar } from './components/Sidebar';
 import { GPTsCalixView } from './components/GPTsCalixView';
 import { DocumentCheckView } from './components/DocumentCheckView';
 import { DashboardView } from './views/DashboardView';
+import { TeamManagementView } from './views/TeamManagementView';
 import { LoginView } from './components/LoginView';
 import { RegisterView } from './components/RegisterView';
 
@@ -24,6 +25,8 @@ function AppContent() {
         return <DocumentCheckView />;
       case 'dashboard':
         return <DashboardView />;
+      case 'teams':
+        return <TeamManagementView />;
       default:
         return <GPTsCalixView />;
     }

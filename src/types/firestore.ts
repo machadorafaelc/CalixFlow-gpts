@@ -122,3 +122,47 @@ export interface UsageStats {
   conversationsCreated: number;
   documentsUploaded: number;
 }
+
+/**
+ * Equipe (Team)
+ */
+export interface Team {
+  id: string;
+  name: string;
+  description?: string;
+  createdAt: Timestamp;
+  createdBy: string; // uid do criador
+  updatedAt: Timestamp;
+  memberCount: number;
+  clientIds: string[]; // IDs dos clientes que a equipe tem acesso
+}
+
+/**
+ * Membro de Equipe
+ */
+export interface TeamMember {
+  id: string;
+  teamId: string;
+  userId: string; // uid do usuário
+  role: 'admin' | 'editor' | 'viewer';
+  addedAt: Timestamp;
+  addedBy: string; // uid de quem adicionou
+  // Informações do usuário (denormalizadas para facilitar queries)
+  userEmail: string;
+  userDisplayName?: string;
+}
+
+/**
+ * Convite de Equipe
+ */
+export interface TeamInvite {
+  id: string;
+  teamId: string;
+  email: string;
+  role: 'admin' | 'editor' | 'viewer';
+  status: 'pending' | 'accepted' | 'rejected' | 'expired';
+  createdAt: Timestamp;
+  createdBy: string;
+  expiresAt: Timestamp;
+  acceptedAt?: Timestamp;
+}

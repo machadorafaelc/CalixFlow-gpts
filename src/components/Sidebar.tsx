@@ -15,6 +15,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
     { id: 'gpts', label: 'GPTs Cálix', icon: Bot },
     { id: 'document-check', label: 'Checagem de Documentos', icon: FileCheck },
     { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+    { id: 'teams', label: 'Equipes', icon: User },
   ];
 
   const handleLogout = async () => {
