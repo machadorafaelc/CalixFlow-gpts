@@ -2,10 +2,14 @@
  * Serviço de Extração de Texto de Documentos
  * 
  * Extrai texto de arquivos PDF, DOC, DOCX, TXT e IMAGENS
- * Versão 2.0: Com suporte a imagens
+ * Versão 3.0: Com extração REAL de PDFs usando pdfjs-dist
  */
 
 import { ImageProcessor } from './imageProcessor';
+import * as pdfjsLib from 'pdfjs-dist';
+
+// Configurar worker do PDF.js
+pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
 export class DocumentExtractor {
   /**
@@ -16,19 +20,36 @@ export class DocumentExtractor {
     const fileType = file.type;
     const fileName = file.name.toLowerCase();
     
+    console.log('📄 Extraindo texto de:', fileName, 'Tipo:', fileType);
+    
     // Arquivos de texto puro
     if (fileType === 'text/plain' || fileName.endsWith('.txt')) {
-      return await this.readTextFile(file);
+      const text = await this.readTextFile(file);
+      console.log('✅ Texto extraído (TXT):', text.substring(0, 200) + '...');
+      return text;
     }
     
     // Imagens - retorna indicador para processamento com Vision
     if (ImageProcessor.isImage(file)) {
+      console.log('🖼️ Arquivo é imagem, será processado com OCR/Vision');
       return '[IMAGEM] Este arquivo será processado com OCR/Vision';
     }
     
-    // PDFs e DOCs - versão simplificada com mock
-    // Em produção, use pdf-parse para PDFs e mammoth para DOCs
-    return this.generateMockText(file);
+    // PDFs - extração REAL com pdfjs-dist
+    if (fileType === 'application/pdf' || fileName.endsWith('.pdf')) {
+      try {
+        const text = await this.extractPDFText(file);
+        console.log('✅ Texto extraído do PDF:', text.substring(0, 200) + '...');
+        console.log('📊 Total de caracteres:', text.length);
+        return text;
+      } catch (error) {
+        console.error('❌ Erro ao extrair PDF:', error);
+        throw new Error(`Falha ao extrair texto do PDF: ${error instanceof Error ? error.message : 'Erro desconhecido'}`);
+      }
+    }
+    
+    // Outros formatos - retorna erro
+    throw new Error(`Formato de arquivo não suportado: ${fileType}`);
   }
   
   /**
@@ -66,8 +87,51 @@ export class DocumentExtractor {
   }
   
   /**
-   * Gera texto mockado baseado no tipo de documento
-   * Em produção, isso seria substituído por extração real de PDF/DOC
+   * Extrai texto de um arquivo PDF usando pdfjs-dist
+   */
+  private async extractPDFText(file: File): Promise<string> {
+    try {
+      // Converter File para ArrayBuffer
+      const arrayBuffer = await file.arrayBuffer();
+      
+      // Carregar documento PDF
+      const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+      const pdf = await loadingTask.promise;
+      
+      console.log(`📝 PDF carregado: ${pdf.numPages} páginas`);
+      
+      let fullText = '';
+      
+      // Extrair texto de cada página
+      for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        const page = await pdf.getPage(pageNum);
+        const textContent = await page.getTextContent();
+        
+        // Concatenar todos os itens de texto
+        const pageText = textContent.items
+          .map((item: any) => item.str)
+          .join(' ');
+        
+        fullText += pageText + '\n';
+        
+        console.log(`  Página ${pageNum}/${pdf.numPages}: ${pageText.length} caracteres`);
+      }
+      
+      if (!fullText.trim()) {
+        console.warn('⚠️ PDF não contém texto extraível (pode ser imagem escaneada)');
+        return '[PDF SEM TEXTO] Este PDF parece ser uma imagem escaneada. Considere usar OCR.';
+      }
+      
+      return fullText.trim();
+      
+    } catch (error) {
+      console.error('Erro ao processar PDF:', error);
+      throw error;
+    }
+  }
+  
+  /**
+   * Gera texto mockado baseado no tipo de documento (DEPRECATED - apenas para fallback)
    */
   private generateMockText(file: File): string {
     const fileName = file.name.toLowerCase();
