@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { DocumentExtractor } from '../services/documentExtractor';
 import { OpenAIAnalyzer } from '../services/openaiAnalyzer';
 import { ImageProcessor } from '../services/imageProcessor';
-import { Upload, FileCheck, AlertCircle, CheckCircle, XCircle, FileText, Loader2, Trash2 } from 'lucide-react';
+import { Upload, FileCheck, AlertCircle, CheckCircle, XCircle, FileText, Loader2, Trash2, Download } from 'lucide-react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Progress } from './ui/progress';
 import { Alert, AlertDescription } from './ui/alert';
+import { PDFReportService } from '../services/pdfReportService';
 
 interface UploadedDocument {
   id: string;
@@ -432,6 +433,38 @@ export function DocumentCheckView() {
               {/* Analysis Results */}
               {checkResult && checkResult.status === 'completed' && (
                 <div className="space-y-6">
+                  {/* Download Button */}
+                  <div className="flex justify-end mb-4">
+                    <Button
+                      onClick={() => {
+                        if (checkResult.results.length > 0) {
+                          const firstResult = checkResult.results[0];
+                          PDFReportService.generateCheckReport(
+                            {
+                              overallStatus: checkResult.overallStatus || 'warning',
+                              summary: firstResult.summary,
+                              comparisons: firstResult.issues.map(issue => ({
+                                field: issue.field,
+                                piValue: issue.piValue,
+                                documentValue: issue.documentValue,
+                                match: issue.match ?? false,
+                                confidence: 1,
+                                severity: issue.severity,
+                                explanation: `${issue.field}: ${issue.match ? 'Valores conferem' : 'Divergência encontrada'}`
+                              }))
+                            },
+                            piDocument?.name || 'PI',
+                            documents.notaFiscal?.name || 'Documento'
+                          );
+                        }
+                      }}
+                      className="bg-purple-600 hover:bg-purple-700 text-white"
+                    >
+                      <Download className="size-4 mr-2" />
+                      Baixar Relatório em PDF
+                    </Button>
+                  </div>
+
                   {/* Overall Status */}
                   <Alert className={
                     checkResult.overallStatus === 'approved' 
