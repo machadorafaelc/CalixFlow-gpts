@@ -28,9 +28,12 @@ export class ChatService {
   constructor() {
     const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
     
-    if (!apiKey || apiKey === 'sua-nova-chave-openai-aqui') {
-      throw new Error('VITE_OPENAI_API_KEY não configurada. Adicione no arquivo .env');
+    if (!apiKey || apiKey.trim() === '' || apiKey === 'sua-nova-chave-openai-aqui' || apiKey === 'sua-chave-openai-aqui') {
+      console.error('❌ Chave OpenAI não configurada ou inválida');
+      throw new Error('VITE_OPENAI_API_KEY não configurada. Adicione a chave OpenAI nas variáveis de ambiente.');
     }
+    
+    console.log('✅ ChatService inicializado com chave OpenAI');
     
     this.openai = new OpenAI({
       apiKey,

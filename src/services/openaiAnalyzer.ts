@@ -267,12 +267,13 @@ PASSO 1 - EXTRAÇÃO:
 
 PASSO 2 - COMPARAÇÃO DETALHADA:
    
-   Para VALORES MONETÁRIOS:
+   Para VALORES MONETÁRIOS (SEJA RIGOROSO):
    - Compare o VALOR LÍQUIDO da NF com o TOTAL LÍQUIDO do PI
    - Calcule a diferença percentual: |valor_nf - valor_pi| / valor_pi * 100
-   - Se diferença ≤ 1%: severity = "info" (tolerância de arredondamento)
-   - Se 1% < diferença ≤ 5%: severity = "warning" (requer justificativa)
-   - Se diferença > 5%: severity = "critical" (REJEITAR)
+   - Se diferença ≤ 0.5%: severity = "info" (tolerância mínima de arredondamento)
+   - Se 0.5% < diferença ≤ 2%: severity = "warning" (requer justificativa)
+   - Se diferença > 2%: severity = "critical" (REJEITAR IMEDIATAMENTE)
+   - ATENÇÃO: Valores devem ser QUASE IDÊNTICOS. Não aceite diferenças grandes!
    
    Para CNPJ:
    - DEVE ser EXATAMENTE igual (após normalização)
@@ -298,27 +299,28 @@ PASSO 2 - COMPARAÇÃO DETALHADA:
 
 PASSO 3 - CLASSIFICAÇÃO DE SEVERIDADE:
    
-   Use "critical" quando:
-   - Valor diverge mais de 5%
-   - CNPJ diferente
+   Use "critical" quando (REJEITAR DOCUMENTO):
+   - Valor diverge mais de 2%
+   - CNPJ diferente (mesmo que um dígito)
    - Razão Social completamente diferente
-   - Período fora do aprovado
+   - Período fora do aprovado no PI
    - NF emitida antes da veiculação
-   - Falta número do PI na descrição
-   - Veículo diferente do especificado
+   - Falta número do PI na descrição da NF
+   - Veículo diferente do especificado no PI
+   - Qualquer informação essencial divergente
    
-   Use "warning" quando:
-   - Valor diverge entre 1% e 5%
-   - Descrição incompleta mas com PI
-   - Falta Desconto-Padrão na descrição
-   - Endereço com pequenas diferenças
+   Use "warning" quando (REQUER REVISÃO):
+   - Valor diverge entre 0.5% e 2%
+   - Descrição incompleta mas com número do PI
+   - Falta menção ao Desconto-Padrão na descrição
+   - Endereço com pequenas diferenças de formatação
    - Data de emissão muito próxima da veiculação
    
-   Use "info" quando:
-   - Valor diverge menos de 1%
+   Use "info" quando (APENAS INFORMATIVO):
+   - Valor diverge menos de 0.5% (arredondamento aceitável)
    - Campos opcionais faltando
-   - Formatação diferente mas conteúdo igual
-   - Informações adicionais presentes
+   - Formatação diferente mas conteúdo idêntico
+   - Informações adicionais presentes que não afetam validade
 
 PASSO 4 - CONFIANÇA:
    - 1.0: Valores claros, sem ambiguidade
@@ -327,10 +329,30 @@ PASSO 4 - CONFIANÇA:
    - 0.5: Valores inferidos ou parcialmente legíveis
    - 0.3: Valores muito ambíguos
 
-PASSO 5 - STATUS GERAL:
-   - "approved": Nenhuma divergência crítica, apenas info/warning justificáveis
-   - "warning": Há divergências de atenção que precisam revisão humana
+PASSO 5 - STATUS GERAL (SEJA RIGOROSO):
+   
+   REGRA ABSOLUTA: Se houver QUALQUER divergência "critical", o status DEVE ser "rejected".
+   
    - "rejected": Há UMA OU MAIS divergências críticas
+     * Valor diverge mais de 5%
+     * CNPJ diferente
+     * Razão Social completamente diferente
+     * Período fora do aprovado
+     * Falta número do PI na descrição
+     * Veículo diferente
+     * QUALQUER outro problema crítico
+   
+   - "warning": Nenhuma divergência crítica, mas há divergências de atenção
+     * Valor diverge entre 1% e 5%
+     * Descrição incompleta mas com PI
+     * Falta Desconto-Padrão na descrição
+   
+   - "approved": APENAS se nenhuma divergência crítica OU de atenção
+     * Todos os campos conferem
+     * Diferenças mínimas (< 1%) são aceitáveis
+     * Apenas divergências informativas
+   
+   ATENÇÃO: NÃO seja permissivo! Se houver DÚVIDA, marque como "rejected" ou "warning".
 
 PASSO 6 - RESUMO:
    - Escreva um resumo EXECUTIVO em 2-3 frases
