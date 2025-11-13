@@ -291,15 +291,22 @@ PASSO 2 - COMPARAÇÃO DETALHADA:
    - Verifique se data de emissão da NF é POSTERIOR à veiculação
    - NF emitida ANTES da veiculação = "critical"
    
+   Para NÚMERO DO PI (REGRA MAIS CRÍTICA):
+   - Extraia o número do PI do documento PI (ex: "PI NÚMERO: 58378" → 58378)
+   - Extraia o número do PI mencionado na NF (ex: "PI 99015" → 99015)
+   - Compare os números: DEVEM ser EXATAMENTE IGUAIS
+   - Se números diferentes = "critical" (REJEITAR IMEDIATAMENTE)
+   - Se PI não mencionado na NF = "critical"
+   - ATENÇÃO: "PI 58378" ≠ "PI 99015" é ERRO CRÍTICO!
+   
    Para DISCRIMINAÇÃO DA NF:
-   - DEVE mencionar o número do PI (ex: "Conforme PI: 60656")
    - DEVE mencionar "Desconto-Padrão" ou "remuneração da agência"
-   - Falta do PI = "critical"
    - Falta do Desconto-Padrão = "warning"
 
 PASSO 3 - CLASSIFICAÇÃO DE SEVERIDADE:
    
    Use "critical" quando (REJEITAR DOCUMENTO):
+   - NÚMERO DO PI DIFERENTE (ex: PI 58378 ≠ PI 99015) - ERRO MAIS CRÍTICO!
    - Valor diverge mais de 2%
    - CNPJ diferente (mesmo que um dígito)
    - Razão Social completamente diferente
@@ -393,7 +400,7 @@ IMPORTANTE: Retorne APENAS o JSON, sem \`\`\`json ou qualquer outro texto.
    */
   private getFieldsForDocumentType(documentType: string): string[] {
     const commonFields = [
-      '- Número do PI (deve estar mencionado no documento)',
+      '- Número do PI (DEVE SER EXATAMENTE IGUAL - Compare o número do PI base com o mencionado no documento)',
       '- Razão Social do Cliente/Tomador',
       '- CNPJ do Cliente/Tomador',
       '- Razão Social do Veículo/Prestador',
@@ -505,6 +512,26 @@ IMPORTANTE: Retorne APENAS o JSON, sem \`\`\`json ou qualquer outro texto.
       
       if (!parsed.overallStatus || !parsed.summary) {
         throw new Error('Formato de resposta inválido: falta overallStatus ou summary');
+      }
+      
+      // Validação adicional: garantir que divergências críticas resultem em rejeição
+      const hasCriticalIssue = parsed.comparisons.some(comp => comp.severity === 'critical');
+      if (hasCriticalIssue && parsed.overallStatus !== 'rejected') {
+        console.warn('Forçando status rejected devido a divergência crítica');
+        parsed.overallStatus = 'rejected';
+        parsed.summary = 'Documentação REJEITADA devido a divergências críticas encontradas. ' + parsed.summary;
+      }
+      
+      // Validação específica: verificar se número do PI foi comparado
+      const piComparison = parsed.comparisons.find(comp => 
+        comp.field.toLowerCase().includes('pi') || 
+        comp.field.toLowerCase().includes('número')
+      );
+      
+      if (piComparison && !piComparison.match) {
+        console.warn('Número do PI divergente detectado');
+        piComparison.severity = 'critical';
+        parsed.overallStatus = 'rejected';
       }
       
       return parsed as AnalysisResult;
