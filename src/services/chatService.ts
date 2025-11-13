@@ -151,11 +151,19 @@ Responda a pergunta do usuário usando as informações acima quando relevante. 
       
       // Se não encontrou contexto, enviar normalmente
       console.log('⚠️  Nenhum contexto relevante encontrado');
-      return this.sendMessage(messages, options);
+      const result = await this.sendMessage(messages, options);
+      return {
+        ...result,
+        sources: [] // Retorna array vazio em vez de undefined
+      };
       
     } catch (error) {
       console.error('Erro no RAG, enviando mensagem sem contexto:', error);
-      return this.sendMessage(messages, options);
+      const result = await this.sendMessage(messages, options);
+      return {
+        ...result,
+        sources: [] // Retorna array vazio em vez de undefined
+      };
     }
   }
   
