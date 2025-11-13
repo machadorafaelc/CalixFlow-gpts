@@ -147,6 +147,8 @@ export class ConversationService {
    */
   static async deleteConversation(conversationId: string): Promise<void> {
     try {
+      console.log('🔍 Buscando mensagens da conversa:', conversationId);
+      
       // Deletar todas as mensagens da conversa
       const messagesQuery = query(
         collection(db, 'messages'),
@@ -154,20 +156,29 @@ export class ConversationService {
       );
       
       const messagesSnapshot = await getDocs(messagesQuery);
-      const deletePromises = messagesSnapshot.docs.map(doc => deleteDoc(doc.ref));
-      await Promise.all(deletePromises);
+      console.log(`💬 Encontradas ${messagesSnapshot.size} mensagens para deletar`);
       
-      console.log(`${messagesSnapshot.size} mensagens deletadas`);
+      if (messagesSnapshot.size > 0) {
+        const deletePromises = messagesSnapshot.docs.map(doc => {
+          console.log('  • Deletando mensagem:', doc.id);
+          return deleteDoc(doc.ref);
+        });
+        await Promise.all(deletePromises);
+        console.log(`✅ ${messagesSnapshot.size} mensagens deletadas`);
+      }
       
       // Deletar a conversa
+      console.log('🗑️ Deletando conversa:', conversationId);
       const docRef = doc(db, this.COLLECTION, conversationId);
       await deleteDoc(docRef);
       
-      console.log('Conversa deletada:', conversationId);
+      console.log('✅ Conversa deletada com sucesso:', conversationId);
       
-    } catch (error) {
-      console.error('Erro ao deletar conversa:', error);
-      throw new Error('Erro ao deletar conversa');
+    } catch (error: any) {
+      console.error('❌ Erro ao deletar conversa:', error);
+      console.error('Código do erro:', error.code);
+      console.error('Mensagem:', error.message);
+      throw error;
     }
   }
   

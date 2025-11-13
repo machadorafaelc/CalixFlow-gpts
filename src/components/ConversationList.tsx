@@ -51,17 +51,22 @@ export function ConversationList({
     if (!confirm('Tem certeza que deseja deletar esta conversa?')) return;
     
     try {
+      console.log('🗑️ Iniciando exclusão da conversa:', conversationId);
       await ConversationService.deleteConversation(conversationId);
+      console.log('✅ Conversa deletada com sucesso');
+      
       setConversations(convs => convs.filter(c => c.id !== conversationId));
       setMenuOpen(null);
       
       // Se deletou a conversa selecionada, criar nova
       if (conversationId === selectedConversationId) {
+        console.log('🆕 Criando nova conversa...');
         onCreateConversation();
       }
-    } catch (error) {
-      console.error('Erro ao deletar conversa:', error);
-      alert('Erro ao deletar conversa');
+    } catch (error: any) {
+      console.error('❌ Erro ao deletar conversa:', error);
+      console.error('Detalhes:', error.message, error.code);
+      alert(`Erro ao deletar conversa: ${error.message || 'Erro desconhecido'}`);
     }
   };
   

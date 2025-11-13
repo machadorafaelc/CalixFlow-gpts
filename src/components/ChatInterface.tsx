@@ -77,7 +77,7 @@ export function ChatInterface({
   const scrollToBottom = () => {
     setTimeout(() => {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    }, 300); // Aumentado para dar tempo de carregar imagens
   };
   
   const handleSendMessage = async () => {
@@ -201,6 +201,8 @@ export function ChatInterface({
       );
     } finally {
       setLoading(false);
+      // Scroll para o final após enviar mensagem
+      scrollToBottom();
     }
   };
   
