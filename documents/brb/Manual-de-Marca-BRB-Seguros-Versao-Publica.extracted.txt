@@ -1,0 +1,283 @@
+Manual de Marca
+BRB Seguros
+
+Guia de Identidade Visual
+
+Apresentação
+O manual de identidade visual da BRB Seguros
+foi desenvolvido com base na identidade visual do
+próprio Banco de Brasília (BRB), reﬂetindo seus
+valores e seu posicionamento.
+A marca foi projetada para transmitir uma
+mensagem clara e consistente, sendo essencial
+para o reconhecimento da identidade visual. Para
+manter sua integridade e eﬁcácia, o manual
+estabelece importantes regras sobre a correta
+utilização da marca.
+
+Construção da marca
+A unidade de medida a ser utilizada como base para
+calcular os espaçamentos e as dimensões de
+elementos é a altura do símbolo do BRB, a qual
+chamaremos de “x”.
+
+Área de resguardo
+Sempre que a marca da BRB Seguros for aplicada, é
+importante manter uma área de resguardo
+(também conhecida como área de respiro ou área
+de não-interferência).
+Esta área serve para evitar que algum outro sinal
+gráﬁco (como texto, foto ou outra marca) interaja
+negativamente com a marca BRB, distorcendo ou
+diminuindo o impacto da mensagem que se deseja
+transmitir.
+A unidade de medida a ser utilizada como base para
+calcular a área de resguardo é a altura do símbolo, o
+qual chamamos de “x”.
+Cada um dos lados do conjunto da marca deve ter
+um espaço de medida “x/2” na qual não deve haver
+nenhuma interferência.
+
+Uso incorreto da
+marca
+O logotipo é a essência visual da marca, carregando
+nossos valores e identidade. Qualquer alteração —
+seja na cor, proporção, tipograﬁa ou aplicação —
+enfraquece a consistência e o reconhecimento que
+construímos.
+Manter o uso padronizado é fundamental para
+garantir que a marca transmita a mesma conﬁança e
+proﬁssionalismo em todas as suas aparições. Por isso,
+o logotipo não deve ser distorcido, redesenhado ou
+usado de maneira diferente do que foi
+cuidadosamente projetado.
+Exemplos de uso indevido ao lado:
+
+Padrões cromáticos
+A marca BRB Seguros possui uma versão com cores
+principais, que deve ser usada sempre que possível.
+Esta versão utiliza as cores Azul Claro BRB e Azul
+Escuro BRB.
+Ao lado, estão detalhadas as diferentes versões
+cromáticas da marca. Além da versão com duas cores,
+é possível utilizar a marca BRB com apenas uma cor. A
+escolha destas versões deve ser feita de acordo com a
+legibilidade e o contraste do fundo onde a marca será
+aplicada, ou de acordo com o método de impressão.
+
+Versão em cores: esta é a versão preferencial e deve ser usada sempre que possível.
+
+Versão em preto: para melhor contraste, deve ser aplicada em fundos com tons claros.
+
+Não é permitido utilizar quaisquer outras cores além
+das especiﬁcadas para colorir a marca BRB Seguros.
+
+Versão em branco: para melhor contraste, deve ser aplicada em fundos com tons escuros.
+
+Redução da marca
+Para garantir que a marca da BRB Seguros esteja
+sempre legível e não apresente ruídos, foi
+estabelecido um limite máximo para a sua
+redução, que é de 12 mm de largura, quando se
+tratar da versão com combinação, e 18 mm de
+largura quando na versão horizontal.
+
+Tipograﬁa
+A família tipográﬁca "Montserrat" é a tipograﬁa oﬁcial
+da BRB Seguros. Como uma fonte contemporânea,
+elegante e legível, Montserrat contribui para a coesão
+e o reconhecimento imediato da marca em todos os
+materiais de comunicação.
+Montserrat é uma fonte moderna que transmite
+proﬁssionalismo e clareza, sendo ideal para todos os
+materiais da BRB Seguros. Seu uso cuidadoso, com
+variações de tamanho e peso, ajuda a criar hierarquias
+visuais que facilitam a compreensão e mantêm a
+harmonia estética.
+Para assegurar consistência visual e integridade da
+marca, a tipograﬁa Montserrat deve ser aplicada de
+maneira padronizada em todos os pontos de contato.
+Observação: Em casos especíﬁcos, outras tipograﬁas
+poderão ser aplicadas em campanhas e peças
+distintas, mediante aprovação prévia do Marketing da
+BRB Seguros.
+
+Cores preferenciais
+
+AZUL ESCURO BRB
+Hexadecimal: #003E7E
+RGB: 0 62 126
+CMYK: 100 70 0 30
+Pantone: 281
+
+As cores da BRB Seguros são fundamentais para
+manter a integridade e o reconhecimento da
+marca.
+A marca BRB deve ser exibida preferencialmente
+utilizando as cores deﬁnidas nesta seção, seguindo
+as especiﬁcações técnicas próprias de cada mídia
+para garantir a ﬁdedignidade das cores.
+É importante que as cores não sejam combinadas
+aleatoriamente. Sempre assegure-se que a
+identidade visual da BRB Seguros permaneça
+consistente e facilmente identiﬁcável em todas as
+suas aplicações.
+
+AZUL CLARO BRB
+Hexadecimal: #00AEEF
+RGB: 0 174 239
+CMYK: 100 27 0 6
+Pantone: Process Cyan
+
+PRETO
+Hexadecimal: #000000
+RGB: 0 0 0
+CMYK: 0 0 0 100
+Pantone: Process Black
+
+Paleta de cores
+complementares
+A paleta de cores complementares da BRB Seguros foi
+desenvolvida para oferecer ﬂexibilidade e diversidade na
+criação de materiais de comunicação, adaptando-se a
+diferentes contextos e necessidades.
+Essas cores permitem que cada ponto de contato da marca
+seja dinâmico, sem comprometer a integridade e
+consistência visual que tornam a BRB Seguros facilmente
+reconhecível. É importante, contudo, que as cores
+preferenciais da marca sempre ocupem um papel central,
+garantindo que a identidade visual principal seja mantida e
+reforçada em todas as peças.
+A seguir, apresentamos cada cor complementar e as
+diretrizes sobre como combiná-las de acordo com o tom da
+comunicação — seja ele mais sério ou entusiástico.
+
+#002d59
+RGB: 0, 45, 89
+CMYK: 100%, 49%, 0%, 65%
+
+#007cab
+RGB: 0, 124, 171
+CMYK: 100%, 27%, 0%, 33%
+
+#006871
+RGB: 0, 104, 113
+CMYK: 100%, 8%, 0%, 56%
+
+#69a2c2
+RGB: 105, 162, 194
+CMYK: 46%, 16%, 0%, 24%
+
+#525149
+RGB: 82, 81, 73
+CMYK: 0%, 1%, 11%, 68%
+
+#005095
+RGB: 0, 80, 149
+CMYK: 100%, 46%, 0%, 42%
+
+#0095cb
+RGB: 0, 149, 203
+CMYK: 100%, 27%, 0%, 20%
+
+#47959f
+RGB: 71, 149, 159
+CMYK: 55%, 6%, 0%, 38%
+
+#b2cee1
+RGB: 178, 206, 225
+CMYK: 21%, 8%, 0%, 12%
+
+#858584
+RGB: 133, 133, 132
+CMYK: 0%, 0%, 1%, 48%
+
+#005eb4
+RGB: 0, 94, 180
+CMYK: 100%, 48%, 0%, 29%
+
+#34cefc
+RGB: 52, 206, 252
+CMYK: 79%, 18%, 0%, 1%
+
+#84b5bd
+RGB: 132, 181, 189
+CMYK: 30%, 4%, 0%, 26%
+
+#bde3f2
+RGB: 189, 227, 242
+CMYK: 22%, 6%, 0%, 5%
+
+#acabab
+RGB: 172, 171, 171
+CMYK: 0%, 1%, 1%, 33%
+
+#0077df
+RGB: 0, 119, 223
+CMYK: 100%, 47%, 0%, 13%
+
+#7bdefe
+RGB: 123, 222, 254
+CMYK: 52%, 13%, 0%, 0%
+
+#93b5ad
+RGB: 147, 181, 173
+CMYK: 19%, 0%, 4%, 29%
+
+#b5ddf7
+RGB: 181, 221, 247
+CMYK: 27%, 11%, 0%, 3%
+
+#b9b8b8
+RGB: 185, 184, 184
+CMYK: 0%, 1%, 1%, 27%
+
+#0097ﬀ
+RGB: 0, 151, 255
+CMYK: 100%, 41%, 0%, 0%
+
+#b9ebfe
+RGB: 185, 235, 254
+CMYK: 27%, 7%, 0%, 0%
+
+#abc8c0
+RGB: 171, 200, 192
+CMYK: 15%, 0%, 4%, 22%
+
+#e1eefb
+RGB: 225, 238, 251
+CMYK: 10%, 5%, 0%, 2%
+
+#cecece
+RGB: 206, 206, 206
+CMYK: 0%, 0%, 0%, 19%
+
+Combinação de cores e tom da comunicação
+
+Comunicação Séria
+
+Para relatórios, apresentações de resultados e outras
+comunicações formais:
+
+Comunicação Alegre/Entusiástica
+Para campanhas promocionais, materiais de marketing e
+comunicações que buscam transmitir entusiasmo e alegria:
+
+Contrastes e aplicabilidade
+O uso de contrastes é essencial para destacar informações e guiar o
+olhar do público. A variação de cores, tamanhos e tipograﬁas ajuda a
+deﬁnir hierarquias visuais, tornando clara a mensagem principal.
+Ao unir contraste e aplicabilidade, o design da BRB Seguros reforça a
+identidade da marca e facilita a comunicação com o público.
+Essa abordagem assegura que as peças gráﬁcas transmitam as
+informações de forma acessível, aumentando o impacto visual e a
+eﬁcácia da mensagem.
+
+Coordenação de Marketing - Janeiro, 2025. Versão 1.0 Pública
+
+É vetada a reprodução, adaptação ou uso de qualquer elemento da
+marca BRB Seguros, incluindo logotipos, padrões gráﬁcos, tipograﬁas,
+cores institucionais e nomenclaturas, sem a autorização expressa da
+Coordenação de Marketing.
+
+

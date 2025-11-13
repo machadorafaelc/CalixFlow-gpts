@@ -1,0 +1,99 @@
+Orientações para Briefing:
+
+Para novas campanhas:
+ 
+1) Contexto da demanda 
+• Objetivos de comunicação
+- O que precisaremos que a(s) peça(s) comuniquem
+• Público-alvo
+- Com quem precisamos falar; idade, perfil, cliente ativo/inativo, com/sem cadastro ou mais alguma informação relevante para a entrega)
+ 
+2) O que se deve comunicar
+• Mensagem principal
+- Qual a mensagem chave que deve ser passada na(s) peça(s) da demanda
+• Argumentos
+- Novidades? taxas/novas taxas? mudanças específicas? 
+atributos que podem ser utilizados na(s) peça(s), incluindo diferenciais
+• Tom da comunicação
+- Informal? formal? técnica? explicativa? direto ao ponto?... institucional, engajamento, informativa/educativa, varejo
+ 
+3) Especificações e Formato 
+• Formato
+- Em pixels (material digital) ou cm (material impresso), considerando Largura x Altura
+• Animação
+- Será necessário que a peça seja animada? - sim ou não
+• Quantidade
+- Quantas peças deste mesmo formato serão necessárias?
+• CTA
+- Call to action – ex.: saiba mais, contrate agora, acesse...
+• Necessário botão
+- Sim ou não – se sim, o botão costuma trazer já nele o CTA; caso não, o CTA é inserido no texto da peça
+• Limitação de caracteres
+ 
+4) Como se deve receber a entrega
+• Tipo de arquivo
+- html, jpeg, png, pdf, ppt
+• Divisão por segmento/produto?
+ 
+5) Referência
+• Se houver
+- Caso a demanda já tenha sido feita em outros períodos e/ou tenhamos referências de outras demandas produzidas para o mesmo produto
+e/ou outras campanhas/peças que gostariam que fossem consideradas como referências
+ 
+6) Desdobramento de KV
+• Em caso de desdobramento, qual o KV a ser utilizado
+• Seguir o que foi enviado ou usar apenas como referência?
+- Especificar se textos/tabelas/etc deverão seguir exatamente como enviado no pedido ou se têm liberdade para propôr/sugerir
+ 
+7) Mandatório
+• Pontos de atenção
+- Importante incluir todos os pontos que precisarão de atenção durante o desenvolvimento da demanda
+• Obrigatoriedades
+- O que não pode faltar na entrega final;
+ex.: assets – marca, paleta de cores, elementos...) + texto jurídico + informações de sac/ouvidoria/opt out – também chamado de “selo canais”
+ 
+LINK DOS INSUMOS:
+LINK DO SHAREPOINT PARA ENTREGA:
+LINK DA APRESENTAÇÃO:
+ 
+Para novas peças de uma campanha já criada:
+ 
+1) Contexto da demanda (específicos da peça)
+• Objetivos
+• Público-alvo (específico da peça, caso houver)
+• Argumentos
+ 
+2) Especificações e Formato 
+• Formato
+- Em pixels (material digital) ou cm (material impresso), considerando Largura x Altura
+• Animação
+- Será necessário que a peça seja animada? - sim ou não
+• Quantidade
+- Quantas peças deste mesmo formato serão necessárias?
+• CTA
+- Call to action – ex.: saiba mais, contrate agora, acesse...
+• Necessário botão
+- Sim ou não – se sim, o botão costuma trazer já nele o CTA; caso não, o CTA é inserido no texto da peça
+• Limitação de caracteres
+ 
+3) Como se deve receber a entrega
+• Tipo de arquivo
+- html, jpeg, png, pdf, ppt
+• Divisão por segmento/produto?
+ 
+4) Desdobramento de KV
+• Em caso de desdobramento, qual o KV a ser utilizado
+• Seguir o que foi enviado ou usar apenas como referência?
+- Especificar se textos/tabelas/etc deverão seguir exatamente como enviado no pedido ou se têm liberdade para propôr/sugerir
+ 
+5) Mandatório
+• Pontos de atenção
+- Importante incluir todos os pontos que precisarão de atenção durante o desenvolvimento da demanda
+• Obrigatoriedades
+- O que não pode faltar na entrega final;
+ex.: assets – marca, paleta de cores, elementos...) + texto jurídico + informações de sac/ouvidoria/opt out – também chamado de “selo canais”
+ 
+LINK DOS INSUMOS:
+LINK DO SHAREPOINT PARA ENTREGA:
+LINK DA APRESENTAÇÃO:
+ 

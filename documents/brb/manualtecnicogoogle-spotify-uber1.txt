@@ -1,0 +1,931 @@
+Anuncios Google
+
+Formatos Google PMAX: Guia Completo de Formatos, Anúncios, Criativos, Recursos e Exemplos Google PMAX
+O Google PMAX, ou Performance Max, é uma ferramenta revolucionária no universo da publicidade digital. Projetada para maximizar o desempenho das suas campanhas, a plataforma oferece uma série de recursos e formatos que podem ser adaptados a diferentes objetivos e públicos. Neste guia completo sobre Formatos Google PMAX, vamos explorar em detalhes os diversos formatos, anúncios, criativos, recursos e exemplos do Google PMAX. Este conteúdo é ideal para empresas e profissionais que estão no meio do funil de vendas e buscam compreender melhor como alavancar suas campanhas com o Google PMAX.
+
+Veja a seguir os tópicos que serão abordados neste blog post sobre “Formatos Google PMAX: Guia Completo de Formatos, Anúncios, Criativos, Recursos e Exemplos Google PMAX”:
+
+ 1. Formatos Google PMAX 
+
+ 2. Especificações Google PMAX 
+
+ 3. Recursos PMAX 
+
+ 4. Melhores Práticas Recomendadas PMAX 
+
+ 5. Anúncios e Criativos PMAX 
+
+ 6. Exemplos PMAX 
+
+ 7. Conclusão 
+
+Agora que você conhece os tópicos que serão abordados, está na hora de mergulhar no conteúdo completo! Vamos explorar juntos cada um dos formatos, especificações, recursos e melhores práticas do Google PMAX. Continue a leitura e descubra como essas ferramentas podem otimizar suas campanhas e levar seu marketing digital a um novo nível.
+
+
+
+ 1. Formatos Google PMAX 
+
+Os formatos Google PMAX são projetados para oferecer flexibilidade e eficiência nas campanhas de marketing digital, permitindo que os anunciantes alcancem seus públicos-alvo de maneira mais eficaz. Abaixo, exploramos os principais formatos disponíveis no Google PMAX, destacando suas características e benefícios:
+
+ • Anúncios de Texto 
+
+São ideais para campanhas de pesquisa, aparecendo nos resultados de busca do Google. Esses anúncios consistem em títulos, URLs e descrições, que devem ser otimizados com palavras-chave relevantes para garantir maior visibilidade e taxa de cliques (CTR). A simplicidade e a clareza das mensagens são fundamentais para capturar a atenção dos usuários.
+
+ • Anúncios Gráficos 
+
+Utilizados principalmente na Rede de Display do Google, esses anúncios combinam texto com imagens ou gráficos atraentes. Eles são eficazes para aumentar o reconhecimento da marca e engajar visualmente o público. As especificações de tamanho e formato devem ser seguidas rigorosamente para garantir que os anúncios sejam exibidos corretamente em diferentes dispositivos e plataformas.
+
+ • Anúncios de Vídeo 
+
+Principalmente veiculados no YouTube, os anúncios de vídeo são excelentes para contar histórias envolventes e detalhadas sobre produtos ou serviços. Eles podem variar em duração e formato, incluindo anúncios puláveis e não puláveis, oferecendo opções para diferentes objetivos de campanha. A qualidade do vídeo e a mensagem clara são cruciais para o sucesso.
+
+ • Anúncios Responsivos 
+
+Este formato é altamente flexível e se adapta automaticamente ao espaço disponível em diferentes dispositivos e plataformas. Os anúncios responsivos combinam diversos elementos (texto, imagens e vídeos) para criar variações automáticas que maximizam o desempenho. A versatilidade deste formato ajuda a alcançar uma ampla audiência de maneira eficaz.
+
+
+
+ 2. Especificações Google PMAX 
+
+As especificações Google PMAX são essenciais para garantir que seus anúncios sejam exibidos corretamente e alcancem o máximo desempenho possível. Abaixo, detalhamos as especificações para os principais formatos de anúncios no Google PMAX, incluindo diretrizes para anúncios de texto, gráficos, vídeo e responsivos.
+
+
+
+ • Anúncios de Texto 
+
+Para anúncios de texto no Google PMAX, é importante seguir estas especificações:
+
+| **Tipo**            | **Tamanho máximo** | **Quantidade**                        | **Obrigatório** |
+| ------------------- | ------------------ | ------------------------------------- | --------------- |
+| **Títulos**         | 30 caracteres      | De 3 a 15 títulos<br>Recomendado: 11  | ✓               |
+| **Título longo**    | 90 caracteres      | De 1 a 5 títulos<br>Recomendado: 2    | ✗               |
+| **Descrições**      | 90 caracteres      | De 1 a 5 descrições<br>Recomendado: 4 | ✓               |
+| **Nome da empresa** | 25 caracteres      | 1 nome                                | ✓               |
+| **Call-to-action**  | Automático         | 1 call-to-action                      | ✗               |
+| **URL final**       | 2.048 caracteres   | 1 URL                                 | ✗               |
+
+
+ • Anúncios Gráficos 
+
+Os anúncios gráficos no Google PMAX precisam seguir estas diretrizes de tamanho e formato:
+
+| **Proporção**         | **Tamanho recomendado**                     | **Quantidade**                      | **Obrigatório** |
+| --------------------- | ------------------------------------------- | ----------------------------------- | --------------- |
+| **Paisagem (1.91:1)** | 1.200 × 628 pixels<br>(mín. 600 × 314 px)   | De 1 a 20 imagens<br>Recomendado: 4 | ✓               |
+| **Quadrado (1:1)**    | 1.200 × 1.200 pixels<br>(mín. 300 × 300 px) | De 1 a 20 imagens<br>Recomendado: 4 | ✓               |
+| **Logotipo (1:1)**    | 1.200 × 1.200 pixels<br>(mín. 128 × 128 px) | De 1 a 5 imagens<br>Recomendado: 1  | ✓               |
+| **Logotipo (4:1)**    | 1.200 × 300 pixels<br>(mín. 512 × 128 px)   | De 1 a 5 imagens<br>Recomendado: 1  | ✗               |
+| **Retrato (4:5)**     | 960 × 1.200 pixels<br>(mín. 480 × 600 px)   | De 1 a 20 imagens<br>Recomendado: 2 | ✗               |
+
+
+ • Anúncios de Vídeo 
+
+Os anúncios de vídeo no Google PMAX devem seguir estas especificações para garantir qualidade e compatibilidade:
+
+| **Proporção**       | **Duração recomendada** | **Quantidade**                    | **Obrigatório** |
+| ------------------- | ----------------------- | --------------------------------- | --------------- |
+| **Paisagem (16:9)** | 10 segundos ou mais     | De 1 a 5 vídeos<br>Recomendado: 1 | ✗               |
+| **Quadrado (1:1)**  | 10 segundos ou mais     | De 1 a 5 vídeos<br>Recomendado: 1 | ✗               |
+| **Vertical (9:16)** | 10 segundos ou mais     | De 1 a 5 vídeos<br>Recomendado: 1 | ✗               |
+
+
+• Anúncios Responsivos 
+
+Os anúncios responsivos no Google PMAX combinam vários elementos (image, texto e vídeo) para se adaptar automaticamente a diferentes espaços de anúncios. As especificações incluem:
+
+ • Imagens: Pelo menos uma imagem paisagem (1200 x 628 pixels) e uma imagem quadrada (1200 x 1200 pixels). Formatos aceitos incluem JPEG e PNG. 
+
+ • Logotipo: Um logotipo quadrado (1200 x 1200 pixels) e um logotipo paisagem (1200 x 300 pixels). 
+
+ • Vídeos: Vídeos em MP4 com duração entre 10 e 30 segundos. 
+
+ • Textos: 
+
+ ◦ Títulos curtos: Até 5 títulos de 30 caracteres. 
+
+ ◦ Títulos longos: Até 5 títulos de 90 caracteres. 
+
+ ◦ Descrições: Até 5 descrições de 90 caracteres. 
+
+ ◦ Nome da Empresa: Até 25 caracteres. 
+
+ ◦ Call to Action: Personalizável. 
+
+
+
+ 3. Recursos PMAX 
+
+Os recursos PMAX são elementos essenciais que podem ser utilizados para potencializar o desempenho das suas campanhas no Google PMAX. Estes recursos permitem criar anúncios mais atraentes e eficazes, aumentando o engajamento e as conversões. Abaixo, exploramos os principais recursos PMAX que você pode utilizar em suas campanhas.
+
+ • Recursos de Texto 
+
+Os recursos de texto no Google PMAX incluem títulos, descrições e caminhos de URL, que são cruciais para atrair a atenção do usuário e transmitir a mensagem de maneira clara e concisa. É importante que esses textos sejam otimizados com palavras-chave relevantes e que transmitam a proposta de valor de forma eficaz. Utilize variações nos títulos e descrições para testar o desempenho e encontrar as combinações mais eficazes.
+
+
+
+ • Recursos Visuais 
+
+Os recursos visuais, como imagens e vídeos, são fundamentais para criar anúncios visualmente atraentes. No Google PMAX, é possível utilizar:
+
+ • Imagens de Alta Qualidade: Certifique-se de que as imagens sejam claras, bem iluminadas e representem bem o produto ou serviço. Utilize imagens em diferentes tamanhos e formatos para garantir a compatibilidade com vários dispositivos e plataformas. 
+
+ • Vídeos Engajadores: Vídeos curtos e diretos são eficazes para captar a atenção rapidamente. Use vídeos que demonstrem os benefícios do produto ou serviço, com chamadas para ação claras.
+
+
+
+ • Recursos de Segmentação 
+
+Os recursos de segmentação no Google PMAX permitem que você direcione seus anúncios para os públicos mais relevantes. Isso inclui:
+
+ • Segmentação Demográfica: Defina seu público-alvo com base em idade, gênero, status parental e renda familiar. 
+
+ • Interesses e Comportamentos: Alcance usuários com base em seus interesses e comportamentos online, utilizando dados de navegação e interação. 
+
+ • Intenção de Compra: Foque em usuários que demonstraram interesse ativo em produtos ou serviços semelhantes aos que você oferece. 
+
+
+
+ • Recursos de Automação 
+
+A automação no Google PMAX permite otimizar campanhas de maneira mais eficiente e eficaz. Utilize os seguintes recursos automatizados:
+
+ • Lances Inteligentes: Ajuste automaticamente os lances para maximizar o retorno sobre o investimento (ROI). O Google utiliza aprendizado de máquina para definir lances ideais com base em diversos sinais de intenção do usuário. 
+
+ • Criação Automática de Anúncios: Combine elementos de texto, imagem e vídeo para criar automaticamente variações de anúncios que se adaptam ao espaço disponível em diferentes plataformas e dispositivos. 
+
+ • Relatórios de Desempenho: Receba insights detalhados sobre o desempenho das suas campanhas, ajudando a identificar áreas de melhoria e otimizar continuamente suas estratégias. 
+
+
+
+ • Recursos de Integração 
+
+Os recursos de integração permitem que você conecte suas campanhas do Google PMAX com outras ferramentas e plataformas para obter melhores resultados:
+
+ • Google Analytics: Integre suas campanhas com o Google Analytics para acompanhar o comportamento dos usuários no seu site e medir o impacto dos anúncios nas conversões. 
+
+ • Google Merchant Center: Para anúncios de Shopping, conecte seu inventário de produtos ao Google Merchant Center, garantindo que os dados de seus produtos estejam sempre atualizados e precisos. 
+
+ • CRM e Plataformas de Dados de Clientes: Utilize dados de CRM e outras plataformas de dados para criar públicos personalizados e segmentar campanhas de forma mais precisa. 
+
+Utilizar os recursos PMAX de forma eficaz pode transformar suas campanhas de marketing digital, tornando-as mais dinâmicas, relevantes e eficazes. A combinação estratégica desses recursos permite alcançar públicos-alvo com mais precisão, otimizar o desempenho dos anúncios e maximizar os resultados das suas campanhas.
+
+
+
+ 4. Melhores Práticas Recomendadas PMAX 
+
+Para maximizar o desempenho das suas campanhas no Google PMAX, é fundamental seguir as melhores práticas recomendadas. Essas práticas garantem que você esteja utilizando todos os recursos e especificações de forma otimizada, resultando em maior engajamento e melhores resultados. Aqui estão algumas das melhores práticas recomendadas para o Google PMAX:
+
+Campanha PMax – Melhores Práticas
+Texto – Melhores práticas
+15 títulos com menos de 30 caracteres
+
+1 título com menos de 15 caracteres
+
+1 título com menos de 90 caracteres
+
+5 descrições com menos de 90 caracteres
+
+5 descrições com menos de 60 caracteres
+
+Nome comercial como nome de marca em texto simples
+
+Imagens – Melhores práticas
+Adicione até 20 imagens, com pelo menos:
+
+Mínimo de 3 imagens no formato Paisagem (600 × 314 px)
+
+Mínimo de 3 imagens no formato Quadrado (300 × 300 px)
+
+Mínimo de 3 imagens no formato Retrato (480 × 600 px)
+
+Carrossel: mínimo de 2 cards
+
+Feed de Produtos (somente para e-commerce)
+
+Vídeo – Melhores práticas
+Pelo menos 1 vídeo no formato Horizontal
+
+Pelo menos 1 vídeo no formato Vertical
+
+Pelo menos 1 vídeo no formato Quadrado
+
+Versões entre 10 e 60 segundos
+
+Logo – Melhores práticas
+2 logotipos: nos formatos 1:1 e 4:1
+
+Configurações importantes
+Expansão de URL
+
+Aquisição de novos clientes com estratégia de Valor de Lance
+
+• Utilize Diversidade de Criativos 
+
+Uma das principais melhores práticas para Google PMAX é utilizar uma variedade de criativos. Isso inclui diferentes formatos de anúncios, como texto, imagem e vídeo, além de várias versões de cada criativo. A diversidade ajuda a manter os anúncios frescos e relevantes para diferentes públicos e contextos. Experimente diferentes combinações de títulos, descrições e elementos visuais para encontrar o que funciona melhor.
+
+
+
+ • Segmente Públicos Específicos 
+
+A segmentação precisa é crucial para o sucesso das campanhas no Google PMAX. Utilize os recursos de segmentação do Google para atingir públicos específicos com base em dados demográficos, interesses, comportamentos e intenções de compra. Crie audiências personalizadas e listas de remarketing para direcionar suas mensagens aos usuários mais propensos a converter.
+
+
+
+ • Aplique Lances Inteligentes 
+
+Os lances inteligentes são uma das funcionalidades mais poderosas do Google PMAX. Utilize estratégias de lances automatizados que ajustam os lances em tempo real com base em uma variedade de sinais, como dispositivo, localização, hora do dia e comportamento do usuário. Isso ajuda a maximizar o retorno sobre o investimento (ROI) e a alcançar seus objetivos de campanha de forma mais eficiente.
+
+
+
+ • Utilize Recursos de Automação 
+
+A automação pode economizar tempo e melhorar a eficiência das suas campanhas no Google PMAX. Utilize os recursos automatizados para criar e otimizar anúncios, ajustar lances e analisar o desempenho. Deixe o Google fazer o trabalho pesado de encontrar a melhor combinação de criativos e ajustes de lances para alcançar seus objetivos de marketing.
+
+
+
+ • Acompanhamento e Análise Constante 
+
+Monitore regularmente o desempenho das suas campanhas no Google PMAX. Utilize o Google Analytics e outras ferramentas de análise para acompanhar métricas-chave, como impressões, cliques, taxas de conversão e custo por aquisição (CPA). Identifique padrões e tendências para ajustar suas estratégias conforme necessário. A análise contínua permite otimizar suas campanhas para obter os melhores resultados possíveis.
+
+
+
+ • Mantenha-se Atualizado com as Tendências do Setor 
+
+O marketing digital está em constante evolução, e é importante manter-se atualizado com as últimas tendências e práticas recomendadas. Participe de webinars, conferências e cursos de atualização para aprender sobre as novas funcionalidades e estratégias do Google PMAX. Aplicar as tendências mais recentes pode dar à sua campanha uma vantagem competitiva.
+
+
+
+ • Teste e Otimize Continuamente 
+
+O teste contínuo é essencial para descobrir o que funciona melhor em suas campanhas no Google PMAX. Realize testes A/B com diferentes criativos, segmentações e estratégias de lances. Analise os resultados para identificar quais variações produzem o melhor desempenho e faça ajustes com base nos insights obtidos. A otimização contínua é a chave para manter suas campanhas eficazes e eficientes.
+
+
+
+ • Use Dados Estruturados 
+
+Integrar dados estruturados nos seus anúncios pode melhorar significativamente o desempenho. Utilize dados de produtos, preços e descrições detalhadas para criar anúncios mais informativos e atraentes. Os dados estruturados ajudam os algoritmos do Google a entender melhor o conteúdo dos seus anúncios, resultando em uma melhor correspondência com as intenções dos usuários.
+
+
+
+ • Integração com Outras Ferramentas 
+
+A integração com outras ferramentas de marketing digital pode aprimorar ainda mais suas campanhas no Google PMAX. Conecte suas campanhas ao Google Merchant Center para otimizar anúncios de Shopping, ou utilize seu CRM para criar públicos personalizados com base em dados de clientes. Essas integrações ajudam a criar campanhas mais coesas e eficazes.
+
+
+
+ • Feedback e Ajustes Regulares 
+
+Solicite feedback regularmente sobre o desempenho das suas campanhas e esteja disposto a fazer ajustes conforme necessário. A flexibilidade e a adaptabilidade são essenciais para o sucesso em um ambiente de marketing digital em constante mudança. Utilize os insights de performance para fazer ajustes informados e manter suas campanhas otimizadas.
+
+Seguir essas melhores práticas recomendadas para Google PMAX ajudará a maximizar o desempenho das suas campanhas, garantindo que você esteja utilizando todos os recursos disponíveis de forma eficaz e eficiente.
+
+
+
+ 5. Anúncios e Criativos PMAX 
+
+Os anúncios e criativos desempenham um papel crucial no sucesso das campanhas do Google PMAX. A combinação correta de elementos visuais e textuais pode aumentar significativamente o engajamento e as conversões. Neste tópico, vamos explorar as melhores práticas para criar anúncios e criativos eficazes no Google PMAX, abrangendo tipos de anúncios, otimização de criativos e estratégias de implementação.
+
+
+
+Tipos de Anúncios PMAX
+
+Os formatos de anúncios disponíveis no Google PMAX são variados e permitem uma ampla gama de abordagens criativas para atingir seu público-alvo de maneira eficaz. Entre os principais formatos de anúncios estão:
+
+ • Anúncios de Texto: Simples e diretos, os anúncios de texto são ideais para transmitir mensagens claras e concisas. Eles aparecem nas pesquisas do Google e em redes de parceiros. 
+
+ • Anúncios de Imagem: Anúncios visuais que podem ser exibidos na Rede de Display do Google, ajudando a capturar a atenção com elementos visuais atraentes. 
+
+ • Anúncios de Vídeo: Perfeitos para contar histórias e demonstrar produtos em ação, os anúncios de vídeo podem ser exibidos no YouTube e na Rede de Display do Google. 
+
+ • Anúncios de Shopping: Utilizados para promover produtos específicos, mostrando uma imagem do produto, título, preço e nome da loja. Ideal para e-commerce. 
+
+ • Anúncios de Aplicativo: Projetados para promover a instalação de aplicativos, esses anúncios podem ser exibidos na Rede de Pesquisa, YouTube, Google Play e na Rede de Display. 
+
+
+
+Otimização de Criativos
+
+Para maximizar o desempenho dos seus anúncios no Google PMAX, é crucial otimizar seus criativos. Aqui estão algumas dicas de otimização:
+
+ • Imagens de Alta Qualidade: Utilize imagens nítidas e de alta resolução que destacam seus produtos ou serviços. Evite imagens genéricas e prefira aquelas que sejam relevantes para sua marca. 
+
+ • Vídeos Engajadores: Crie vídeos curtos (15-30 segundos) e dinâmicos que transmitem sua mensagem de forma rápida e eficaz. Inclua um call-to-action (CTA) claro no final. 
+
+ • Textos Persuasivos: Escreva títulos e descrições que captem a atenção e incentivem a ação. Use palavras-chave relevantes e mantenha o texto simples e direto. 
+
+ • Variedade de Criativos: Teste diferentes combinações de textos, imagens e vídeos para descobrir quais performam melhor. A diversidade de criativos ajuda a evitar a fadiga de anúncios e a manter o interesse do público. 
+
+
+
+Estratégias de Implementação
+
+Implementar uma estratégia eficaz para seus anúncios e criativos no Google PMAX envolve várias etapas:
+
+ • Configuração de Grupos de Recursos: Crie grupos de recursos que combinem diferentes tipos de criativos (texto, imagem, vídeo) para cada objetivo de campanha. Isso permite que o Google otimize automaticamente quais combinações funcionam melhor. Não é obrigatório ter recursos para lançar uma campanha Performance Max, mas o uso deles pode incentivar as pessoas a realizar uma ação no seu anúncio.
+
+Os requisitos do Grupo de Recursos incluem:
+
+| Tipo            | Tamanho máximo   | Quantidade                            | Obrigatório |
+| --------------- | ---------------- | ------------------------------------- | ----------- |
+| Títulos         | 30 caracteres    | De 3 a 15 títulos<br>Recomendado: 11  | Sim         |
+| Título longo    | 90 caracteres    | De 1 a 5 títulos<br>Recomendado: 2    | Não         |
+| Descrições      | 90 caracteres    | De 1 a 5 descrições<br>Recomendado: 4 | Sim         |
+| Nome da empresa | 25 caracteres    | 1 nome                                | Sim         |
+| Call-to-action  | Automático       | 1 call-to-action                      | Não         |
+| URL final       | 2.048 caracteres | 1 URL                                 | Não         |
+
+
+| Proporção       | Duração recomendada | Quantidade                        | Obrigatório |
+| --------------- | ------------------- | --------------------------------- | ----------- |
+| Paisagem (16:9) | 10 segundos ou mais | De 1 a 5 vídeos<br>Recomendado: 1 | Não         |
+| Quadrado (1:1)  | 10 segundos ou mais | De 1 a 5 vídeos<br>Recomendado: 1 | Não         |
+| Vertical (9:16) | 10 segundos ou mais | De 1 a 5 vídeos<br>Recomendado: 1 | Não         |
+
+
+6. Extensões de Anúncio (Assets de Extensão)
+
+As extensões complementam os anúncios, fornecendo informações adicionais e aumentando o espaço clicável. PMAX pode usá-las automaticamente, mas é essencial conhecê-las:
+
+Tipo de Extensão
+
+Função
+
+Chamada
+
+Exibe um número de telefone clicável.
+
+Localização
+
+Mostra endereço da empresa integrado ao Google Maps.
+
+Aplicação
+
+Link direto para instalação de apps em lojas Android/iOS.
+
+Preço
+
+Exibe serviços com preços em linhas, estilo lista.
+
+Promoção
+
+Mostra ofertas com valor ou porcentagem de desconto.
+
+Snippet estruturado
+
+Lista atributos como "Serviços", "Destinos", "Modelos", etc.
+
+7. Especificações para o Feed de Produtos (Shopping)
+
+Essencial para e-commerce. PMAX usa esse feed nas campanhas de "vendas de catálogo":
+
+Campos obrigatórios no Google Merchant Center:
+
+ID
+
+Título (até 150 caracteres, 70 visíveis em dispositivos móveis)
+
+Descrição (5000 caracteres)
+
+Link para o produto
+
+Link da imagem principal
+
+Preço
+
+Disponibilidade
+
+Categoria Google
+
+Marca / GTIN (quando aplicável)
+
+Boas práticas:
+
+Usar imagens com fundo branco e alta qualidade.
+
+Atualizar regularmente o estoque e preço.
+
+Evitar redirecionamentos nas URLs de destino.
+
+8. Configurações de Conversão e Medidas de Sucesso
+
+Campanhas PMAX dependem fortemente de dados de conversão para otimizar desempenho.
+
+O que configurar:
+
+Importar eventos do Google Analytics 4 (GA4)
+
+Configurar metas no Google Ads (compra, lead, inscrição, etc.)
+
+Habilitar acompanhamento de conversão cruzado por dispositivos
+
+Usar o Google Tag Manager (ou tag global) para facilitar integração
+
+Sugestão:
+
+Validar o funcionamento das tags com o Google Tag Assistant
+
+9. Formatos Avançados e Complementares
+
+Embora o foco seja PMAX, alguns formatos relacionados merecem destaque:
+
+Formato Especial
+
+Descrição
+
+Discovery Ads
+
+Exibidos no YouTube, Gmail e Google Discover. Excelente para consideração.
+
+Demand Gen
+
+Novo formato focado em awareness com controle criativo semelhante ao PMAX.
+
+Anúncio Local
+
+Ideal para lojas físicas, integrado ao perfil do Google Business.
+
+YouTube Shorts
+
+Requer vídeos verticais de 10-60 segundos.
+
+10. Posicionamentos do PMAX
+
+O PMAX distribui os criativos automaticamente nos canais Google. Importante entender onde eles aparecem:
+
+Canal
+
+Tipo de Exibição
+
+Pesquisa Google
+
+Anúncios de texto nos resultados de busca
+
+YouTube
+
+Anúncios em vídeos, Shorts e sugeridos
+
+Gmail
+
+Guia de Promoções e Social
+
+Discover
+
+Feed de notícias do Google App
+
+Display
+
+Sites parceiros com imagens e vídeos
+
+Google Maps
+
+Localizações e rotas para empresas locais
+
+11. Sinais de Audiência (Audience Signals)
+
+Apesar de opcionais, os sinais ajudam a acelerar o aprendizado do algoritmo PMAX:
+
+Tipos recomendados:
+
+Públicos personalizados: URLs visitadas, apps usados, palavras-chave de interesse
+
+Listas de remarketing: Visitantes do site, abandonos de carrinho, etc.
+
+Intenção de compra: Usuários que pesquisaram produtos ou serviços similares
+
+Segmentos do Google: Interesses com base em navegação e comportamento online
+
+12. Checklist Final de Verificação
+
+Etapa
+
+Verificado?
+
+Observações
+
+Criativos de texto
+
+[ ]
+
+Inclui títulos curtos, longos e descrições
+
+Imagens
+
+[ ]
+
+Paisagem, quadrado e retrato
+
+Vídeos
+
+[ ]
+
+Formatos horizontal, vertical e quadrado
+
+Logotipos
+
+[ ]
+
+1:1 e 4:1
+
+Feed de produtos (se e-comm)
+
+[ ]
+
+Atualizado, sem erros
+
+Tags de conversão ativas
+
+[ ]
+
+Testadas com Tag Assistant
+
+Sinais de audiência
+
+[ ]
+
+Públicos personalizados ou listas importadas
+
+Extensões revisadas
+
+[ ]
+
+Chamada, local, promoção, snippet estruturado
+
+Integração GA4 e CRM
+
+[ ]
+
+Confirmado e funcionando
+
+
+
+Especificações Técnicas Detalhadas para Anúncios Google PMAX
+1. Imagens (Gráficos e Responsivos)
+Tipo/Proporção	Tamanho Recomendado	Tamanho Mínimo	Peso Máximo	Tipo de Arquivo
+Paisagem (1.91:1)	1200 × 628 px	600 × 314 px	5 MB	JPG, PNG (RGB)
+Quadrado (1:1)	1200 × 1200 px	300 × 300 px	5 MB	JPG, PNG
+Retrato (4:5)	960 × 1200 px	480 × 600 px	5 MB	JPG, PNG
+Logotipo (1:1)	1200 × 1200 px	128 × 128 px	5 MB	JPG, PNG
+Logotipo (4:1)	1200 × 300 px	512 × 128 px	5 MB	JPG, PNG
+
+Observações:
+
+Fundo transparente em logotipos não é recomendado, pois pode gerar contraste insuficiente.
+
+Imagens com muito texto ou bordas grandes podem ter desempenho inferior.
+
+Não usar marcas d’água.
+
+2. Vídeos (YouTube, Display e Discovery)
+Proporção	Tamanho do Vídeo (Recom.)	Duração	Tamanho Máx.	Formatos Suportados
+Horizontal (16:9)	1920 × 1080 px (Full HD)	10 a 60 segundos	512 MB	MP4 (preferencial), MOV
+Quadrado (1:1)	1080 × 1080 px	10 a 60 segundos	512 MB	MP4, MOV
+Vertical (9:16)	1080 × 1920 px	10 a 60 segundos	512 MB	MP4, MOV
+
+Recomendações adicionais:
+
+Codec de vídeo: H.264
+
+Codec de áudio: AAC
+
+Frame rate: até 30fps
+
+Bitrate sugerido: 5–10 Mbps
+
+Tamanho de arquivo ideal: <100 MB (para upload rápido e estabilidade)
+
+3. Textos (Anúncios Responsivos e Pesquisa)
+Elemento	Máximo de Caracteres	Observações
+Títulos	30	Até 15 títulos
+Título longo	90	Até 5 títulos longos
+Descrições	90	Até 5 descrições
+Nome da empresa	25	Texto simples, sem formatações
+Call to action (CTA)	Automático ou customizado	Frases curtas como “Saiba mais”
+URL final	2.048	Sem redirecionamento ou tracking
+
+4. Feed de Produtos (Google Merchant Center)
+Campo	Especificações Técnicas
+Imagem principal	1000 × 1000 px (mínimo 600 × 600) JPG/PNG, fundo branco preferido
+Peso da imagem	Até 16 MB
+Título	Até 150 caracteres (foco nos primeiros 70)
+Descrição	Até 5000 caracteres
+URL de destino	HTTPS obrigatório, sem redirecionamentos
+Preço	Atualizado em tempo real, incluindo moeda (ex: R$ 59,90)
+GTIN / Marca	Obrigatório para produtos de marca registrada
+
+
+
+______________//____________
+
+
+## Manual Completo de Anúncios na Plataforma Uber
+
+Este documento apresenta um panorama completo e atualizado das especificações, formatos, boas práticas e diretrizes técnicas para veiculação de anúncios na plataforma da Uber. A Uber Ads oferece um ecossistema de publicidade baseado em geolocalização e intenção de consumo, com oportunidades tanto para awareness quanto para conversão local.
+
+---
+
+### 1. Formatos de Anúncio Uber Ads
+
+A Uber Ads disponibiliza os seguintes formatos:
+
+| Formato                    | Onde Aparece                      | Objetivo Principal                             |
+| -------------------------- | --------------------------------- | ---------------------------------------------- |
+| Sponsored Listings         | App Uber Eats (busca e navegação) | Aumentar visibilidade de restaurantes/produtos |
+| Homepage Banner            | Tela inicial do Uber Eats         | Branding, promoções e awareness                |
+| Post Checkout Banner       | Após uma compra no Uber Eats      | Retargeting, promoção cruzada                  |
+| Ride Ads (Journey Ads)     | App Uber durante viagens          | Branding, ativação local                       |
+| In-Car Tablet Ads (Vistar) | Telas em carros com tablet        | Experiência imersiva, visibilidade             |
+| Push Notifications         | App Uber ou Eats                  | Reengajamento, ativação direta                 |
+
+---
+
+### 2. Especificações Técnicas por Formato
+
+#### Sponsored Listings (Uber Eats)
+
+| Elemento        | Especificação                        |
+| --------------- | ------------------------------------ |
+| Nome do Negócio | Até 50 caracteres                    |
+| Imagem          | 1200 x 800 px, JPG/PNG, até 1 MB     |
+| Logo            | 1:1, mínimo 500 x 500 px, até 500 KB |
+| Call to Action  | Texto curto como "Peça agora"        |
+
+#### Homepage Banner (Uber Eats)
+
+| Elemento        | Especificação                               |
+| --------------- | ------------------------------------------- |
+| Tamanho         | 1920 x 1080 px                              |
+| Tipo de arquivo | JPG ou PNG                                  |
+| Peso máximo     | 2 MB                                        |
+| Bitrate (vídeo) | Até 10 Mbps (se animado em HTML5)           |
+| Texto           | Título curto (30 caracteres) e CTA opcional |
+
+#### Post Checkout Banner (Uber Eats)
+
+| Elemento        | Especificação          |
+| --------------- | ---------------------- |
+| Tamanho         | 1080 x 1080 px         |
+| Tipo de arquivo | JPG, PNG               |
+| Peso máximo     | 1 MB                   |
+| Link            | URL rastreável com UTM |
+
+#### Ride Ads (Journey Ads)
+
+| Elemento       | Especificação                           |
+| -------------- | --------------------------------------- |
+| Formato        | Imagem estática ou vídeo                |
+| Imagem         | 1080 x 1920 px, JPG/PNG, até 10 MB      |
+| Vídeo          | MP4 (preferencial), até 30s, máx. 50 MB |
+| Codec de vídeo | H.264                                   |
+| Codec de áudio | AAC (som opcional)                      |
+| Frame rate     | 24, 30 ou 60 fps                        |
+| Bitrate        | 5.000 a 10.000 kbps                     |
+| CTA            | "Saiba mais", "Peça agora"              |
+
+#### In-Car Tablet Ads (Vistar/Uber)
+
+| Elemento      | Especificação                    |
+| ------------- | -------------------------------- |
+| Vídeo         | MP4, 16:9, 15 ou 30 segundos     |
+| Tamanho ideal | 1920 x 1080 px                   |
+| Peso máximo   | 100 MB                           |
+| Codec vídeo   | H.264                            |
+| Legenda       | Obrigatória (acessibilidade)     |
+| Áudio         | Opcional, com mixagem balanceada |
+
+---
+
+### 3. Melhores Práticas de Anúncio na Uber
+
+* Criativos visuais e claros (evitar excesso de texto)
+* Destacar promoções e ofertas limitadas
+* Testar variações de CTA e imagem
+* Alinhar design aos horários de pico (almoço, jantar, happy hour, deslocamentos)
+* Geolocalização: adaptar mensagens para cidades ou bairros específicos
+
+---
+
+### 4. Diretrizes de Conteúdo (Brand Safety)
+
+* Proibido: conteúdo sensível, bebidas alcoólicas, tabaco, apostas, linguagem ofensiva
+* Exigido: imagens em alta resolução, sem distorção ou pixelização
+* Textos devem estar dentro do criativo, não sobrepostos ou truncados
+
+---
+
+### 5. Segmentação na Uber Ads
+
+A segmentação na Uber é feita principalmente via dados comportamentais e geográficos:
+
+* Geolocalização precisa por cidade, bairro ou raio de distância
+* Tipo de usuário (novo, recorrente, inativo)
+* Horários específicos (segmentação por hora do dia ou dia da semana)
+* Contexto de uso: entrega, viagem, jornada
+* Categoria de consumo (ex: usuários que pedem comida japonesa, farmácia etc.)
+
+Obs: a configuração detalhada é feita via time de vendas Uber Ads ou parceiros integrados.
+
+---
+
+### 6. Orçamento e Modelo de Cobrança
+
+* Modelo CPC (custo por clique) para Sponsored Listings e Push Notifications
+* Modelo CPM (custo por mil impressões) para Banners, Ride Ads e In-Car Ads
+* Orçamento mínimo depende do país e categoria (em geral, a partir de R\$ 1.500 por mês no Brasil)
+* Acordo comercial pode exigir cadastro junto a representante Uber Ads
+
+---
+
+### 7. SLA e Aprovação de Criativos
+
+* Tempo médio de aprovação: 24 a 48 horas úteis
+* Submissão recomendada: com pelo menos 3 dias úteis de antecedência
+* Motivos comuns de reprovação:
+
+  * Texto truncado
+  * Imagem com baixa qualidade ou pixelização
+  * Violação de política de conteúdo (promoções falsas, links quebrados, etc.)
+
+---
+
+### 8. Integrações e Rastreamento
+
+* URLs com parâmetros UTM recomendadas para todas as campanhas
+* Pode ser integrado com:
+
+  * Google Analytics
+  * CRMs com rastreamento pós-clique
+  * Plataformas de BI (Looker, Tableau) via exportação de relatórios
+* Dashboards personalizados podem ser disponibilizados via contato comercial
+
+---
+
+### 9. Relatório e Métricas Disponíveis
+
+A Uber fornece dashboards ou relatórios com as seguintes métricas:
+
+| Métrica             | Descrição                                             |
+| ------------------- | ----------------------------------------------------- |
+| Impressões          | Total de vezes que o anúncio foi exibido              |
+| Cliques             | Cliques no anúncio ou CTA                             |
+| CTR (Click-Through) | Cliques divididos por impressões                      |
+| Conversões          | Ações realizadas após o clique (ex: pedidos, visitas) |
+| Custo por clique    | Valor médio gasto por clique                          |
+| Tempo de exposição  | Tempo médio de visualização (em vídeos)               |
+| Dispositivos        | Celular, tablet, carro (Vistar)                       |
+
+---
+
+### 10. Checklist Final Uber Ads
+
+| Etapa                              | Verificado? | Observações                                        |
+| ---------------------------------- | ----------- | -------------------------------------------------- |
+| Criativo no tamanho correto        | \[ ]        | JPG/PNG/MP4 com peso abaixo do limite              |
+| CTA claro e funcional              | \[ ]        | Ex: "Peça agora", "Saiba mais"                     |
+| URL com UTM rastreável             | \[ ]        | Ajuda na mensuração em GA4 ou CRM                  |
+| Segmentação geográfica ajustada    | \[ ]        | Cidade, raio ou região específica                  |
+| Verificação de legibilidade        | \[ ]        | Texto e imagem testados em diferentes dispositivos |
+| Testes A/B realizados              | \[ ]        | Variantes de criativo testadas                     |
+| Codec e especificações validadas   | \[ ]        | H.264 / AAC / MP4 com legenda e bitrate correto    |
+| Criativo aprovado com antecedência | \[ ]        | Enviado com 3 dias úteis de antecedência           |
+
+---
+
+Este manual serve como guia prático e operacional para profissionais e empresas que desejam anunciar com eficácia dentro do ecossistema Uber, tanto no Uber Eats quanto no aplicativo principal de mobilidade. Se desejar, podemos criar exemplos visuais, templates ou fluxos para planejamento de campanhas Uber Ads.
+
+
+
+__________________\\_______________
+
+
+## Manual Completo de Anúncios na Plataforma Spotify Ads
+
+Este manual fornece uma visão completa das especificações técnicas, formatos de criativos, segmentação de público, métricas, integrações e boas práticas para campanhas publicitárias na plataforma **Spotify Ads**. O Spotify é uma das maiores plataformas de streaming de áudio do mundo, com audiência qualificada, segmentada e imersa no conteúdo.
+
+---
+
+### 1. Formatos de Anúncio no Spotify
+
+| Formato            | Onde Aparece                  | Objetivo Principal                                |
+| ------------------ | ----------------------------- | ------------------------------------------------- |
+| Audio Ads          | Entre músicas/podcasts        | Branding com alta memorizacão auditiva            |
+| Video Takeover     | Durante uso ativo da tela     | Awareness com impacto visual                      |
+| Sponsored Sessions | Desbloqueio de 30 min sem ads | Gratificação e alto engajamento                   |
+| Podcast Ads        | Inserções em podcasts         | Contexto e autoridade (host-read ou programmatic) |
+| Display Ads        | Em dispositivos desktop       | Suporte visual a campanhas de áudio               |
+| Overlay            | Ao abrir o app                | Alcance visual imediato                           |
+
+---
+
+### 2. Especificações Técnicas por Formato
+
+#### Audio Ads
+
+| Elemento         | Especificação                                    |
+| ---------------- | ------------------------------------------------ |
+| Duração          | 15 ou 30 segundos                                |
+| Formato          | MP3 ou WAV (44.1 kHz, 16-bit, mono)              |
+| Volume           | Normalizado para -16 LUFS, pico máximo -1.0 dBFS |
+| CTA de áudio     | Inclusão obrigatória no final da locução         |
+| Companion Banner | 640x640 px JPG/PNG, até 200 KB                   |
+
+#### Video Takeover
+
+| Elemento    | Especificação                                    |
+| ----------- | ------------------------------------------------ |
+| Duração     | 15 ou 30 segundos                                |
+| Formato     | MP4 (H.264), AAC, 16:9, 1920x1080 px             |
+| Peso máximo | 500 MB                                           |
+| Legendas    | Obrigatórias (closed captions .srt ou embutidas) |
+| Companion   | 640x640 px banner + link externo                 |
+
+#### Sponsored Sessions
+
+| Elemento         | Especificação                                                       |
+| ---------------- | ------------------------------------------------------------------- |
+| Vídeo            | Mesmo padrão do Video Takeover                                      |
+| Call to Action   | Obrigatório (ex: "Aproveite 30 minutos de música sem interrupções") |
+| Companion Banner | Opcional (640x640 px)                                               |
+
+#### Podcast Ads
+
+| Tipo de Inserção | Especificação                                  |
+| ---------------- | ---------------------------------------------- |
+| Programmatic     | Áudio dinâmico inserido automaticamente        |
+| Host-read        | Gravado pelo apresentador (roteiro fornecido)  |
+| Duração          | 30 a 60 segundos                               |
+| Segmentação      | Por gênero de podcast, dispositivo, localidade |
+
+#### Display & Overlay Ads
+
+| Elemento     | Especificação                           |
+| ------------ | --------------------------------------- |
+| Tamanho      | 640x640 px (Overlay) / 728x90 (Display) |
+| Arquivo      | JPG/PNG, até 200 KB                     |
+| Link externo | Obrigatório                             |
+
+---
+
+### 3. Segmentação de Público
+
+A segmentação da audiência no Spotify pode ser feita com base em:
+
+* **Dados demográficos:** idade, gênero
+* **Localização:** cidade, estado, país
+* **Tipo de dispositivo:** móvel, desktop, tablet, console, smart TV
+* **Horário de escuta:** por hora do dia e dia da semana
+* **Momentos da vida:** treino, estudo, viagem, foco, relaxamento
+* **Gênero musical:** pop, eletrônica, sertanejo, hip-hop, etc.
+* **Comportamento de consumo:** heavy users, novos usuários, etc.
+
+---
+
+### 4. Modelo de Compra e Cobrança
+
+* **Modelo CPM** (custo por mil impressões), com lances a partir de USD 0.015
+* **Orçamento mínimo:** USD 250 via Spotify Ad Studio
+* **Compra direta:** via equipe comercial para campanhas acima de USD 10.000
+* **Cobrança por entrega garantida:** baseia-se em impressões qualificadas
+
+---
+
+### 5. Integrações e Rastreamento
+
+* URLs com **parâmetros UTM** recomendadas para tracking
+* Integração com:
+
+  * Google Analytics
+  * Facebook Pixel (indiretamente via landing page)
+  * Plataformas como HubSpot, Salesforce (via redirecionamento)
+* Spotify for Advertisers fornece dashboard com cliques, impressões, alcance, retenção e taxa de engajamento
+
+---
+
+### 6. Diretrizes e Restrições de Conteúdo
+
+* Proibido:
+
+  * Conteúdo com linguagem ofensiva, discriminação, política ou sensível
+  * Produtos farmacêuticos sem autorização
+  * Bebidas alcoólicas para público geral
+* Permitido com restrição:
+
+  * Marcas de bebida (segmentadas para maiores de 18+)
+  * Jogos/apostas (em países permitidos)
+
+---
+
+### 7. Checklist Final Spotify Ads
+
+| Etapa                          | Verificado? | Observações                                            |
+| ------------------------------ | ----------- | ------------------------------------------------------ |
+| Áudio/video no formato correto | \[ ]        | MP3/WAV (44.1kHz), MP4 (H.264), com volume normalizado |
+| Banner companion incluído      | \[ ]        | JPG/PNG com 640x640 px                                 |
+| Link com UTM configurado       | \[ ]        | Ajuda no rastreamento no GA4 ou CRM                    |
+| Segmentação bem definida       | \[ ]        | Por dispositivo, gênero musical, momento               |
+| Legendas para vídeos           | \[ ]        | Obrigatórias para acessibilidade                       |
+| Aprovação antecipada feita     | \[ ]        | Submissão recomendada com 3 dias úteis de antecedência |
+
+---
+
+Este manual é indicado para equipes de mídia, agências, produtores e marcas que buscam executar campanhas de alto impacto em uma das plataformas de áudio mais influentes do mundo. Se quiser, posso adicionar exemplos de roteiros, locução ou layout visual para cada formato.
+

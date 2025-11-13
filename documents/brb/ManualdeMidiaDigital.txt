@@ -1,0 +1,1789 @@
+ MANUAL DE
+ESPECIFICAÇÕES
+TÉCNICAS
+dos veículos de mídia digital
+  V.1.0.0
+
+    MANUAL DE ESPECIFICAÇÕES TÉCNICAS
+dos veículos de mídia digital
+2
+
+ SPONSORED CONTENT
+ANÚNCIOS COM IMAGEM ÚNICA
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 5 MB
+Extensões: .jpg, .png ou .gif
+Recomendações de design
+Formato do arquivo: .jpg, .png ou .gif Tamanho do arquivo: 5 MB
+Proporção da imagem:
+1.91:1 (horizontal, para computadores e dispositivos móveis) 1:1 (quadrada, para computadores e dispositivos móveis) 1:1.91 (vertical, somente para dispositivos móveis)
+Recomendações de texto
+Nome do anúncio (opcional): 255 caracteres
+Título: 70 caracteres
+Texto de apresentação: 150 caracteres
+Descrição (somente para LAN): 70 caracteres. Exigido somente se estiver usando a LinkedIn Audience Network (LAN).
+EXEMPLIFICAÇÃO:
+  Requisitos técnicos
+Tamanho do arquivo: 5 MB Largura máxima: 4.320 pixels Altura máxima: 7.680 pixels Largura mínima: 400 pixels
+Opções de call-to-action
+• Candidate-se
+• Baixe
+• Veja um orçamento
+• Saiba mais
+• Cadastre-se
+• Assine
+• Registre-se
+• Participe
+• Compareça
+• Solicite uma demonstração
+ 3
+
+ SPONSORED CONTENT
+ANÚNCIOS COM VÍDEO
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 200 MB
+Extensões: .MP4
+EXEMPLIFICAÇÃO:
+  Tipo de arquivo de vídeo: MP4
+Recomendações de design
+Formato de som do vídeo: AAC ou MPEG4
+Taxa de quadros recomendada: 30 quadros por segundo Imagem em miniatura personalizada:
+opcional, mas recomendada
+Proporção:
+4:5 (vertical, 0,8)
+9:16 (vertical, 0,57)
+16:9 (paisagem, 1,78)
+1:1 (quadrada, 1,0)
+Recomendações de texto
+Nome do anúncio (opcional): 255 caracteres Título: 70 caracteres
+Texto de apresentação: 150 caracteres
+Requisitos técnicos
+Tamanho do arquivo de vídeo: 75 KB (mín.) - 200 MB (máx.) Duração do vídeo: 3 segundos - 30 minutos
+Legendas (opcional): arquivo de som de
+vídeo com menos que 64 KHz
+Recomendações de Dimensões
+Largura mínima: 360 pixels Largura máxima: 1920 pixels Altura mínima: 360 pixels Altura máxima: 1920 pixels Proporção mínima: 9:16 (0.563) Proporção máxima: 16:9 (1.778)
+Opções de call-to-action
+• Candidate-se
+• Baixe
+• Veja um orçamento
+• Saiba mais
+• Cadastre-se
+Tolerância da proporção: 5%
+Formato de arquivo da imagem em miniatura do vídeo: JPG ou PNG Tamanho máximo do arquivo da imagem em miniatura do vídeo: 2 MB de vídeo Proporção da imagem em miniatura
+e resolução: igual ao vídeo
+Requisitos de URL
+URL da página de destino: obrigatório Prefixo da URL: http:// ou https:// Caracteres da URL: 2.000 caracteres por URL de campo de destino
+• Assine
+• Registre-se
+• Participe
+• Compareça
+• Solicite uma demonstração
+4
+• • • •
+Vertical (4:5):
+– Mínimo de 360 x 450 pixels
+– Máximo de 864 x 1080 pixels
+Vertical (9:16):
+– Mínimo de 360 x 640 pixels
+– Máximo de 1080 x 1920 pixels
+Paisagem (16:9):
+– Mínimo de 640 x 360 pixels
+– Máximo de 1920 x 1080 pixels
+Quadrado (1:1):
+– Mínimo de 360 x 360 pixels
+– Máximo de 1920 x 1920 pixels
+ 
+ SPONSORED CONTENT
+ANÚNCIOS EM CARROSSEL
+Resumo:
+Formato sugerido (base x altura): 1080 x 1080 px Peso: 10 MB
+Extensões: .jpg ou .png
+Recomendações de design*
+Tipo de arquivo: JPG ou PNG
+Proporção: 1:1
+Resolução recomendada: pelo menos 1.080 x 1.080 pixels
+Recomendações de texto
+Nome do anúncio (opcional): 255 caracteres Título do cartão: 45 caracteres
+Texto de apresentação: 255 caracteres Requisitos técnicos
+Número de cartões no carrossel: 2-10 Tamanho máximo do arquivo: 10 MB
+Requisitos de URL
+URL da página de destino: obrigatório
+Prefixo da URL: http:// ou https://
+Caracteres da URL: 2.000 caracteres por URL de campo de destino
+*Nossos anúncios em carrossel não aceitam vídeos no momento.
+EXEMPLIFICAÇÃO:
+   5
+
+ SPONSORED CONTENT
+ANÚNCIOS DE EVENTO
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 0000 MB
+Extensões: 00000
+EXEMPLIFICAÇÃO:
+  Recomendações de design
+Proporção da imagem: 4:1 (a imagem será copiada da página do evento)
+Recomendações de texto
+Nome do evento (opcional): 255 caracteres Texto de apresentação: 600 caracteres
+Requisitos de URL
+URL do evento: obrigatório, apenas URLs de página de eventos do LinkedIn Prefixo de URL: http:// ou https://
+Caracteres de URL: 2.000 caracteres por URL de campo de destino
+ 6
+
+ SPONSORED CONTENT
+ANÚNCIOS COM DOCUMENTO
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 0000 MB
+Extensões: 00000
+ Recomendações de design
+Tipo de arquivo: PDF, DOC, DOCX, PPT e PPTX
+Tamanho do arquivo: 100 MB
+Proporção: vertical, horizontal e formato quadrado
+Número de páginas: menos de 10 páginas (máximo de 300 páginas ou 1 milhão de palavras)
+Qualquer um dos layouts de PDF padrão:
+Carta: 8,5 x 11 polegadas Tabloide: 11 x 17 polegadas Ofício: 8,5 x 14 polegadas Extrato: 5,5 x 8,5 polegadas Executivo: 7,25 x 10,5 polegadas Fólio: 8,5 x 13 polegadas,
+A3: 11,69 x 16,54 polegadas A4: 8,27 x 11,69 polegadas B4: 9,84 x 13,90 polegadas B5: 6,93 x 9,84 polegadas
+Métrica
+Carta: 21,59 x 27,94 centímetros Tabloide: 27,94 x 43,18 centímetros Jurídico: 21,59 x 35,56 centímetros Extrato: 13,97 x 21,59 centímetros Executivo: 18,41 x 26,67 centímetros Fólio: 21,59 x 33,02 centímetros
+A3: 29,69 x 42,01 centímetros A4: 21 x 29,69 centímetros B4: 24,99 x 35,30 centímetros B5: 17,60 x 24,99 centímetros
+Requisitos de URL
+• Nenhum requisito de URL
+• Recomendações de texto
+• Nome do anúncio (opcional): 255 caracteres
+• Título: 70 caracteres
+• Texto introdutório: 150 caracteres
+• Requisitos técnicos
+• Os PDFs com várias camadas devem ser nivelados ou mesclados.
+• Os PDFs com páginas de tamanhos diferentes devem ser ajustados para o mesmo tamanho de página.
+• Revise a Política de Direitos Autorais do LinkedIn para verificar se seu documento está em conformidade.
+• O documento deve conter hiperlinks seguros.
+ 7
+
+ SPONSORED MESSAGING
+ANÚNCIOS EM CONVERSA
+Resumo:
+Formato sugerido (base x altura): 300 x 250 px Peso: 2 MB
+Extensões: JPG ou PNG
+Recomendações de design
+Tipo de arquivo de banner (opcional): JPG ou PNG
+Tamanho da imagem do banner (opcional): 300 x 250 pixels
+Tamanho do arquivo da imagem do banner (opcional): 2MB
+Imagem do remetente: usaremos a imagem do perfil do LinkedIn do remetente
+Recomendações de texto
+Nome do anúncio (opcional): 255 caracteres Texto da mensagem: 500 caracteres
+Rodapé personalizado: 2.500 caracteres Call-to-action: 25 caracteres
+Requisitos de URL
+URL da página de destino: Obrigatório
+Prefixo da URL: http:// ou https://
+Caracteres da URL: 1.024 caracteres por URL de campo de destino
+EXEMPLIFICAÇÃO:
+   8
+
+ SPONSORED MESSAGING
+ANÚNCIOS EM MENSAGEM
+Resumo:
+Formato sugerido (base x altura): 300 x 250 px Peso: 2 MB
+Extensões: JPG ou PNG
+Recomendações de design
+Tipo de arquivo do banner: JPG ou PNG
+Tamanho da imagem do banner (opcional): 300 x 250 pixels
+Tamanho do arquivo da imagem do banner (opcional): 2 MB
+Imagem do remetente: usaremos a imagem do perfil do LinkedIn do remetente
+Recomendações de texto
+Nome do anúncio (opcional): 50 caracteres Assunto da mensagem: 60 caracteres Texto da mensagem: 1.500 caracteres Rodapé personalizado: 2.500 caracteres Call-to-action: 20 caracteres
+Requisitos de URL
+URL da página de destino: obrigatório
+Prefixo da URL: http:// ou https://
+Caracteres da URL: 1.024 caracteres por URL de campo de destino
+EXEMPLIFICAÇÃO:
+   9
+
+ FORMULÁRIOS DE GERAÇÃO DE LEADS
+Recomendações de texto
+Nome de formulário: 256 caracteres
+URL da página de destino: 2.000 caracteres Título da oferta: 60 caracteres
+Detalhes da oferta (opcional): 160 caracteres Política de Privacidade: 2.000 caracteres Call-to-action: 20 caracteres
+Mensagem de confirmação: 300 caracteres
+Recomendações para formulários
+Campos do formulário: Recomendamos usar, no mínimo, 3 a 4 campos e, no máximo, 12 campos Campos disponíveis no formulário de informações de perfil:
+Contatar Empresa
+• Nome
+• Sobrenome
+• Endereço de e-mail
+• URL do perfil do LinkedIn
+• Número de telefone
+• Cidade
+• Estado/província
+• País/região
+• Código postal
+• E-mail comercial
+• Número de telefone comercial
+Trabalho
+• Cargo
+• Função
+• Nível de experiência
+• Nome da empresa
+• Tamanho da empresa
+Setor
+• Nível acadêmico
+• Área de estudo
+• Universidade / instituição de ensino
+• Data de início
+• Data de graduação
+Informações demográficas
+• Gênero
+• Número de perguntas personalizadas (opcional): 3
+• Número de caracteres em uma pergunta personalizada: 100
+ 10
+
+ TEXT ADS E DYNAMIC ADS
+TEXT ADS
+Resumo:
+Formato sugerido (base x altura): 300 x 250 px Peso: 2 MB
+Extensões: JPG ou PNG
+Recomendações de design
+Tipo de arquivo do logo: JPG ou PNG
+Tamanho do arquivo do logo: 2 MB
+Dimensões da imagem do logo: 100 x 100 pixels Recomendações de texto
+Título: 25 caracteres Descrição: 75 caracteres
+Requisitos de URL
+URL da página de destino: obrigatório
+Prefixo da URL: http:// ou https://
+Caracteres da URL: 2.000 caracteres por URL de campo de destino
+Opções de call-to-action
+• Candidate-se
+• Baixe
+• Veja um orçamento
+• Saiba mais
+• Cadastre-se
+• Assine
+• Registre-se
+• Participe
+• Compareça
+• Solicite uma demonstração
+EXEMPLIFICAÇÃO:
+   11
+
+ TEXT ADS E DYNAMIC ADS
+ANÚNCIOS EM DESTAQUE
+Resumo:
+Formato sugerido (base x altura): 300 x 250 px Peso: 2 MB
+Extensões: JPG ou PNG
+Recomendações de design
+Tamanho do logo da empresa: 100 x 100 pixels
+Tipo de arquivo do logo da empresa: JPG ou PNG
+Tamanho do arquivo do logo da empresa: 2 MB
+Tipo do arquivo de imagem de fundo (opcional): JPG ou PNG Dimensões da imagem de fundo (opcional): 300 x 250 pixels Tamanho do arquivo da imagem de fundo (opcional): 2 MB
+Recomendações de texto
+Título: 50 caracteres
+Descrição: 70 caracteres
+Nome da empresa: 25 caracteres Call-to-action: 18 caracteres
+Requisitos de URL
+URL da página de destino: obrigatório
+Prefixo da URL: http:// ou https://
+Caracteres da URL: 500 caracteres por URL de campo de destino
+Opções de call-to-action
+• Candidate-se
+• Baixe
+• Veja um orçamento
+• Saiba mais
+• Cadastre-se
+• Assine
+• Registre-se
+• Participe
+• Compareça
+• Solicite uma demonstração
+EXEMPLIFICAÇÃO:
+   12
+
+ TEXT ADS E DYNAMIC ADS
+ANÚNCIOS PARA SEGUIDORES
+Resumo:
+Formato sugerido (base x altura): 100 x 100 px Peso: 2 MB
+Extensões: JPG ou PNG
+ Recomendações de design
+Tamanho do logo da empresa: 100x100px
+Tipo do arquivo do logo da empresa: JPG ou PNG Tamanho do arquivo do logo da empresa: 2MB
+Recomendações de texto
+Título: 50 caracteres
+Descrição: 70 caracteres
+Nome da empresa: 25 caracteres
+Opções de títulos
+• José, a ACME está contratando!
+• José, empresas no seu setor estão contratando!
+• José, veja oportunidades relevantes na ACME!
+• José, veja as últimas notícias e vagas da ACME!
+• José, veja as últimas notícias, vagas e mais da ACME
+• José, amplie seus negócios com notícias e informações da ACME
+• José, siga a ACME e avance na sua carreira
+• José, acompanhe oportunidade relevantes na ACME
+• José, veja as últimas notícias da ACME
+• José, procurando o emprego dos seus sonhos?
+• José, recomendamos que você siga a ACME
+• Amplie seus negócios com informações da ACME
+• Amplie seus negócios com notícias e informações da ACME
+Opções de call-to-action
+• Veja as carreiras • Veja a empresa • Veja as vagas
+• Veja o dia a dia
+Opções de descrição
+• Jane, fique por dentro das últimas notícias e tendências
+• Receba as últimas vagas e notícias do setor
+• Receba informações atualizadas sobre vagas, notícias e muito mais.
+• Imagine o próximo passo na sua carreira
+• Receba atualizações interessantes e relevantes
+• As oportunidades estão batendo à sua porta
+• Buscando uma nova oportunidade?
+• Receba atualizações diárias ou semanais da empresa
+• Receba atualizações diárias ou semanais da organização
+• Acompanhe as notícias e tendências do setor
+• Visite a página de carreiras da ACME!
+• Visite a empresa da ACME
+• Visite a página corporativa da ACME!
+• Você tem as competências, a ACME tem as oportunidades!
+• Você tem as competências. Nós temos as oportunidades!
+EXEMPLIFICAÇÃO:
+  13
+
+    MANUAL DE ESPECIFICAÇÕES TÉCNICAS
+dos veículos de mídia digital
+14
+
+ INSTAGRAM STORIES
+Resumo:
+Formato sugerido (base x altura): 1080 x 1920 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo de imagem: JPG ou PNG
+• Taxa de proporção: 9:16
+• Resolução: pelo menos 1080 x 1080 pixels
+• Deixe cerca de 14% (250 pixels) da parte superior e 20% (340 pixels) da
+parte inferior da imagem sem texto, logotipos ou outros elementos criativos importantes para evitar cobri-los com o ícone do perfil ou chamadas para ação.
+Recomendações de texto
+• Texto principal: 125 caracteres
+• Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 500 pixels
+• Tolerância da taxa de proporção: 1%
+EXEMPLIFICAÇÃO:
+    15
+
+ FEED INSTAGRAM
+Resumo:
+Formato sugerido (base x altura): 1080 x 1080 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo de imagem: JPG ou PNG
+• Taxa de proporção: 1:1
+• Resolução: pelo menos 1080 x 1080 pixels
+Recomendações de texto
+• Texto principal: 125 caracteres
+• Título: 40 caracteres
+• Número máximo de hashtags: 30
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 500 pixels
+• Taxa de proporção mínima: 400 x 500
+• Taxa de proporção máxima: 191 x 100
+• Tolerância da taxa de proporção: 1%
+EXEMPLIFICAÇÃO:
+    16
+
+ EXPLORAR INSTAGRAM
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo de imagem: JPG ou PNG
+• Taxa de proporção: 9:16
+• Resolução: pelo menos 1080 x 1080 pixels
+Recomendações de texto
+• Texto principal: 125 caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 500 pixels
+• Tolerância da taxa de proporção: 1%
+EXEMPLIFICAÇÃO:
+    17
+
+ PÁGINA INICIAL DO EXPLORAR DO INSTAGRAM
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo de imagem: JPG ou PNG
+• Taxa de proporção: 9:16
+• Resolução: pelo menos 1080 x 1080 pixels
+Recomendações de texto
+• Texto principal: 125 caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 500 pixels
+• Tolerância da taxa de proporção: 1%
+  18
+
+ PÁGINA INICIAL DO EXPLORAR DO INSTAGRAM
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo: JPG ou PNG
+• Taxa de proporção: 1,91:1 a 1:1
+• Resolução: pelo menos 1.080 x 1.080 pixels
+Recomendações de texto
+• Texto principal: 125 caracteres
+• Título: 27 caracteres
+• Descrição: 27 caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 600 pixels
+• Altura mínima: 600 pixels
+• Tolerância da taxa de proporção: 3%
+Fotos 360 ou panorâmicas
+As fotos 360 e panorâmicas podem ser usados no Facebook como uma experiência interativa com alguns objetivos. O Facebook reconhece e processa essas fotos procurando por metadados específicos para câmera encontrados em fotos tiradas usando aparelhos compatíveis com imagens 360.
+  19
+
+ FEED DO FACEBOOK
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo: JPG ou PNG
+• Taxa de proporção: 1,91:1 a 1:1
+• Resolução: pelo menos 1.080 x 1.080 pixels
+Recomendações de texto
+• Texto principal: 125 caracteres
+• Título: 27 caracteres
+• Descrição: 27 caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 600 pixels
+• Altura mínima: 600 pixels
+• Tolerância da taxa de proporção: 3%
+Fotos 360 ou panorâmicas
+As fotos 360 e panorâmicas podem ser usados no Facebook como uma experiência interativa com alguns objetivos. O Facebook reconhece e processa essas fotos procurando por metadados específicos para câmera encontrados em fotos tiradas usando aparelhos compatíveis com imagens 360.
+EXEMPLIFICAÇÃO:
+    20
+
+ INSTANT ARTICLES DO FACEBOOK
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo: JPG ou PNG
+• Taxa de proporção: 1,91:1 a 1:1
+• Resolução: pelo menos 1.080 x 1.080 pixels
+Recomendações de texto
+• Texto principal: 125 caracteres
+• Título: 40 caracteres
+• Descrição: 30 caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+EXEMPLIFICAÇÃO:
+    21
+
+ VIDEO IN STREAM – FACEBOOK
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo: JPG ou PNG
+• Taxa de proporção: 1,91:1 a 1:1
+• Resolução: pelo menos 1.080 x 1.080 pixels
+• Devido ao tamanho pequeno da imagem, recomendamos não adicionar texto nas imagens.
+Recomendações de texto
+• Texto principal: 125 caracteres
+• Título: 40 caracteres
+• Descrição: 30 caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 600 pixels
+• Altura mínima: 600 pixels
+• Tolerância da taxa de proporção: 3%
+EXEMPLIFICAÇÃO:
+    22
+
+ FACEBOOK VIDEO FEEDS
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo: JPG ou PNG
+• Taxa de proporção: 1,91:1 a 1:1
+• Resolução: pelo menos 1.080 x 1.080 pixels
+Recomendações de texto
+• Texto principal: 125 caracteres
+• Título: 27 caracteres
+• Descrição: 27 caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 600 pixels
+• Altura mínima: 600 pixels
+• Tolerância da taxa de proporção: 3%
+Fotos 360 ou panorâmicas
+• As fotos 360 e panorâmicas podem ser usados no Facebook como uma experiência interativa com alguns objetivos. O Facebook reconhece e processa essas fotos procurando por metadados específicos para câmera encontrados em fotos tiradas usando aparelhos compatíveis com imagens 360
+EXEMPLIFICAÇÃO:
+    23
+
+ FACEBOOK MARKETPLACE
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo: JPG ou PNG
+• Taxa de proporção: 1:1
+• Resolução: pelo menos 1080 x 1080 pixels
+Recomendações de texto
+• Texto principal: 125 caracteres
+• Título: 40 caracteres
+• Descrição: 30 caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+EXEMPLIFICAÇÃO:
+    24
+
+ STORIES DO FACEBOOK
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo: JPG ou PNG
+• Taxa de proporção: 9:16
+• Resolução: pelo menos 1080 x 1080 pixels
+• Considere deixar cerca de 14% (250 pixels) das partes superior e inferior da imagem sem texto e logotipos para evitar cobrir esses elementos importantes que incluem itens de chamada para ação.
+Recomendações de texto
+• Texto principal: 125 caracteres
+• Título: 40 caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 500 pixels
+• Tolerância da taxa de proporção: 1%
+EXEMPLIFICAÇÃO:
+    25
+
+ ANÚNCIO NO FACEBOOK REELS
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo: JPG ou PNG
+• Proporção: 1:1
+• Resolução: pelo menos 1.080 x 1.080 pixels
+• Devido ao tamanho pequeno da imagem, recomendamos não adicionar texto a ela.
+Recomendações de texto
+• Texto principal: 50 caracteres
+• Título: dez caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 600 pixels
+• Altura mínima: 600 pixels
+• Tolerância da taxa de proporção: 3%
+EXEMPLIFICAÇÃO:
+    26
+
+ RESULTADOS DE PESQUISA - FACEBOOK
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo: JPG ou PNG
+• Taxa de proporção: 1,91:1 a 1:1
+• Resolução: pelo menos 1080 x 1080 pixels
+Recomendações de texto
+• Texto principal: 125 caracteres
+• Título: 40 caracteres
+• Descrição: 30 caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 600 pixels
+• Altura mínima: 600 pixels
+• Tolerância da taxa de proporção: 3%
+EXEMPLIFICAÇÃO:
+    27
+
+ FACEBOOK BUSINESS EXPLORE
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo: JPG ou PNG
+• Taxa de proporção: 1,91:1 a 1:1
+• Resolução: pelo menos 1080 x 1080 pixels
+Recomendações de texto
+• Texto principal: 125 caracteres
+• Título: 27 caracteres
+• Descrição: 27 caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 600 pixels
+• Altura mínima: 600 pixels
+• Tolerância da taxa de proporção: 3%
+EXEMPLIFICAÇÃO:
+    28
+
+ FACEBOOK BUSINESS EXPLORE
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo: JPG ou PNG
+• Taxa de proporção: 1,91:1 a 1:1
+• Resolução: pelo menos 1080 x 1080 pixels
+Recomendações de texto
+• Texto principal: 125 caracteres
+• Título: 27 caracteres
+• Descrição: 27 caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 600 pixels
+• Altura mínima: 600 pixels
+• Tolerância da taxa de proporção: 3%
+EXEMPLIFICAÇÃO:
+    29
+
+ FACEBOOK REELS
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 30 MB
+Extensões: .jpg ou .png
+Recomendações de design
+• Tipo de arquivo: JPG ou PNG
+• Taxa de proporção: 1,91:1 a 1:1
+• Resolução: pelo menos 1.080 x 1.080 pixels
+Recomendações de texto
+• Texto principal: 125 caracteres
+• Título: 27 caracteres
+• Descrição: 27 caracteres
+Requisitos técnicos
+• Tamanho máximo do arquivo: 30 MB
+• Largura mínima: 600 pixels
+• Altura mínima: 600 pixels
+• Tolerância da taxa de proporção: 3%
+• Fotos 360 ou panorâmicas
+• As fotos 360 e panorâmicas podem ser usados no Facebook como uma experiência interativa com alguns objetivos. O Facebook reconhece e processa essas fotos procurando por metadados específicos para câmera encontrados em fotos tiradas usando aparelhos compatíveis com imagens 360.
+EXEMPLIFICAÇÃO:
+    30
+
+    MANUAL DE ESPECIFICAÇÕES TÉCNICAS
+dos veículos de mídia digital
+31
+
+ ANÚNCIOS DE TEXTO
+• Conteúdo de texto do Tweet: 280 caracteres. (Observação: cada link usado ocupa 23 caracteres; se for usado um link, restarão
+257 caracteres para o conteúdo de texto do Tweet.)
+EXEMPLIFICAÇÃO:
+   32
+
+ ANÚNCIOS DE IMAGEM
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px Peso: 5 MB
+Extensões: .jpg ou .png
+• Conteúdo de texto do Tweet: 280 caracteres. (Observação: cada link usado ocupa 23 caracteres; se for usado um link, restarão 257 caracteres para o conteúdo de texto do Tweet.)
+• Tipos de arquivo: são recomendados os formatos PNG e JPEG. Arquivos BMP ou TIFF não são aceitos.
+• Observação: Arquivos GIF serão renderizados como imagem estática.
+• Tamanho do arquivo: no máximo 5 MB
+  33
+
+ 1.ANÚNCIOS DE IMAGEM COM BOTÃO APLICATIVO
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+ • Tamanho da imagem: para a proporção de 1,91:1, recomenda-se 800 x 418 pixels. Para a proporção de 1:1, recomenda-se 800 x 800 pixels.
+• Proporção: 1,91:1 ou 1:1
+• Título do aplicativo: Truncado em 200 caracteres. Obtido da loja de aplicativos; não passível de customização.
+• Call-to-action: Instalar, Abrir, Jogar, Comprar, Reservar, Conectar e Pedir
+ 34
+
+ 2.ANUNCIOS DE IMAGEM COM BOTÕES DE CONVERSA
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+• Tamanho da imagem: para a proporção de 1,91:1, recomenda-se 800 x 418 pixels.
+• Proporção: 1,91:1
+• Card de conversa (Tweet original na timeline)
+• Conteúdo de texto do Tweet: 280 caracteres (igual acima)
+• Hashtag: 21 caracteres, incluindo o caractere @
+• Tweet de usuário pré-preenchido: (quando o usuário clicar no CTA)
+• Conteúdo de texto do Tweet: 256 caracteres
+• Título: 23 caracteres
+• Tweet de agradecimento: (depois que o usuário Tweetar a mensagem)
+• Texto de agradecimento: 23 caracteres
+• URL de agradecimento (opcional): 23 caracteres
+  35
+
+ 3.ANÚNCIOS DE IMAGEM COM ENQUETES
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+• Tamanho da imagem: para a proporção de 1,91:1, recomenda-se 800 x 418 pixels. Para a proporção de 1:1, recomenda-se 800 x 800 pixels.
+• Proporção: 1,91:1 ou 1:1. Mas 1:1 cortará para 1,91:1 na timeline de dispositivos móveis.
+• No momento, não há compatibilidade com GIFs.
+• Conteúdo de texto do Tweet: As Enquetes podem incluir até 280 caracteres de texto do Tweet exibido acima da imagem.
+• Opções de enquete: 2-4 opções de enquete personalizadas. C
+• Depois de escrever o texto e adicionar a imagem, adicione duas a quatro respostas personalizadas para criar sua enquete.
+• Texto da enquete: 25 caracteres cada.
+• Cada opção da enquete pode incluir até, no máximo, 25 caracteres de texto (que não contam contra os 280 que você pode incluir no texto do Tweet).
+• Duração da enquete
+• Selecione um tempo entre o mínimo de 5 minutos e o máximo de 7 dias. A duração da enquete começa quando o Tweet é criado, não quando é promovido.
+  36
+
+ ANÚNCIOS DE IMAGEM COM BOTÃO WEBSITE
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+• Tamanho da imagem: para a proporção de 1,91:1, recomenda-se 800 x 418 pixels. Para a proporção de 1:1, recomenda-se 800 x 800 pixels.
+• Proporção: 1,91:1 ou 1:1
+• Tamanho do título do website: 70 caracteres. Observe que, dependendo das configurações de dispositivo e do aplicativo, essa descrição pode ficar truncada. Até duas linhas de texto são renderizadas no título do card; qualquer texto além disso fica truncado, surgindo reticências no lugar. Embora não seja garantido, limitar a descrição a 50 caracteres deve assegurar que não ocorra truncamento na maior parte dos dispositivos.
+• URL: deve começar com http:// ou https://
+  37
+
+ 4.ANÚNCIOS DE IMAGEM INDIVIDUAIS
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+• Tamanho da imagem: para a proporção de 1:1, recomenda-se 1.200 x 1.200 pixels. Para a proporção de 1,91:1, recomenda-se 1.200 x 628 pixels. As imagens maiores ficarão mais bem otimizadas para quando os usuários clicarem para expandir imagens.
+• Proporção: 1,91:1 ou 1:1. O editor de Tweets antigo é compatível com qualquer proporção entre 2:1 e 1:1.
+EXEMPLIFICAÇÃO:
+    38
+
+ ANÚNCIOS DE VÍDEO
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+• Conteúdo de texto do Tweet: 280 caracteres. (Observação: cada link usado ocupa 23 caracteres; se for usado um link, restarão 257 caracteres para o conteúdo de texto do Tweet.)
+• Tipos de arquivo: MP4 ou MOV
+• Tamanho do arquivo: no máximo 1 GB. Para um desempenho ideal, recomendamos que ele tenha menos de 30 MB.
+• Duração do vídeo: 15 segundos ou menos é o recomendado. Compatível até com 2:20. (Alguns anunciantes têm direito a solicitar um aumento para até 10 minutos; no entanto, orientamos que os vídeos tenham 9:55 para levar em conta uma série de arquivos de vídeo. Para mais informações, fale com o gerente de sua conta do Twitter.)
+• Identidade visual: altamente recomendado em todo o conteúdo. Se incluído, o logotipo deverá ficar no canto superior esquerdo. O posicionamento destacado do produto é altamente recomendado para aumentar o interesse por ele.
+• Legendas: recomendamos enfaticamente o uso de legendas ocultas ou sobreposições de texto.
+• Taxa de bits de vídeo: 6.000k a 10.000k (recomendação: 6.000k) para 1.080 pixels. 5.000k a 8.000k (recomendável: 5.000k) para 720p.
+• Taxa de quadros: 29,97 qps ou 30 qps. É aceitável uma taxa superior (suporte a até 60 qps). Se o vídeo disponível tiver uma taxa de quadros mais baixa, não tente aumentar a taxa de amostragem.
+• Codec de áudio: AAC LC (baixa complexidade)
+• Recomendações de codec de vídeo: padrão H.264, perfis Baseline, Main ou High, com espaço de cores de 4:2:0.
+• Miniatura: Arquivos compatíveis - PNG ou JPEG | Proporção: é recomendável corresponder ao tamanho do vídeo | Tamanho máximo: 5 MB
+• Repetição: vídeos com menos de 60 segundos serão reproduzidos em loop.
+EXEMPLIFICAÇÃO:
+    39
+
+ 1.ANÚNCIOS DE VÍDEO INDEPENDENTES
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+• Tamanho do vídeo: para a proporção de 1:1, recomenda-se 1.200 x 1.200 pixels. Para a proporção de 16:9, recomenda-se 1.920 x 1.080 pixels. Os vídeos maiores ficarão mais bem otimizados para quando os usuários clicarem para expandir vídeos.
+• Proporção: 16:9 ou 1:1. O editor de Tweets antigo é compatível com qualquer proporção entre 2:1 e 1:1.
+  40
+
+ 2.ANÚNCIOS DE VÍDEO COM BOTÃO WEBSITE
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+• Tamanho do vídeo: para a proporção de 16:9, recomenda-se 800 x 450 pixels. Para a proporção de 1:1, recomenda-se 800 x 800 pixels.
+• Proporção: 16:9 ou 1:1
+• Tamanho do título do website: 70 caracteres. Observe que, dependendo das configurações de dispositivo e do aplicativo,
+essa descrição pode ficar truncada. Até duas linhas de texto são renderizadas no título do card; qualquer texto além disso fica truncado, surgindo reticências no lugar. Embora não seja garantido, limitar a descrição a 50 caracteres deve assegurar que não ocorra truncamento na maior parte dos dispositivos.
+• URL: deve começar com http:// ou https://
+  41
+
+ 3.ANÚNCIOS DE VIDEO COM BOTÃO APLICATIVO
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+• Tamanho do vídeo: para a proporção de 16:9, recomenda-se 800 x 450 pixels. Para a proporção de 1:1, recomenda-se 800 x 800 pixels.
+• Proporção: 16:9 ou 1:1
+• Título do aplicativo: truncado em 200 caracteres. Obtido da loja de aplicativos; não passível de customização.
+• Call-to-action: Instalar, Abrir, Jogar, Comprar, Reservar, Conectar e Pedir
+  42
+
+ 4.ANÚNCIOS DE VÍDEO COM BOTÕES DE CONVERSA
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+• Tamanho do vídeo: para a proporção de 16:9, recomenda-se 800 x 450 pixels.
+• Proporção: 16:9
+• Card de conversa (Tweet original na timeline)
+• Conteúdo de texto do Tweet: 280 caracteres (igual acima)
+• Hashtag: 21 caracteres, incluindo o caractere @
+• Tweet de usuário pré-preenchido: (quando o usuário clicar no CTA)
+• Conteúdo de texto do Tweet: 256 caracteres
+• Título: 23 caracteres
+• Tweet de agradecimento: (depois que o usuário Tweetar a mensagem)
+• Texto de agradecimento: 23 caracteres
+• URL de agradecimento (opcional): 23 caracteres
+  43
+
+ 5.ANÚNCIOS DE VÍDEO COM ENQUETES
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+• Tamanho do vídeo: para a proporção de 16:9, recomenda-se 800 x 450 pixels. Para a proporção de 1:1, recomenda-se 800 x 800 pixels.
+• Proporção: 16:9 ou 1:1. Mas 1:1 cortará para 16:9 na timeline de dispositivos móveis.
+• No momento, não há compatibilidade com GIFs.
+• Conteúdo de texto do Tweet: As enquetes podem incluir até 280 caracteres de texto do Tweet exibido acima do vídeo.
+• Opções de enquete: 2-4 opções de enquete personalizadas
+• Depois de escrever o texto e adicionar o vídeo, adicione duas a quatro respostas personalizadas para criar sua enquete.
+• Texto da enquete: 25 caracteres cada
+• Cada opção da enquete pode incluir até, no máximo, 25 caracteres de texto (que não contam contra os 280 que você pode incluir no texto do Tweet).
+• Duração da enquete
+• Selecione um tempo entre o mínimo de 5 minutos e o máximo de 7 dias.
+  44
+
+ ANÚNCIOS EM CARROSSEL
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+Número de slides: 2-6 (imagens ou vídeos) TAMANHO DA MÍDIA
+• 1. Carrosséis de Imagem: para a proporção de 1,91:1, recomenda-se 800 x 418 pixels. Para a proporção de 1:1, recomenda-se 800 x 800 pixels.
+• 2. Carrosséis de Vídeo: para a proporção de 16:9, recomenda-se 800 x 450 pixels. Para a proporção de 1:1, recomenda-se 800 x 800 pixels.
+PROPORÇÃO:
+• 1. Carrosséis de Imagem: elementos gráficos de imagem com 1,91:1 ou 1:1 usando uma única proporção dentro de um carrossel.
+• 2. Carrosséis de Vídeo: elementos gráficos de vídeo com 16:9 ou 1:1 usando uma única proporção dentro de um carrossel.
+• Para Carrosséis que usam mídia mista, as taxas de proporção devem permanecer consistentes (imagem 1:1 com vídeo 1:1, ou imagem 1,91:1 com vídeo 16:9).
+• Link: Um destino na web ou em um aplicativo para Carrosséis com um único destino. Até seis destinos exclusivos na web para Carrosséis multidestino.
+• Mais sobre: https://business.twitter.com/pt/advertising/carousels.html
+1. CARROSSÉIS DE WEBSITE
+• Tamanho do título do website: 70 caracteres. Observe que, dependendo das configurações
+de dispositivo e do aplicativo, essa descrição pode ficar truncada. Até duas linhas de texto são renderizadas no título do card; qualquer texto além disso fica truncado, surgindo reticências no lugar. Embora não seja garantido, limitar a descrição a 50 caracteres deve assegurar que não ocorra truncamento na maior parte dos dispositivos. Isso pode ser personalizado conforme o card.
+• URL: deve começar com http:// ou https://
+2.CARROSSÉIS DE APLICATIVO
+• Título do aplicativo: truncado em 200 caracteres. Obtida da loja de aplicativos; não passível de customização.
+• Call-to-action: Instalar, Abrir, Jogar, Comprar, Reservar, Conectar e Pedir.
+  45
+
+ ANÚNCIOS THE MOMENT
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+Conte uma história que vai além de um Tweet e dê destaque a diferentes perspectivas. Os Anúncios de Moment permitem criar, selecionar e promover uma coleção de Tweets
+para contar uma história imersiva que vai além de 280 caracteres. Eles são eficientes para histórias grandes e pequenas; disponíveis para anunciantes e publishers.
+  46
+
+ TWITTER AUDIENCE PLATFORM
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+Escale sem transtornos suas campanhas do Twitter a milhares de publishers de alta qualidade. Em apenas um clique, a Twitter Audience Platform amplia com facilidade
+as campanhas de promoção de aplicativos para celular ou tráfego para o website para o Twitter e milhares de outros aplicativos para gerar desempenho em escala. A Twitter Audience Platform pode usar o criativo existente da sua campanha, economizando a você a inconveniência e o custo do desenvolvimento de novos ativos.
+  47
+
+ BOTÃO CONVERSA
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+Card de conversa (Tweet original na timeline)
+• Conteúdo de texto do Tweet: 280 caracteres
+• Hashtag: 21 caracteres, incluindo o caractere @
+• Tweet de usuário pré-preenchido: (quando o usuário clicar no CTA)
+• Conteúdo de texto do Tweet: 256 caracteres
+• Título: 23 caracteres
+• Tweet de agradecimento: (depois que o usuário Tweetar a mensagem)
+• Texto de agradecimento: 23 caracteres
+• URL de agradecimento (opcional): 23 caracteres
+Os botões Conversa devem ser pareados com a mídia (imagem ou vídeo). Veja acima as especificações de mídia quando pareadas com Anúncios de Imagem ou Anúncios de Vídeo.
+  48
+
+ ENQUETES
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+• Conteúdo de texto do Tweet: As enquetes podem incluir até 280 caracteres de texto do Tweet exibido acima do vídeo.
+• Opções de enquete: 2-4 opções de enquete personalizadas
+• Você pode adicionar duas a quatro respostas personalizadas ao criar a enquete.
+• Texto da enquete: 25 caracteres cada
+• Cada opção da enquete pode incluir até, no máximo, 25 caracteres de texto (que não contam contra os 280 que você pode incluir no texto do Tweet).
+Duração da enquete
+ •
+Selecione um tempo entre o mínimo de 5 minutos e o máximo de 7 dias. A duração da enquete começa quando o Tweet é criado, não quando é promovido.
+As enquetes podem ser criadas com ou sem mídia (imagem ou vídeo). Veja acima as especificações de mídia quando pareadas com Anúncios de Imagem ou Anúncios de Vídeo.
+ 49
+
+ ANÚNCIOS PARA SEGUIDORES
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+• Conteúdo de texto do Tweet: 280 caracteres. (Observação: cada link usado ocupa 23 caracteres; se for usado um link, restarão 257 caracteres para o conteúdo de texto do Tweet.) Verifique se há um texto acionável para este tipo de anúncio.
+• Observação: para este objetivo, não há suporte para o uso de criativos – somente de texto em Tweets. Será feita a renderização automática do card de seguidores nos seus anúncios.
+  50
+
+ TWITTER LIVE
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+Especificações de streaming recomendadas
+Siga as especificações recomendadas a seguir para streaming para ter a melhor experiência com o Producer. Observação: a lista de codificadores e serviços compatíveis não é completa e está sujeita a alterações.
+RTMP
+Codec de vídeo: H.264/AVC
+Taxa de bits de vídeo: 9 Mbps (recomendado), 12 Mbps (máximo)
+Codec de áudio: AA-LC
+Taxa de bits de áudio: 128 bps (máximo)
+Resolução
+1.280 x 720 (recomendada) 1.920 x 1.080 (máxima)
+Taxa de quadros
+30 qps (recomendado) 60 qps (máximo)
+Intervalo de quadros-chave
+OBS: a cada 3 segundos
+Wirecast:
+24 qps = intervalo de quadros-chave de 72 quadros 30 qps = intervalo de quadros-chave de 90 quadros 50 qps = intervalo de quadros-chave de 150 quadros 60 qps = intervalo de quadros-chave de 180 quadros
+Codificadores e serviços compatíveis:
+• Restream
+• Golightstream • Socialive
+• OBS
+• Wirecast
+• Teradek
+• Elemental
+• Vmix
+• StreamYard
+• Streamlabs
+Especificações da Event Page
+Descrição da Event Page: No máximo 280 caracteres. NOVO: Pode conter links externos! (pré-pedidos, venda de ingressos, outro website de O&O)
+Carrossel: no máximo 5 vídeos. Pode ser variado: ao vivo, VOD, GIFs, fotos. Exige investimento adicional – veja tabela de preços.
+Hashtag: hashtag de preenchimento automático quando os Tweets forem escritos na barra do Tweet.
+Tweet na Timeline: atrai termos específicos de Tweets. No máximo 5 termos. Por exemplo: hashtags, palavras- chave e frases, nomes de executivos.
+  51
+
+ TWITTER TAKEOVER DE TIMELINE
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+Conteúdo de texto do Tweet: especificações do posicionamento de Takeover de Timeline dependerão do formato usado. Consulte as páginas individuais de especificações para o formato que você deseja executar.
+Formatos compatíveis:
+• Anúncios de Imagem
+• Anúncios de Vídeo
+• Anúncios em Carrossel
+• Twitter Live
+• Anúncios Promovidos com Botões de Conversa e Enquetes
+• Hashtags de Marca
+• Notificações de Marca
+  52
+
+ TWITTER TREND TAKEOVER E TREND TAKEOVER SPOTLIGHT
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+Hashtag do assunto (obrigatória):
+Exibida na página inicial do Twitter.com para todos os usuários da região de um Assunto e na aba Explorar de dispositivos móveis. No máximo 20 caracteres.
+Descrição da tendência (opcional, mas altamente recomendada):
+Exibida diretamente abaixo da Hashtag do Assunto na página inicial do Twitter.com para todos os usuários da região de um Assunto e na aba Explorar de dispositivos móveis. No máximo 70 caracteres.
+Anúncio Promovido complementar (obrigatório):
+Crie de 3 a 6 Anúncios Promovidos (podem ser imagem, vídeo, GIF, etc.) para promover o assunto. Eles podem ser exibidos na timeline da página inicial dos usuários Web e mobile, dando mais evidência ao assunto.
+Observação: o posicionamento Trend Takeover Spotlight não diferencia idades. O GIF ou a imagem que você fornecer devem ser adequados para todas as idades (ou seja, nada de armas brancas/de fogo, nudez, violência etc.).
+• Tipos de arquivo: GIF em loop de 6 segundos, MP4 ou imagem estática
+• Proporção: 16:9 (tanto para GIF quanto para imagens)
+• Tamanho do arquivo: 5 MB para imagem, 15 MB para GIF
+• Hashtag de assunto: no máximo 16 caracteres
+• Descrição de assunto: no máximo 30 caracteres
+O criativo deve ser entregue ao Twitter por meio de um darkTweet, somente com mídia (GIF, MP4 ou imagem). Não são aceitas mídias em formato de Cards.
+Nome e descrição do assunto:
+• Não duplique a hashtag no Nome do Assunto e na Descrição.
+• O Trend Takeover Spotlight será atribuído ao @identificadordamarca, o que elimina a necessidade de divulgar abertamente a marca no campo Descrição.
+• Use a Descrição para dar mais contexto ao seu assunto, deixá-lo mais informativo e intrigante.
+• Evite frases caça-cliques, como “50% de desconto”, “Compre um e leve dois”, “Somente por tempo limitado”, etc.
+  53
+
+ HASHSTAGS DE MARCA SPOTLIGHT
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+Até 5 #hashtags podem ser associadas ao emoji
+• Qualquer hashtag desejada não pode exceder 250 menções no Twitter nos últimos 30 dias, a menos que diretamente relacionadas a uma conversa da marca (mais de 70%).
+• O design do emoji deve ter 72 x 72 pixels e deve ser claramente visível a 16 x 16.
+• Pode ser exibido sobre fundo claro ou escuro. Recomenda-se não usar somente cores claras: pode não ficar visível na timeline.
+• O segredo é a simplicidade! Use o mínimo de detalhes para maximizar a mensagem, de modo que ela não se perca quando minimizada
+• Nada de rostos/logotipos variados – eles ficam pequenos demais e não dá para distingui-los a 16 x 16
+  54
+
+ NOTIFICAÇÕES PROGRAMADA
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+Tweet com CTA
+• Deve descrever com clareza que o usuário receberá um Tweet futuro da marca se gostar do Tweet com CTA.
+• Deve descrever com clareza qual conteúdo o usuário receberá e quando o usuário receberá um Tweet de Notificação Programada.
+Tweet de Notificação de Aceitação Instantânea
+• Deve começar com o @identificador do usuário que fez a ativação; use @IdentificadorParaOQualEnviarAResposta como placeholder.
+• Não @mencione nenhum outro usuário de quem você não tenha permissão explícita.
+• Conforme se o usuário optou por receber conteúdo automático.
+• Deve apresentar instruções para a não aceitação no texto do Tweet. A Arrow fornece três opções para a marca escolher.
+Tweet com Notificação Programada
+• Deve começar com o @identificador do usuário que fez a ativação; use @IdentificadorParaOQualEnviarAResposta como placeholder.
+• Não @mencione nenhum outro usuário de quem você não tenha permissão explícita.
+• Entregue o conteúdo prometido no Tweet com CTA.]
+  55
+
+ NOTIFICAÇÕES DE ASSINATURA
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+Tweet com CTA
+• Deve descrever com clareza que o usuário receberá vários Tweets futuros da marca se gostar do Tweet com CTA.
+• Deve descrever com clareza qual conteúdo o usuário receberá e quando o usuário receberá Tweets de Notificação Programada.
+Tweet de Notificação de Aceitação Instantânea
+• Deve começar com o @identificador do usuário que fez a ativação; use @IdentificadorParaOQualEnviarAResposta como placeholder.
+• Não @mencione nenhum outro usuário de quem você não tenha permissão explícita.
+• Conforme se o usuário optou por receber conteúdo automático.
+• Deve apresentar instruções para a não aceitação no texto do Tweet.
+A Arrow fornece três opções para a marca escolher.
+Tweets com Notificação Programada
+• Deve começar com o @identificador do usuário que fez a ativação; use @IdentificadorParaOQualEnviarAResposta como placeholder.
+• Não @mencione nenhum outro usuário de quem você não tenha permissão explícita.
+• Entregue o conteúdo prometido no Tweet com CTA.
+• Deve apresentar instruções para a não aceitação no texto do Tweet.
+A Arrow fornece três opções para a marca escolher.
+  56
+
+ NOTIFICAÇÕES INSTANTÂNEA
+Resumo:
+Formato sugerido (base x altura): 0000 x 0000 px
+Tweet com CTA
+• Deve descrever com clareza que o usuário receberá um Tweet da marca se gostar do Tweet com CTA.
+• Deve descrever com clareza qual conteúdo o usuário receberá.
+• Tweet de Notificação Instantânea
+• Deve começar com o @identificador do usuário que fez a ativação; use @IdentificadorParaOQualEnviarAResposta como placeholder.
+• Não @mencione nenhum outro usuário de quem você não tenha permissão explícita.
+  57
+
+    MANUAL DE ESPECIFICAÇÕES TÉCNICAS
+dos veículos de mídia digital
+58
+
+ IN-FEED
+• O formato dos vídeos enviados normalmente é .mp4 ou .mov
+• Duração do vídeo: Sem restrições. Os Spark Ads (Pull) são compatíveis com todas as durações em vídeos orgânicos do TikTok, desde que os usuários consigam publicar com êxito o vídeo no TikTok.
+ESPECIFICAÇÕES:
+• Vertical (recomendado): 9:16, ≥540 * 960 px
+• Horizontal: 16:9, ≥960 * 540 px
+• Quadrado: 1:1, ≥640 * 640 px
+• Formato compatível: .mp4, .mov, .mpeg, .3gp ou .avi
+• Duração do vídeo: de 5 a 60 segundos (recomendável de 21 a 34 segundos).
+• Tamanho do arquivo: ≤500 MB
+• Taxa de bits: ≥516 kbps
+ZONA SEGURA:
+Se você seguir as regras e permanecer na zona segura, além de seguir as especificações do anúncio relevantes, garantirá que seus criativos sejam compartilhados da maneira desejada.
+LINK - https://ads.tiktok.com/help/article/tiktok-auction-in-feed- ads?lang=pt
+BOAS PRÁTICAS:
+• Evite usar fundo transparente ou branco para o criativo, como apelidos, legendas de anúncios e legendas de músicas podem não estar visíveis, pois a cor do texto e os ícones da IU no app TikTok são brancos.
+• O vídeo deve estar em alta resolução, não pode estar alongado nem comprimido.
+• O vídeo deve ser coerente, sem interrupção repentina em seus criativos de música ou vídeo que afetem a experiência do usuário.
+• Todos os criativos de vídeo devem ter um som.
+• Os nomes das músicas em Non-Spark Ads são gerados automaticamente como Música promovida, e o nome da música não pode ser alterado.
+• O vídeo deve estar traduzido. Os criativos que não usam idioma oficial do local não são recomendados e podem não receber aprovação da equipe de política de anúncios local.
+• Não são permitidas marcas d’água (como do TikTok) nos criativos.
+• O criativo do anúncio não deve imitar a interface do TikTok.
+• O elemento “#” no criativo pode ser usado em hashtag challenges comerciais, patrocinados e orgânicos, mas não podem ser usados para hashtags não comerciais com intenção comercial.
+• Caso uma pessoa bem conhecida (celebridade, influencer etc.) apareça no criativo, o anunciante deverá apresentar uma prova de endosso, autorização relacionada ou relatórios de terceiros relacionados. Caso os requisitos acima não sejam atendidos, o anunciante deve emitir as garantias relevantes e assumir total responsabilidade.
+• Se forem usados, o cliente é responsável por obter os direitos de licenças apropriados para o uso de fontes, emojis e ferramentas para criativos.
+• In-Feed Ads de leilão permitem usar um dueto com dois criadores e costurar vídeos como criativos de anúncio, mas, se estiver usando o pull no formato Spark Ads, isso exigirá autorização dupla.
+Foto do perfil
+• Dimensão: 98 x 98 px, Quadrado 1:1
+• Formatos compatíveis: .jpg, .jpeg ou .png
+• Tamanho do arquivo: <50 KB
+• Se a foto do perfil for deixada em branco para Anúncios Non-Spark, uma imagem do perfil padrão será aplicada.
+• Se estiver no Spark Ads, a foto do perfil usará a foto do perfil da conta do vídeo.
+• Zona segura: coloque o elemento principal no centro da imagem de 66 px * 66 px para evitar que ela seja recortada.
+• A pontuação é contada como um caractere.
+• O espaço no início e no final não será contabilizado como caractere; se for encontrado em outras posições, o espaço será reconhecido como um caractere
+Legenda do anúncio
+Pull de Spark Ads
+• As legendas dos anúncios do Spark Ads são extraídas diretamente das legendas de vídeos orgânicos. Para os Objetivos “Alcance” e “Visualização do vídeo”, a legenda do anúncio pode ficar em branco.
+• É permitido usar e clicar em “@”.
+• “#” pode ser usado em hashtag challenges comerciais, patrocinados e orgânicos, mas não pode ser usado para hashtags não comerciais com intenção comercial.
+• Dependendo do modelo do telefone e do sistema operacional do usuário, textos mais longos talvez não sejam exibidos totalmente na tela.
+• É possível exibir até quatro linhas. Se houver mais de quatro linhas,
+o texto poderá ser sobreposto pela Saiba mais mensagem. Quando
+os usuários clicam em Saiba mais, o texto inteiro é aberto abaixo. Sugerimos que você mantenha as legendas do anúncio dentro de 50 caracteres para chinês, japonês e coreano ou 100 caracteres em outros idiomas para evitar que sejam sobrepostas pela Saiba mais.
+• Emojis são permitidos e compatíveis em todas as versões do iOS e do Android. No entanto, os emojis talvez sejam exibidos de maneira distinta em dispositivos e sistemas operacionais diferentes.
+• Todos os emojis nativos do iOS e do Android são aceitáveis.
+CTA
+• A cor de fundo do CTA corresponde automaticamente com o criativo de vídeo com base no nosso modelo, e não dá suporte a cores personalizadas.
+• A customização do conteúdo da CTA não é compatível, por isso ela só deve ser selecionada para anúncios de visualização sem vídeo.
+• A CTA padrão é Saber mais.
+• No total, damos suporte a 22 CTAs
+• Inscreva-se agora, Reserve agora, Entre em contato conosco, Fazer download, Experimentar agora, Obter cotação, Obter horários de exibição, Obtenha o ticket agora, Instalar agora, Tenho interesse, Saber mais, Ouvir agora, Peça agora, Jogar um jogo, Reserve agora, Ler mais, Comprar agora, Inscrever-se, Inscrever, Ver agora, Loja de visita, Assistir agora.
+• O texto da CTA será traduzido automaticamente para se adequar
+à configuração do idioma do app do usuário de todos os idiomas disponíveis. Se o CTA não tiver uma tradução no idioma disponível
+no sistema do TikTok, o texto do CTA vai ser exibido em inglês para os usuários, por padrão. Consulte a equipe de vendas para as traduções de CTA no seu idioma.
+• Se você estiver lançando anúncios nos mercados americano/ canadense/australiano/inglês com os Objetivos “Tráfego”, “Conversão” e “Instalação do app”, também poderá selecionar nosso recurso de otimização automática para ter uma seleção mais diversificada no conteúdo de CTA em inglês para um melhor desempenho do anúncio. Para obter mais informações sobre o produto, contate a equipe de vendas local.
+Link do URL
+• É permitido usar Deeplink com a lista de permissões. Para entender a lógica da lista de permissões, consulte a equipe de vendas local.
+• Um deeplink é um tipo de URL de destino no anúncio que direciona audiências que já fizeram download de seu app diretamente para uma página específica do app quando clicam no anúncio.
+• Os anúncios de leilão não aceitam URLs in-app do TikTok, como a página de Branded Hashtag Challenge, página de vídeo, página de música, página de branded effect, página de gravação de branded effect no app TikTok.
+Nome da Conta (Apelido)
+• Para o download do app, os nomes de app serão extraídos automaticamente da App Store/Google Play e não podem ser preenchidos manualmente.
+• Para a página de destino, o nome da conta vai ser usado automaticamente como o título da página de destino em um navegador in-app.
+• Dão suporte à exibição de apenas uma linha com, no máximo, dez caracteres para chinês/japonês/coreano ou 20 caracteres em outros idiomas. Recomendamos o uso de dois a cinco caracteres para chinês/ japonês/coreano ou de quatro a dez caracteres em outros idiomas.
+• Caracteres com meia largura, como aqueles usados no idioma inglês (EN), ocupam o espaço de um caractere.
+• Caracteres com largura total, como aqueles usados em chinês, japonês ou coreano, ocupam o espaço de dois caracteres.
+• Não são compatíveis com emojis e “{ }”.
+ 59
+
+ HASHTAG CHALLENGE
+Ativo de criativo #Hashtag
+• Limite de caracteres para o nome da hashtag: 70 caracteres do inglês. É recomendável manter o nome da hashtag com um máximo de 18 caracteres do inglês para que o nome seja exibido em uma única linha na maioria dos dispositivos móveis
+• Evite espaços, emojis, símbolos e pontuação. (Ao definir o nome de um hashtag challenge, não pode haver emojis, que podem ser adicionados como uma função complementar posteriormente em separado)
+• Nomes de hashtag serão determinados em conjunto pelo cliente e pelo TikTok
+Imagem do perfil
+• Tamanho da imagem: 240*240
+• Tamanho do arquivo: até 500 KB
+• Formato: PNG, JPG ou JPEG
+Observação: Para obter um resultado de exibição melhor, não use a imagem com um fundo transparente.
+Imagem de fundo
+• Tamanho da imagem: 750*800, até 500 KB, formato PNG, JPG ou JPEG
+• O plano de fundo será adicionado como uma camada e será ajustado. Não coloque elementos importantes na imagem de fundo. Para garantir que a sobreposição de texto seja exibida corretamente,
+a opacidade da imagem de fundo será diminuída automaticamente em 90%.
+Descrição do desafio
+Sem limite de comprimento de caracteres — a descrição será recolhida automaticamente depois de quatro linhas. Os usuários podem clicar no botão “Expandir” para ver a descrição completa.
+A descrição do desafio pode incluir emojis v11. Observação: Emojis podem ter uma aparência diferente em cada dispositivo e sistema operacional, e alguns emojis v11 talvez não sejam compatíveis com alguns dispositivos Android.
+As descrições de desafios NÃO podem conter &, <, >, “” ou URLs.
+Uma caixa de isenção de responsabilidade do patrocinador aparecerá após a descrição do desafio (veja a demonstração).
+Isenção de responsabilidade
+Na caixa Isenção de responsabilidade, deve ser incluída a informação do patrocinador: Patrocinado por xx. os emojis ou os símbolos especiais não são compatíveis no aviso de isenção de responsabilidade.
+Caso o cliente ofereça prêmios aos vencedores,
+há suporte para dois idiomas de isenção de responsabilidade diferentes, para dispositivos iOS e Android. A linguagem de isenção de responsabilidade para iOS é “Patrocinado por XXX. Sem associação
+com a Apple Inc.”, e a linguagem de isenção de responsabilidade para Android é “Patrocinado por XXX.”
+Observação
+Para localizar a isenção de responsabilidade, consulte o idioma correspondente do país que está usando este arquivo.
+Link - https://ads.tiktok.com/help/article/tiktok- standard-hashtag-challenge?lang=pt
+Link externo
+o uso de URL para PDFs (tanto um URL com o sufixo .pdf como uma página que é aberta no formato PDF).
+• Texto do link externo: o texto deve ter uma única linha; qualquer texto que ultrapasse uma linha não será exibido. Limite recomendado de caracteres: máximo de 30 caracteres do inglês. Não são permitidos emojis, símbolos nem pontuação. No entanto, o caractere & está isento quando faz parte do nome da marca.
+• O link será exibido embaixo da caixa de isenção de responsabilidade.
+• O link externo é opcional, os clientes podem
+adicionar o link do website oficial, o link da
+campanha para promoção ou deixar em branco. Só
+há suporte para um link externo. Observação
+• Se o cliente estiver realizando algum tipo de sorteio/ loteria, é necessário um link H5 externo. Nesse link, o cliente deve dar instruções claras sobre o desafio, as regras, os prêmios e os métodos de veiculação; por exemplo, Ver mais: http://xx.xxx.xx (Obrigatório incluir a isenção de responsabilidade: sem associação com a Apple Inc.).
+• URL do TikTok: os anunciantes podem fornecer o URL interno do TikTok. O link externo pode direcionar para o URL interno do TikTok, inclusive para a página do Hashtag Challenge/de vídeo/da conta/de música/de Branded Effect.
+• URL do WebView: os anunciantes podem fornecer o URL do WebView da página de destino. (O link
+do WebView é um navegador in-app que veicula conteúdo da Web e é aberto no TikTok) O URL precisa usar https (a versão segura do http padrão) como protocolo da Web, caso contrário ele não será reconhecido. Não são permitidos espaços, emojis, caracteres chineses e quebras de linha no URL. Evite
+• Não há suporte a link direto para outro app (se implantado, primeiro os usuários vão abrir a página de destino dentro do TikTok no formato WebView). O link de download do app não é recomendado como exibição separada para iOS, e não há suporte a link externo para usuários do Android.
+• As dimensões da página de destino devem ser compatíveis com todos os dispositivos móveis.
+• O cliente é responsável por testar e aprimorar o tempo de carregamento da página de destino.
+• O vídeo ou outros elementos na página de destino devem ser compatíveis com iOS e Android.
+• O pré-carregamento ou a reprodução automática na página de destino por clique não é compatível.
+• O TikTok não fornece testes nem pré-visualizações da página de destino. O TikTok não se responsabiliza por quaisquer problemas na página de destino durante o processo de veiculação. Se houver botões de CTA na
+ 60
+
+ HASHTAG CHALLENGE - CONTINUAÇÃO
+página de destino, o cliente deverá garantir que esses botões funcionem corretamente.
+• Se uma pessoa muito conhecida aparecer no criativo, o cliente deverá fornecer uma prova de endosso, autorização relacionada ou relatórios de terceiros relacionados. Caso os requisitos acima não sejam atendidos, a agência deverá emitir as garantias relevantes e assumir as responsabilidades correspondentes.
+• O URL não tem permissão para acessar funcionalidades nativas do telefone (ou seja, câmera, galeria de fotos ou microfone).
+• O URL não tem permissão para coletar informações do usuário do TikTok, como o nome de usuário, sem seu conhecimento.
+• O URL deve ser analisado e aprovado pelo TikTok. A análise de anúncio do TikTok será concluída em até 2 dias úteis depois do envio. O TikTok não se responsabiliza por problemas causados por atrasos no envio.
+• Depois que o TikTok analisar a página de destino, não será permitida nenhuma revisão do conteúdo do URL. Caso contrário, a campanha será encerrada e o TikTok não dará nenhuma remuneração.
+• Os comandos de arrastar para a esquerda ou direita não funcionam na página de destino.
+• Como a cor de fundo do TikTok é preto, as páginas de destino que tiverem a cor de fundo transparente serão automaticamente alteradas para branco.
+• Não inclua o apk na página de destino.
+• Para ir de uma página H5 interna do TikTok para um vídeo de Hashtag Challenge, use o modelo de URL: snssdk1180://challenge/detail/[id]?is_commerce=1
+Botão de CTA
+• O botão de CTA é opcional. Quando definido, o botão é exibido à esquerda do botão salvar.
+• O texto de CTA pode ser customizado. O texto deve ter uma única linha; o texto que ultrapassar uma linha não será exibido. Comprimento recomendado de caracteres: máximo de 16 caracteres do inglês.
+• Pontuação, espaços e emojis v11 são compatíveis no texto de CTA e serão contados como caracteres. Observação: Emojis podem ter uma aparência diferente em cada dispositivo e sistema operacional, e alguns emojis v11 não são compatíveis em alguns dispositivos Android.
+• URL do WebView: o anunciante pode fornecer um URL do WebView. (O link do WebView é um navegador in-app que disponibiliza conteúdo
+da web e abre dentro do TikTok. O URL precisa usar https (a versão segura do padrão http)
+como protocolo web; caso contrário, não será reconhecido. Não são permitidos espaços, emojis, caracteres chineses nem quebras de linha no URL. Evite o uso de URL para PDFs (tanto um URL com o sufixo .pdf como uma página que é aberta no formato PDF).
+• URL de download do app: dê dois URLs para download do app. Um para iOS, outro para Android. O botão de CTA pode direcionar usuários do iOS para a página de download na loja da Apple, e o link para iOS deve começar com http://itunes.apple.com ou
+https://apps.apple.com. Usuários do Android abrirão a página de download no formato do WebView.
+Observação
+• Não há suporte para link direto até a página interna do TikTok ou outro app. Se implantado, primeiro os usuários vão abrir a página de destino dentro do TikTok no formato WebView.
+• Para conferir as outras notas, consulte as notas 2–14 sobre link externo.
+Vídeo oficial
+• Você é responsável por fornecer vídeos oficiais
+para a aprovação do TikTok. Esses vídeos serão fixados na parte superior dos vídeos de UGC (User Generated Content, Conteúdo gerado pelo usuário). Recomendamos o uso de pelo menos 3 vídeos oficiais para aumentar o engajamento de usuários. Não há limite para o número de vídeos oficiais.
+• Proporções de vídeo: proporção de tela de 9:16, ≥ 720 x 1280px e 100 MB ou menos; taxa de bits: mais do que 2.500 kbps
+• Formato de vídeo: MP4, MPEG, 3GP, AVI, MOV
+• Duração: 5–60 segundos (recomenda-se 9–15 segundos).
+• O vídeo oficial deverá ser revisado pela equipe de revisão de anúncios
+• O vídeo de In-Feed Ads pode ser igual ao vídeo oficial
+•
+• •
+•
+• •
+•
+• •
+Recomendamos que os In-Feed Ads relacionados a Hashtag Challenge sejam anúncios nativos
+Legenda do vídeo:
+Limite de caracteres: 150 caracteres para todos os idiomas. Recomendamos entre 4 e 60 caracteres do inglês para uma experiência ideal do usuário. Se o vídeo oficial também for usado como anúncios de reserva, consulte as especificações para reservation ads. Hashtags, espaços e pontuação serão contados como caracteres.
+Se o cliente quiser usar emojis na legenda, deverão ser usados emojis v.11. Os emojis podem ter uma aparência diferente em cada dispositivo e sistema operacional, e alguns emojis v11 talvez não sejam compatíveis com alguns dispositivos Android.
+O nome do Hashtag Challenge correspondente deverá ser incluído na legenda do vídeo.
+O limite recomendado de caracteres na legenda do anúncio só se aplica às principais marcas de celular. E. Evite quebras de linha em legendas de vídeo
+Posicione elementos importantes como o texto do anúncio e a CTA no centro do vídeo. Caso contrário, poderão ficar cobertos pelos ícones in-app
+Os influenciadores apresentados devem ter 16 anos ou mais
+O TikTok não se responsabiliza pelo upload dos ativos de vídeo de Hashtag Challenge. O cliente deve fazer upload dos vídeos oficiais em sua conta do TikTok ou nas contas dos influenciadores entre 12 horas e 7 dias antes da data de lançamento
+ 61
+
+ HASHTAG CHALLENGE - CONTINUAÇÃO
+• Quando uma campanha acaba, não é mais possível fixar um vídeo manualmente
+• Inclua #Ad etc. na legenda do vídeo oficial (para localizar o idioma, encontre as informações da hashtag relevante por país usando o seguinte link, https://bytedance.feishu.cn/sheets/ shtcnBy3ap3FwnWzLIfeYK810yb
+• Os vídeos oficiais não podem ser definidos para cada região, e os vídeos serão igualmente exibidos em todas as regiões.
+• As músicas associadas aos vídeos oficiais devem estar disponíveis na biblioteca de músicas do TikTok
+Música oficial
+• Foto de capa: 800x800; posicione os elementos importantes da marca na área circular central com diâmetro de 260px.
+• Tamanho do arquivo da foto: 10MB ou menos
+• Formato de música: MP3, wav
+• Duração: 15 s a 1 min. Recomenda-se 15 s. Se for maior que 15 s, poderão ocorrer situações em que usuários com versões mais antigas do app não conseguirão reproduzir a música inteira ao usar uma música para gravar um vídeo próprio.
+• Limite de caracteres: máximo de 60 caracteres do inglês para o nome da música e nenhum limite
+para o nome do(a) intérprete. Recomendação de caracteres para o nome da música e do(a) intérprete
+para melhorar a experiência do usuário: máximo de 12 caracteres do inglês. Evite emojis e símbolos especiais.
+• O cliente deve fornecer os documentos de direitos autorais da música (comprovação de uso da música).
+• O cliente deve assinar a carta de autorização fornecida pelo TikTok (que atesta que o cliente permite que o TikTok faça upload da música e que usuários do TikTok usem a música).
+Regras da competição
+1. O texto desse posicionamento pode ser customizado pelos anunciantes. O texto recomendado é: As XX melhores pessoas vencerão o XX. O texto deve ter uma única linha; o texto que ultrapassar uma linha não será exibido. Comprimento recomendado de caracteres: máximo de 30 caracteres do inglês.
+2. Os textos podem incluir emojis v11. Observação: Emojis podem ter uma aparência diferente em cada dispositivo e sistema operacional, e alguns emojis v11 talvez não sejam compatíveis com alguns dispositivos Android.
+Página de detalhes da competição
+1. O cabeçalho recomendado para a página é Detalhes da competição. A página de detalhes da competição tem quatro seções: Descrição da competição, Como participar, Critérios de julgamento e Premiação.
+2. Nome da seção: o nome da seção padrão listado abaixo é recomendado, e ele também pode ser personalizado. O texto customizado deve ter uma
+única linha; o texto que ultrapassar uma linha não será exibido. Limite recomendado de caracteres: máximo de 30 caracteres do inglês. Não use emojis nem símbolos especiais.
+3. Corpo da seção: sem limite de caracteres. O corpo da seção pode incluir emojis v11. Há suporte para incluir o URL no corpo da seção, e os requisitos de URL são iguais aos requisitos de URL para link externo.
+Botão da conta
+• Você deve fornecer a ID da conta ou o nome da marca, e o botão da conta ou o nome da marca será exibido no nome da hashtag.
+• Botão da conta: forneça a ID da conta do TikTok. Observe que o status da conta precisa ser público, não bloqueado.
+• Nome da marca: até 24 caracteres do inglês. O nome da marca não é compatível com emoji, espaço e[, <, >, “”]
+Emoji de hashtag
+1. Verifique a disponibilidade com seu contato do TikTok. O emoji deve ser fornecido pelos clientes.
+2. Somente formato png. O emoji não pode conter texto.
+3. 30*30px com fundo transparente, máximo de 50 kb.
+4. O emoji deve ser relevante para o Hashtag Challenge ou a marca.
+ 62
+
+ PÁGINA EXPLORAR DO TIKTOK HASHTAG CHALLENGE PLUS
+Banner Explorar
+Imagem do banner Explorar:
+• Tamanho do banner: 984px*472px. • Tamanho do arquivo: até 300 KB.
+• Formato: PNG, JPG ou JPEG.
+URL do banner:
+• Informe o URL do WebView da página de destino. (O link do WebView é um navegador in-app que disponibiliza conteúdo da Web e abre dentro
+do TikTok). O URL precisa usar https (a versão segura do padrão http) como protocolo web; caso contrário, não será reconhecido. Evite usar espaços, caracteres chineses ou quebras de linha no URL. Evite o uso de URL .pdf (tanto um URL com o sufixo .pdf como uma página que é aberta no formato PDF).
+• Não há suporte do URL do banner para link direto para outro app/páginas internas do TikTok (se implantado, primeiro os usuários vão abrir a página de destino dentro do TikTok no formato WebView). O download do app não é recomendado, pois
+não é possível fazer uma exibição separada para usuários do iOS e do Android.
+Descrição do banner:
+• O texto da descrição deve ficar em duas linhas;
+o texto que se estende além da segunda linha não será exibido. Comprimento recomendado de caracteres: máximo de 90 caracteres do inglês.
+• A descrição do banner não pode conter &, <, >, “”, emojis ou URLs.
+CTA do banner:
+• O texto de CTA deve ter uma única linha; o texto que ultrapassar uma linha não será exibido. Comprimento recomendado de caracteres: máximo de 10 caracteres do inglês.
+URL da CTA:
+• igual aos requisitos de URL do banner Explorar.
+Mais produtos Nome do módulo:
+• Nome recomendado: Mais produtos
+• O nome do módulo pode ser personalizado e deve ter uma única linha; o texto que ultrapassar uma linha não será exibido. Comprimento recomendado de caracteres: máximo de 24 caracteres do inglês.
+Imagem do produto:
+• Tamanho do banner: 420px*420px. • Tamanho do arquivo: até 300 KB.
+• Formato: PNG, JPG ou JPEG.
+URL do produto:
+• Igual aos requisitos de URL do banner Explorar.
+• No momento, não é possível usar um URL aberto que direciona os usuários para uma página interna do app TikTok.
+• Cada produto pode ter um URL.
+Nome do produto:
+• O nome do produto deve ficar em duas linhas;
+o texto que se estende além da segunda linha não será exibido. Comprimento recomendado de caracteres: máximo de 30 caracteres do inglês.
+• Pode exibir de 3 a 8 produtos.
+URL TODOS (opcional):
+• O botão de call-to-action fica no canto superior direito (veja “Todos”). Se não for essencial para o anunciante, a configuração padrão será definida para não exibir “Todos”. É possível personalizar o texto. Limite recomendado de caracteres: máximo de 16 caracteres do inglês.
+• Igual aos requisitos de URL do banner Explorar.
+Pesquisa
+Nome do módulo:
+• Nome recomendado: Pesquisa.
+• O nome do módulo pode ser personalizado e deve ter uma única linha; o texto que ultrapassar uma linha não será exibido. Comprimento recomendado de caracteres: máximo de 24 caracteres do inglês.
+Tipo de pesquisa:
+• Com ou sem imagens (apenas texto).
+Imagem da pesquisa:
+• Tamanho do banner: 327px*327px.
+• Tamanho do arquivo: até 300 KB. • Formato: PNG, JPG ou JPEG.
+Pergunta da pesquisa:
+• A pergunta da pesquisa deve ter uma única linha;
+o texto que ultrapassar uma linha não será exibido. Comprimento recomendado de caracteres: máximo de 40 caracteres do inglês.
+• A pergunta não pode conter &, <, >, “”, emojis ou URLs.
+• Período de validade da pesquisa: a votação começará assim que o módulo for criado, e o anunciante pode definir uma data de término personalizada — no mínimo 1 dia e no máximo 30 dias após sua criação. Assim vez que o período de validade é definido, os usuários não podem votar antes dele, e os resultados da votação são mostrados após esse período.
+Botão Votar:
+• Texto recomendado: Votar.
+• O texto do botão pode ser personalizado. Comprimento recomendado de caracteres: máximo de 18 caracteres do inglês.
+Opção da pesquisa:
+• Quando houver 2 ou 4 opções, o texto deverá ter até 24 caracteres do inglês. Quando houver 3, 5 ou 6 opções, o texto deverá ter até 14 caracteres do inglês.
+• As pesquisas podem ter de 2 a 6 opções.
+ 63
+
+ PÁGINA EXPLORAR DO TIKTOK HASHTAG CHALLENGE PLUS - CONTINUAÇÃO
+Encontre uma loja Nome do módulo:
+• Nome recomendado: Encontre uma loja.
+• O nome do módulo pode ser personalizado e deve ter uma única linha; o texto que ultrapassar uma linha não será exibido. Comprimento recomendado de caracteres: máximo de 24 caracteres do inglês.
+Imagem da loja:
+• Tamanho do banner: 216px*216px. • Tamanho do arquivo: até 300 KB.
+• Formato: PNG, JPG ou JPEG.
+Nome da loja:
+• O nome da loja deve ter uma única linha; o
+texto que ultrapassar uma linha não será exibido. Comprimento recomendado de caracteres: máximo de 36 caracteres do inglês.
+• Pode ter de 1 a 3 locais.
+URL da loja:
+• Cada loja pode ter um URL individual.
+• URL do app Google Maps: os anunciantes fornecem um link web_url do Google Maps.https://goo. gl/maps/KH3NYnLv1EZNmXf16. Cada loja pode direcionar para o app do Google Maps.
+• Outro URL de https: os anunciantes podem fornecer o URL começando com https (a versão segura do http padrão) como protocolo da Web. Não são permitidos espaços, emojis, caracteres chineses ou quebras de linha no URL. A loja pode direcionar para o navegador Safari (para iOS) ou Android, onde o link será aberto. Evite o uso de URL para PDFs (tanto um URL com o sufixo .pdf como
+uma página que é aberta no formato PDF).
+• O download do app não é recomendado como exibição separada para iOS, e não há suporte para usuários do Android.
+Localização da loja
+• A localização da loja deve ter uma única linha; o texto que ultrapassar uma linha não será exibido. Comprimento recomendado de caracteres: máximo de 42 caracteres do inglês.
+URL TODOS (opcional):
+• O botão de call-to-action fica no canto superior direito (veja “Todos”). Se não for essencial para o anunciante, a configuração padrão será definida para não exibir “Todos”. É possível personalizar o texto. Limite recomendado de caracteres: máximo de 16 caracteres do inglês.
+• Igual aos requisitos de URL do banner Explorar.
+Hashtag relacionada
+• Nome de módulo recomendado: Hashtag relacionada. O nome do módulo pode ser personalizado e deve ter uma única linha; o
+texto que ultrapassar uma linha não será exibido. Comprimento recomendado de caracteres: máximo de 24 caracteres do inglês.
+• O nome da hashtag será o mesmo das campanhas anteriores.
+• É possível incluir até 2 hashtags relacionadas de campanhas anteriores.
+• Os anunciantes precisam escolher suas próprias hashtags de campanhas anteriores.
+Observação
+• Para garantir o desempenho do hashtag challenge plus, forneça ativos para, pelo menos, 3 seções.
+• O cliente pode personalizar a ordem de cada seção.
+• Emojis ou símbolos especiais não podem ser usados na página Explorar.
+• Todos os ativos devem ser aprovados no processo de aprovação da equipe de Revisão de anúncios do TikTok.
+ 64
+
+ TIKTOK INTERACTIVE ADD-ON: DISPLAY CARD FOR AUCTION & REACH & FREQUENCY
+Estilo visual
+• Inclua um elemento de design de CTA no cartão de exibição e certifique-se de que esteja claramente visível.
+• A cor deve se destacar no vídeo e complementar a experiência do TikTok.
+• Evite material criativo com poucos pixels.
+• Verifique se a borda do material é lisa e clara, não em estilo mosaico e serrilhado.
+Criativos do card
+• Tempo de pop-up do card: baseado no modo para calcular o tempo de pop-up otimizado com base no objetivo do anúncio, setor e comportamento do usuário, não pode ser personalizado.
+• Formatos compatíveis: .jpg, .jpeg ou .png
+• Tamanho do arquivo: sem limite.
+• Tamanho da tela (saída): largura 750 x altura 421sem restrições na proporção de
+aspecto ao fazer upload do criativo do cartão de exibição na plataforma. O criativo do cartão de exibição pode ser cortado para redimensionar e caber na largura final de 750 x altura 421 em exibição usando as ferramentas na plataforma.
+• Evite usar ativos de design transparente no cartão de exibição. A borda do card permite certa transparência, mas o formato do cartão de exibição deve ser retangular, e a área central não pode ser transparente.
+Zona segura
+Versão padrão LTR Vertical
+Square
+Horizontal
+• Zona segura: use a zona segura do cartão de exibição para preparar os criativos dos In-Feed Ads.
+    Observações gerais
+• Os ativos de anúncio não podem ser alterados nem substituídos depois que a campanha entra em operação.
+• Os cartões de exibição devem ser usados com In-Feed Ads e não podem ser usados com outros complementos interativos ao mesmo tempo para um criativo.
+• Siga as especificações de In-Feed Ads para a preparação de criativos de In-Feed Ads.
+• O URL exibido utilizará diretamente o URL dos In-Feed Ads, sem a necessidade de configurar separadamente.
+• O cartão de exibição não é compatível com o rastreamento de terceiros independente
+ 65
+
+ COMPLEMENTO INTERATIVO DO TIKTOK:
+STICKER DE VALE-PRESENTE COM CÓDIGO
+EXEMPLIFICAÇÃO:
+Criativo dos stickers
+• Aparência: um sticker de vale-presente com código será exibido nos anúncios o tempo todo e não poderá ser fechado antes do término da reprodução do anúncio.
+• Elementos do sticker: título do sticker, descrição do vale-presente com código, vale-presente com código, botão de texto e botão de CTA.
+Limite de caracteres:
+• Cor do sticker: você pode selecionar uma cor do sticker de vale-presente com código entre laranja, rosa, preto ou roxo. A personalização de cores não é compatível no momento.
+• Tamanho e posição: você pode ajustar o tamanho, o ângulo e a posição do sticker no TikTok Ads Manager.
+• Lógica do sticker: quando alguém clicar em qualquer lugar de um sticker, ele redirecionará a pessoa automaticamente para a página de destino fornecida. O vale-presente com código também é copiado automaticamente para a área de transferência. Para anúncios de download do app, o código só poderá ser resgatado in-app após o download do app.
+• Observação: verifique se o sticker de vale-presente está dentro da zona de segurança.
+Observações gerais
+• Ativos de anúncios não podem ser alterados nem substituídos depois que a campanha ficar ativa.
+• Os stickers de vale-presente podem ser usados em In-Feed Ads e anúncios de leilão.
+• Os stickers de vale-presente são compatíveis com objetivos de Alcance, Visualizações de vídeo, Tráfego, Conversão e Instalações do app de acordo com o tipo de compra de Leilão, bem como todos os objetivos conforme o tipo de compra de Frequência e Alcance.
+• Os stickers de vale-presente não podem ser usados com outros complementos interativos.
+• Os anúncios com stickers de vale-presente devem incluir um URL. Você pode usar o mesmo URL inserido na seção Página de destino da criação do anúncio.
+• O sticker de vale-presente não é compatível com o rastreamento por terceiros.
+EXEMPLIFICAÇÃO:
+      66
+
+ COMPLEMENTO INTERATIVO DO TIKTOK:
+STICKER DE CONTAGEM REGRESSIVA
+EXEMPLIFICAÇÃO:
+Criativo dos stickers
+• Tamanho e posição: Você pode ajustar o tamanho e a posição do sticker no TikTok Ads Manager.
+• Aparência: o sticker de contagem regressiva será exibido nos anúncios o tempo todo e não poderá ser fechado antes do término da reprodução do anúncio.
+• Call-to-Action (CTA) do Sticker de contagem regressiva: O
+CTA do sticker de contagem regressiva será o mesmo CTA selecionado no TikTok Ads Manager e será traduzido para o idioma do app do espectador. O Sticker de contagem regressiva também é compatível com o CTA dinâmico.
+Tempo da contagem regressiva:
+1. Você precisa especificar o prazo da contagem regressiva selecionando o fuso horário, a data e a hora.
+2. Tempo do prazo da contagem regressiva > 71 Horas: 59 Minutos: 59 Segundos. Se o tempo da contagem regressiva for maior que três dias, será exibido no formato DIAS-HORAS- MINUTOS.
+3. Tempo do prazo da contagem regressiva < 71 Horas: 59 Minutos: 59 Segundos. Se o tempo da contagem regressiva for maior que três dias, será exibido no formato HORAS-MINUTOS- SEGUNDOS.
+Observação: o texto do Tempo do prazo da contagem regressiva será traduzido automaticamente para o idioma do app do espectador.
+• O sticker de contagem regressiva calculará o tempo restante com base no fuso horário do espectador e exibirá automaticamente a contagem regressiva.
+• Título do Sticker de contagem regressiva: Até 54 caracteres em inglês ou até 27 caracteres em chinês, japonês ou coreano são compatíveis.
+1. O título do sticker de contagem regressiva exibirá o idioma selecionado no TikTok Ads Manager e não será traduzido automaticamente.
+2. O título do sticker de contagem regressiva é compatível somente com texto; o símbolo de hashtag (#) não é compatível.
+3. Recomendamos adicionar “Começa em” para indicar o início de uma promoção; ou “Termina em” para indicar o término no título do sticker de contagem regressiva.
+• Cor do sticker: Você pode selecionar uma cor entre laranja, preto, azul ou rosa. A personalização de cores não é compatível no momento.
+Observação: verifique se o Sticker de contagem regressiva está dentro da zona de segurança.
+Observações gerais
+• Ativos de anúncios não podem ser alterados nem substituídos depois que a campanha fica ativa.
+• Stickers de contagem regressiva podem ser usados em In-Feed Ads e Auction Ads.
+• Stickers de contagem regressiva são compatíveis com objetivos de Alcance, Visualizações de vídeo, Tráfego, Conversão e Instalações do app de acordo com o tipo de compra de Leilão, bem como todos os objetivos conforme o tipo de compra de Frequência e Alcance.
+• Stickers de contagem regressiva não podem ser usados com outros complementos interativos.
+• Anúncios com stickers de contagem regressiva devem incluir um URL. Você pode usar o mesmo URL inserido na seção Página de destino da criação do anúncio.
+• O recurso do sticker de contagem regressiva não é compatível com o rastreamento por terceiros.
+EXEMPLIFICAÇÃO:
+     67
+
+ COMPLEMENTO INTERATIVO DO TIKTOK:
+STICKER DE CONTAGEM REGRESSIVA
+EXEMPLIFICAÇÃO:
+EXEMPLIFICAÇÃO:
+Criativo dos stickers
+• Tamanho e posição: você pode ajustar o tamanho, o ângulo e a posição do sticker no TikTok Ads Manager.
+• Aparência: o sticker de enquete será exibido nos anúncios o tempo todo e não poderá ser fechado antes do término da reprodução do anúncio.
+• Lógica do sticker: quando uma pessoa clicar na Opção A ou na Opção B para votar, ela poderá ver os últimos resultados da enquete.
+Observação: Não é possível votar novamente.
+• Elementos do sticker: título do sticker, texto da Opção A e texto da Opção B.
+• Cor do texto: stickers de enquete não podem ser personalizados. A fonte do título do sticker de enquete é branca por padrão, mas a fonte do texto das Opções A e B está disponível em vermelho, azul- claro e azul-escuro.
+Limite de caracteres:
+• 1. Texto do título do sticker de enquete: até 65 caracteres em inglês ou 32 caracteres em chinês/ japonês/coreano.
+• 2. Texto das Opções A/B do sticker de enquete: até 16 caracteres em inglês ou 8 caracteres em chinês/ japonês/coreano.
+• Observação: Verifique se o sticker de enquete está dentro da zona segura.
+Observações gerais
+• Ativos de anúncios não podem ser alterados nem substituídos depois que a campanha fica ativa.
+• Stickers de enquete podem ser usados em In-Feed Ads e anúncios de leilão.
+• Stickers de enquete são compatíveis com objetivos de Alcance, Visualizações de vídeo, Tráfego, Conversão e Instalações do app de acordo com
+o Tipo de compra de leilão, bem como todos os objetivos conforme o Tipo de compra de alcance e frequência.
+• Stickers de enquete não podem ser usados com outros complementos interativos.
+• O recurso de sticker de enquete não é compatível com o rastreamento de terceiros.
+     68
+
+ TOPVIEW DE RESERVA DO TIKTOK
+Ativos de criativos de vídeos Pull de Spark Ads
+• As legendas dos anúncios do Spark Ads são extraídas diretamente das legendas de vídeos orgânicos, e não há limite de legendas nos Anúncios do TikTok.Legendas em branco são aceitas.
+• O formato dos vídeos enviados costuma ser .mp4 ou .mov
+• Duração do vídeo: sem restrições. Os Spark Ads (Pull) são compatíveis com todas as durações em vídeos orgânicos do TikTok, desde que os usuários consigam publicar com êxito o vídeo no TikTok.
+Envio por push de Não Spark Ads e Spark Ads
+• Dimensão: vertical 9:16, ≥ 540*960 px
+• Formato compatível: .mp4, .mov, .mpeg, .3gp
+• Duração do vídeo: 5 a 60 segundos, recomendado: 9 a 15 segundos
+• Tamanho do arquivo: ≤ 500 MB
+• Taxa de bits: ≥ 2.500 kbps
+Zona segura
+Se você seguir as regras e se mantiver na zona segura, além de seguir as especificações do anúncio relevantes, garantirá que seus criativos serão compartilhados da maneira desejada.
+Para fazer download de arquivos da zona segura:
+• Versão padrão (LTR): todas as regiões (exceto a região árabe), consulte a versão LTR (da esquerda para a direita) padrão.
+• Link - https://ads.tiktok.com/help/article/tiktok-
+reservation-topview?lang=pt
+• Verifique se os elementos principais, como o texto e os logotipos, estão dentro da zona segura. Os elementos que aparecem fora da zona segura podem ser cobertos ou cortados.
+• O tamanho da zona segura é determinado
+pelo comprimento da legenda do anúncio e
+por qualquer uso de complemento interativo; quanto maior a legenda, menor será a zona segura. Selecione os arquivos da zona segura que correspondem ao seu ativo.
+• A zona segura pode não se aplicar a todos
+os dispositivos. Para que a apresentação do criativo atenda às suas expectativas, use a nossa ferramenta de pré-visualização para personalizar a pré-visualização em diferentes modelos de dispositivos e visualizar os efeitos em tempo real antes do lançamento.
+Ferramenta de visualização: https://ads.tiktok.com/ toolbox/preview/#/
+Requisitos do criativo (aplicados a todos os anúncios TopView)
+• Use vídeo vertical em tela cheia: use sempre vídeos verticais que adotam a proporção
+de aspecto ideal (9:16). NÃO são permitidos vídeos horizontais fora da proporção 9:16. Quadros e barras podem ser permitidos quando correspondem ao estilo da marca com um conceito claro de criativo aplicado ou fazem parte do design de Branded Effect. Para uma experiência imersiva, o conteúdo deve ocupar a tela inteira.
+• Não sobreponha: textos, logotipos ou mensagens principais sobrepostos pelo “logotipo do TikTok”, “botão Pular” e “deslizar para cima para pular”
+na seção de primeiros três segundos de tela
+aberta NÃO serão permitidos de forma alguma. Não posicione textos, logotipos ou mensagens principais em áreas onde botões, nomes de usuário e legendas possam aparecer na seção in-feed.Use as especificações da zona segura e a ferramenta de pré-visualização para verificar antes e ajustar corretamente.
+• Equilibre as cores: não use cores que sejam muito escuras ou muito brilhantes, pois elas podem afetar negativamente a experiência de visualização. Evite usar efeitos que possam causar desconforto visual (por exemplo, luzes piscantes).
+• Inspire com imagens interessantes: vídeos que começam com o logotipo da marca de um anunciante nos primeiros três segundos da
+tela aberta NÃO serão permitidos. Isso poderá confundir e fazer nossa audiência pensar que está em outro app.
+• Crie para som ligado: não use sons desagradáveis ou perturbadores, como explosões ou gritos (especialmente nos primeiros três segundos). Esses sons podem chocar sua audiência e causar uma alta taxa de abandono.
+• Envolva com o som: não faça simplesmente uma transmissão. Certifique-se de que sua promoção (se houver) seja clara, mas evite repeti-la mais de duas vezes consecutivas.
+• Use criativos interessantes de alta qualidade: qualquer criativo de baixa qualidade, como imagens de carrossel, animações de apresentação de slides, imagens estáticas ou vídeos do tipo
+GIF, NÃO será permitido, pois pode tornar
+a experiência de visualização entediante e inexpressiva.Em vez disso, use criativos de alta qualidade que sejam dinâmicos, envolventes e semelhantes aos vídeos nativos do TikTok.
+Inclua pessoas reais ou projete os criativos com animações requintadas com narrativa ou que estejam alinhados ao estilo de campanha da marca para garantir anúncios atraentes e interessantes.
+• Não engane com recursos visuais: não use recursos visuais enganosos que possam causar confusão, como botões de parar/reproduzir, telas de chamadas recebidas, mensagens de texto, sorteios de prêmios etc.
+• Não mostre informações de contato: não inclua informações de contato nos anúncios, como códigos QR, códigos de barras, números de contato e endereços.
+• Mantenha o conteúdo confortável: não use conteúdo impróprio, como cenas de conteúdo sexual (por exemplo, beijos ou toques intensos), principalmente no início do anúncio.Aja de acordo com as políticas de anúncios do TikTok e evite desconforto entre sua audiência ou uma reação negativa à sua marca.
+Legenda do anúncio – Spark Ads
+• A legenda dos anúncios do Spark Ads é extraída diretamente das legendas de vídeos orgânicos, que permitem até 150 caracteres ou uma legenda em branco.
+• É permitido usar e clicar em “@”.
+• “#” pode ser usado em hashtag challenges comerciais, patrocinados e orgânicos, mas não pode ser usado para hashtags não comerciais com intenção comercial.
+• Dependendo do modelo do telefone e do sistema operacional do usuário, textos mais longos talvez não sejam exibidos totalmente na tela.
+ 69
+
+ TOPVIEW DE RESERVA DO TIKTOK - CONTINUAÇÃO
+• 1. Dependendo do modelo do smartphone e do sistema operacional, a quantidade máxima de caracteres exibidos em uma linha varia.Sugerimos que você use a ferramenta de pré-visualização para ver o efeito real em dispositivos diferentes.
+• 2. É possível exibir até quatro linhas.Se houver mais de quatro linhas, o texto poderá ser sobreposto pela mensagem Ver mais.Quando
+os usuários clicarem em Ver mais, todo o texto aparecerá abaixo.Sugerimos que você mantenha as legendas do anúncio dentro de 50 caracteres para chinês, japonês e coreano ou 100 caracteres em outros idiomas para evitar que sejam sobrepostas pela opção Ver mais.
+CTA
+• A cor de fundo da CTA corresponde automaticamente com o criativo de vídeo com base no nosso modelo, e não é compatível com cores personalizadas.
+• A customização do conteúdo da CTA não é compatível, por isso ela só deve ser selecionada para anúncios de visualização sem vídeo.
+• O CTA padrão é Saber mais.
+• No total, damos suporte a 23 CTAs:
+• 1. CTAS: Inscrever-se agora, Reservar agora, Entre em contato conosco, Experimentar agora, Obter cotação, Obter horários de exibição, Obter ticket agora, Tenho interesse, Junte-se a esta hashtag, Saber mais, Ouvir agora, Peça agora, Jogar um jogo, Reserve agora, Ler mais, Gravar com este efeito, Comprar agora, Inscrever-se, Inscrever, Ver agora, Mais vídeos com este efeito, Loja de visita, Assistir agora.
+• 2. O CTA Participe desta hashtag só pode ser usado ao gerar tráfego para um Hashtag Challenge comercial ou patrocinado.
+• 3. Anúncios Non-Spark não são compatíveis com o CTA Gravar com este efeito.
+• 4. O texto da CTA será traduzido automaticamente para se adequar à configuração do idioma do app do usuário de todos os idiomas disponíveis. Se o CTA não tiver uma tradução no idioma disponível no sistema do TikTok, o texto do CTA vai ser exibido em inglês para os usuários, por padrão. Consulte a equipe de vendas para as traduções de CTA no seu idioma.
+Link do URL Lembre-se:
+• O campo URL deve ser preenchido para anúncios de visualização sem vídeo
+• O link de Download do app para a App Store ou o Google Play não é compatível.
+• O deeplink não é compatível com anúncios TopView, incluindo, sem limitação: schema, universal link, applink, redirect_schema, redirect_ universallink, redirect_applink, onelink.
+• Um deeplink é um tipo de URL de destino no anúncio que direciona audiências que já fizeram download de seu app diretamente para uma página específica do app quando clicam no anúncio.
+URL in-app do TikTok
+• Os anúncios TopView podem direcionar para URLs in-app do TikTok, como a página de Branded Hashtag Challenge, página de vídeo, página de música, página da conta, página de branded effect, página de gravação de branded effect no app TikTok.
+• Os anúncios que usam o URL do TikTok só podem direcionar para uma página de vídeo de conteúdo orgânico gerado pelo usuário. O direcionamento
+para outra página de anúncio em vídeo não é permitido.
+• Os anunciantes precisam fornecer o endereço de URL in-app.Para saber o URL, clique no botão Compartilhar no TikTok e copie o link gerado.
+ 70
+
+ YOUTUBE - THUMBNAIL
+URL do Webview
+• Os anúncios TopView podem direcionar para um URL do WebView. URLs WebView serão abertos em um navegador in-app.
+• Os clientes precisam usar o protocolo https na página de destino.Se estiver usando http, um link inteligente ou outros protocolos, é possível que o redirecionamento não seja bem-sucedido.
+• Verifique se as especificações da página de destino são compatíveis com os dispositivos móveis principais, bem como para Android e iOS.
+• Verifique se a página de destino está sendo carregada de maneira consistente. O TikTok não fornece testes nem pré-visualizações para a página de destino e não se responsabiliza por problemas causados pela página de destino fornecida durante a campanha publicitária.
+• A reprodução automática na página de destino por clique não é compatível.
+• Os elementos # mencionados na página de destino podem ser usados em hashtag challenges comerciais, patrocinados e orgânicos, mas não podem ser usados para hashtags não comerciais com intenção comercial.
+• O URL não tem permissão para acessar funcionalidades nativas do telefone (ou seja, câmera, galeria de fotos ou microfone).
+• O URL não tem permissão para coletar informações do usuário do TikTok, como o nome de usuário, sem o consentimento dele.
+• Depois que o TikTok analisa o anúncio, nenhuma revisão do conteúdo do URL é permitida. Se você o editar, o anúncio será eliminado, e o TikTok não oferecerá nenhuma compensação.
+• Às vezes, os dispositivos Android solicitam que os usuários cliquem em Confirmar antes de serem redirecionados.Esse aviso é o mecanismo de proteção de segurança de um dispositivo Android, e o TikTok não consegue mudar isso.
+• Se a cor de fundo do TikTok for preta, as páginas de destino que tiverem a cor de fundo transparente serão automaticamente alteradas para branco.
+• A página de destino não pode conter elementos que exijam ações de deslizar para a esquerda ou direita, pois essas ações não têm efeito.
+ 71
+
+ TIKTOK BRANDED EFFECT – ESPECIFICAÇÕES DE BENEFÍCIOS COMERCIAIS E DE ATIVOS
+Visão geral da demonstração:
+  Branded Effect – Especificações de ativos (design)
+• Você pode criar seus próprios Branded Effects ou fornecer materiais de design de acordo com as especificações do modelo de design. Para ver as especificações de design e zonas seguras para diferentes categorias de Branded Effect, consulte o documento abaixo.
+• Link - https://ads.tiktok.com/help/article/tiktok-branded- effect-asset-commercial-benefits-specs?lang=pt
+Branded Effect – Especificações de benefícios comerciais
+Limite de exposição da marca
+• Logotipo: cada Branded Effect pode incluir apenas um logotipo, e a área de exibição deve estar dentro de 150x130px.
+• Produto: sem limite; a área de exibição deve estar dentro de 150x130px.
+• Promoção: inclui o slogan e o tema da campanha; a área de exibição deve estar dentro de 300x130px.
+• Imagem de porta-voz e IP: sem limite; a área de exibição deve estar dentro de 480x270px.
+Nome do Branded Effect
+• Limite de caracteres para o nome do efeito: até 30 caracteres do inglês. Recomendamos manter o nome do efeito com menos de 18 caracteres do inglês para garantir que ele seja exibido na linha superior na maioria dos dispositivos móveis.
+• O nome do efeito não é compatível com emojis e símbolos especiais, incluindo #.
+ 72
+
+ TIKTOK BRANDED EFFECT – ESPECIFICAÇÕES DE BENEFÍCIOS COMERCIAIS E DE ATIVOS - CONTINUAÇÃO
+Print:
+ • Você pode fornecer seu próprio ícone ou usar um ícone criado pelo TikTok.
+• A imagem do seu ícone deve ser consistente com o Branded Effect.
+• O roteiro do design completo deve ter 162x162 px e sua área de design segura será de 144x144 px, com cantos arredondados de 20 px. O ícone deve ter cantos arredondados e área de sangria transparente.
+• Formato de arquivo: PNG
+• Área segura: 144x144px
+• Tamanho da exportação: 162 x162px
+• Tamanho do arquivo: < 60KB
+Tag de vídeo “em destaque” de Branded Effect
+• A tag “Em destaque” será adicionada a, no máximo, seis vídeos da marca/influenciador na página de detalhes de Branded Effect.
+• Uma explicação da tag do vídeo será adicionada automaticamente ao final da descrição de Branded Effect, na página Branded Effect. Se não houver vídeos marcados com “Em destaque”, nenhuma explicação aparecerá na descrição de Branded Effect.
+• A tag “Em destaque” e a explicação da tag do vídeo estarão nas versões locais, coincidindo automaticamente com o idioma que o usuário define no app TikTok.
+Dica de texto do Branded Effect
+• Você deve fornecer o texto que explica os movimentos de acionamento. A dica de texto aparece quando as pessoas clicam no efeito no painel, que explica como usar o efeito.
+• Limite de caracteres para a dica de texto: até 48 caracteres do inglês. Recomendamos manter a dica de texto com menos de 24 caracteres do inglês para garantir que ele seja exibido na linha superior na maioria dos dispositivos móveis. A dica de texto não é compatível com emojis e símbolos especiais, incluindo #.
+• O texto deve corresponder precisamente aos detalhes da função de acionamento e não pode ser enganoso.
+Música oficial
+• Imagem de capa: 800x800. Coloque os principais elementos da marca no centro da área do círculo (diâmetro de 260px).
+• Tamanho do arquivo da imagem: 10 MB ou menos.
+• Formato da música: MP3, wav.
+• Duração da faixa: 15 s a 1 min. 15 s é a duração recomendada. Se a faixa da música oficial tiver mais de 15 segundos, é possível que as pessoas com versões mais antigas do app não consigam usar a faixa inteira ao gravar seu próprio vídeo do TikTok.
+• Limite de caracteres: até 60 caracteres do inglês para o nome da música e nenhum limite de caracteres para o nome do(a) intérprete. O comprimento de caracteres recomendado para
+o nome da música e do(a) intérprete: até 12 caracteres do inglês. Evite usar emojis e símbolos especiais.
+• Você deve fornecer a documentação de direitos autorais da música.
+• Você deve assinar a carta de autorização autorizando o TikTok a realizar upload da música e permitindo que as pessoas no TikTok a utilizem.
+Página do Branded Effect
+• Exibição do patrocinador/isenção de responsabilidade
+• Opção 1: você fornece sua ID de usuário para exibição patrocinada
+• Um ícone de anúncio aparecerá antes do nome da sua marca acima da descrição do Branded Effect. As pessoas podem clicar no ícone do anúncio para acessar seu perfil do TikTok.
+• Se você usar sua Página de efeito para dar um prêmio a um vencedor selecionado, deverá adicionar uma cópia do patrocinador: “Patrocinado por: nome da marca. Não associado à Apple Inc.” na primeira linha da descrição do Branded Effect.
+• Para BEs configurados com um botão de conta da marca, uma cópia da explicação será esta: “{brand_ name} usa tags “Em destaque” para marcar vídeos produzidos por criadores ou criados por conta própria”.
+ 73
+
+ TIKTOK BRANDED EFFECT – ESPECIFICAÇÕES DE BENEFÍCIOS COMERCIAIS E DE ATIVOS - CONTINUAÇÃO
+Opção 2: você não fornece sua ID do usuário para exibição patrocinada
+• Se você não tiver uma conta do TikTok, o nome da sua marca não será exibido ao lado do
+ícone do anúncio. Nesse caso, as informações
+do patrocinador – “Patrocinado por: nome da marca” serão exibidas na caixa de isenção de responsabilidade abaixo da descrição do Branded Effect.
+• Limite de caracteres: até 300 caracteres do inglês.
+• Link externo, emojis e símbolos especiais não são compatíveis na isenção de responsabilidade.
+• Se você usar sua Página de efeito para dar um prêmio a um vencedor selecionado, deverá adicionar uma cópia do patrocinador: “Patrocinado por: nome da marca. Não associado à Apple Inc.” na primeira linha da descrição do Branded Effect.
+• Para BEs configurados com um botão de conta da marca, uma cópia da explicação será esta: “{brand_ name} usa tags “Em destaque” para marcar vídeos produzidos por criadores ou criados por conta própria”.
+• Observação: só é possível selecionar a opção 1 OU A opção 2 configura o Branded Effect.
+Exemplificação:
+Branded Effect: Descrição
+• Não há limite de caracteres. A descrição será recolhida automaticamente após 4 linhas, mas as pessoas podem clicar no botão Expandir para ver a descrição completa.
+• A descrição pode incluir emojis (v11). Os emojis podem ter uma aparência diferente em cada dispositivo e sistema operacional, e alguns emojis v11 podem não ser compatíveis em alguns dispositivos Android.
+• A descrição não pode conter &, <, >, “” ou URLs.
+Link externo da página de destino
+• 1. Você pode incluir somente um link externo.
+• Direcione os usuários para outro app: você deve fornecer um URL web que comece com “https://” E um URL de esquema (por exemplo: ulikeabroad://main/looks?looks_id=8002612)
+• Direcione os usuários para uma app store: Você deve fornecer um OneLink.
+• Direcione os usuários para uma página de destino: você deve fornecer um URL web que comece com “https://”
+• 2. Você pode personalizar o texto do link externo; até 30 caracteres do inglês (não é compatível com emojis e símbolos especiais). Se o texto exceder o limite de 30 caracteres do inglês, ele poderá ser cortado na maioria dos dispositivos móveis (recente atualização).
+• 3. Você pode personalizar o texto da página de destino; até 20 caracteres do inglês (não é compatível com emojis e símbolos especiais). Se o texto exceder o limite de 20 caracteres do inglês, ele poderá ser cortado na maioria dos dispositivos móveis (recente atualização).
+Vídeos oficiais
+• Você pode selecionar de um a seis vídeos na página Branded Effect e defini-los como vídeos oficiais. O vídeo oficial será colocado no
+topo de todos os outros vídeos de Conteúdo gerado pelo usuário.
+• A descrição do vídeo oficial deve conter #anúncio. Para localização de conteúdo, consulte a 3a e 4a colunas do documento abaixo.
+• Link - https://ads.tiktok.com/help/article/tiktok-branded-effect- asset-commercial-benefits-specs?lang=pt
+Painel do Branded Effect Marca do patrocinador
+• Se sua localização for EUA/UK/FR/DE/IT/ES/BE/SA/AE/TR/TH/MY/ VN/ID/AU/TW/HK/SG/CA, você DEVE fornecer o texto e a imagem como marca do patrocinador com o texto “Patrocinador: XXX”; até 30 caracteres do inglês (não é compatível com emojis ou símbolos especiais).
+Especificações da imagem:
+• Formato: png.
+• Altura (fixa): 40px
+• Duração: entre 40px e 96px
+• Tamanho da imagem: < 200.000
+• Para o restante dos mercados, a marca do patrocinador é opcional. Você pode fornecer o texto (até 30 caracteres do inglês; não é compatível com emojis e símbolos especiais) e imagem.
+• Um Branded Effect normal pode exibir a marca do patrocinador quando selecionado no painel do Branded Effect. No entanto, todos os Branded Effects com gamificação (GBEs) interativos produzidos por engenheiros são criados dentro da estrutura do minijogo. Os GBEs interativos produzidos por engenheiros têm uma aparência exclusiva da página de ativação e da marca do patrocinador.
+   74
+
+ TIKTOK BRANDED EFFECT – ESPECIFICAÇÕES DE BENEFÍCIOS COMERCIAIS E DE ATIVOS - CONTINUAÇÃO
+• Marcas do patrocinador de Branded Effect normal
+• Quando um Branded Effect normal é selecionado no painel de Effect, ele exibirá a marca do patrocinador na parte superior esquerda, da seguinte maneira:
+• Abra o painel de Branded Effect sem nada selecionado. • Ao selecionar um Branded Effect, a marca do patrocinador • Ao desmarcar o Branded Effect, feche o painel ou clique no será exibida no canto superior esquerdo. botão de ativação. A marca do patrocinador desaparecerá.
+       75
+
+ TIKTOK BRANDED EFFECT – ESPECIFICAÇÕES DE BENEFÍCIOS COMERCIAIS E DE ATIVOS - CONTINUAÇÃO
+Marcas do patrocinador de Branded Effect com gamificação (GBE) interativo produzido por engenheiro (IE)
+• Os GBEs interativos produzidos por engenheiro têm uma página de ativação e uma marca do patrocinador exclusiva. Quando um Branded Effect normal é selecionado no painel de Effect, ele exibirá a marca do patrocinador na parte superior esquerda, da seguinte maneira:
+    • Abra o painel de Branded Effect sem nada selecionado.
+• Ao selecionar um GBE interativo produzido por engenheiro, o painel
+de Branded Effect será fechado, apresentando a marca do patrocinador exibida no canto inferior esquerdo .
+• A marca do patrocinador não será exibida se o GBE interativo produzido por engenheiro não estiver selecionado.
+• Ao clicar no botão de ativação, a marca do patrocinador desaparecerá.
+ 76
+
+    MANUAL DE ESPECIFICAÇÕES TÉCNICAS
+dos veículos de mídia digital
+77
+
+ IN-FEED ADS VIDEO
+Composição do anúncio: Vídeo + Nome da marca + Descrição + Logo
+• Tempo do vídeo: 5 segundos a 10 minutos
+• Peso do vídeo: <100M
+• Video Bitrate: > 516kbps
+• Resolução do Video: ≥ 500p (720p recommended)
+• Frame rate: >20fbps
+• Tipo do arquivo: .mp4 (MPEG-4/H.264/HEVC)
+• Dimensões Vertical: 9:16
+• Audio Bitrate: ≥ 64kbps
+• Logo: Dimensão: ≥ 450x450px, Square 1:1 | Aspect ratio: 0.5~2 | File Type: .jpg, .jpeg, .png | File size: até 3 MB
+• Nome da marca: Exibida no canto inferior esquerdo do vídeo do anúncio. (1 a 20 caracteres)
+• Descrição: Para descrições, aceitamos de 1 a 45 caracteres
+Recomendações para melhorar a performance do anúncio:
+• Recomendamos vídeos de 15 a 30 segundos de duração.
+• Mostre, não conte: normalmente no criativo, quanto mais você mostra, melhor nosso engajamento.
+• Experimente diferentes estilos criativos, convide influenciadores para ajudar a promover o conteúdo com comentários reais.
+• Mantenha os principais elementos criativos no meio da tela. Isso evita que eles sejam cobertos pela descrição ou logotipo e para evitar que sejam levemente cortados nas laterais para caber em diferentes tamanhos de tela.
+ 78
+
+ IN-FEED ADS IMAGEM
+Imagem única
+• Apenas uma imagem no feed com música de fundo
+2-5 imagens
+• Duas ou mais imagens rotacionando na ordem definida no feed com música de fundo
+• A imagem muda a cada 3 segundos
+• Composição do anúncio: Imagem + Música + Nome da marca + Descrição + Logo
+• Tipo do arquivo: jpeg, png
+• Aspect ratio: deve ser 9:16. As imagens serão cortadas automaticamente para caber, ou você pode editar manualmente.
+• Dimensões: não menor que 450 * 800 pixels
+• Peso: até 20mb
+• Música: Você pode selecionar músicas da biblioteca de música comercial fornecida pela plataforma. Se nenhuma seleção for feita, corresponderemos automaticamente a música para você.
+• Logo: Dimensão: ≥ 450x450px, Square 1:1 | Aspect ratio: 0.5~2 | File Type: .jpg, .jpeg, .png | File size: até 3 MB
+• Nome da marca: Exibida no canto inferior esquerdo do vídeo do anúncio. (1 a 20 caracteres)
+• Descrição: Para descrições, aceitamos de 1 a 45 caracteres
+Recomendações para melhorar a performance do anúncio:
+• Coloque seu produto ou serviço na frente e no centro. Evite usar imagens abstratas que não mostrem sua marca.
+• Evite colocar muito texto na imagem, foque na mensagem principal.
+• Mantenha os principais elementos criativos no meio da tela. Isso evita que eles sejam cobertos pela descrição e logotipo e para evitar que sejam levemente cortados nas laterais para caber em diferentes tamanhos de tela.
+ 79
+
+ EYEMAX - EYEMAX FLOW (VIDEO DE 10 A 30 SEGUNDOS)
+Formato de alto impacto. Vídeo de 10 a 30 segundos, que aparecem assim que o usuário abrir o app.
+• Composição do anúncio: Vídeo + Nome da marca + Descrição + Logo
+• Tempo do vídeo: 10 a 30 segundos
+• Peso do vídeo: ≤ 35mb
+• Video Bitrate: ≥ 3000kbps
+• Resolução do Video: ≥ 720p
+• Frame rate: ≥ 20fbps
+• Tipo do arquivo: .mp4 (MPEG-4/H.264/HEVC)
+• Dimensões: 720x1280 / 720x1440 / 720x1520 / 720x1560 (precisa subir as 4 dimensões na plataforma).
+• Audio Bitrate: ≥ 64kbps
+Logo:
+• Dimensão: ≥ 450x450px, Square 1:1
+• Aspect ratio: 0.5~2
+• File Type: .jpg, .jpeg, .png
+• File size: até 3 MB
+• Nome da marca: exibida no canto inferior esquerdo do vídeo do anúncio. (1 a 20 caracteres)
+• Descrição: Para descrições, aceitamos de 1 a 45 caracteres
+Recomendações para melhorar a performance do anúncio:
+• Recomendamos um criativo diferente para cada round. Exemplo: 2 rounds, 2 criativos.
+• Recomendamos que a mensagem principal seja passada nos primeiros 5 segundos.
+• Mantenha os principais elementos criativos no meio da tela. Isso evita que eles sejam cobertos pela descrição ou logotipo e para evitar que sejam levemente cortados nas laterais para caber em diferentes tamanhos de tela.
+ 80
+
+ EYEMAX – EYESMAX COVER (VIDEO OU IMAGEM DE ATÉ 5”)
+Formato de alto impacto. Vídeo ou imagem de até 5 segundos, que aparecem assim que abrir o app.
+IMAGEM VIDEO
+• Composição do anúncio: imagem
+• Peso da peça: ≤ 35mb
+• Tipo do arquivo: PNG, JPG, JPEG
+• Dimensões: 1080x1920 / 1080x2160 / 1080x2280 / 1080x2340 (precisa subir as 4 dimensões na plataforma).
+• Composição do anúncio: Vídeo
+• Tempo do vídeo: até 5 segundos
+• Peso do vídeo: ≤ 10mb
+• Vídeo Bitrate: ≥ 3000kbps
+• Resolução do Vídeo: ≥ 720p
+• Frame rate: ≥ 20fbps
+• Tipo do arquivo: .mp4 (MPEG-4/H.264/HEVC)
+• Dimensões: 720x1280 / 720x1440 / 720x1520 / 720x1560 (precisa subir as 4 dimensões na plataforma).
+Recomendações para melhorar a performance do anúncio:
+• Recomendamos um criativo diferente para cada round. Exemplo: 2 rounds, 2 criativos.
+  81
+
+ FIRST SIGHT
+VIDEO
+• Composição do anúncio: Vídeo + Nome da marca + Descrição + Logo
+• Tempo do vídeo 5 segundos a 10 minutos
+• Peso do vídeo <100M
+• Video Bitrate > 516kbps
+• Resolução do Video ≥ 500p (720p recommended)
+• Frame rate >20fbps
+• Tipo do arquivo .mp4 (MPEG-4/H.264/HEVC)
+• Dimensões Vertical: 9:16
+• Audio Bitrate ≥ 64kbps
+Logo
+• Dimensão: ≥ 450x450px, Square 1:1
+• Aspect ratio: 0.5~2
+• File Type: .jpg, .jpeg, .png
+• File size: até 3 MB
+• Nome da marca exibida no canto inferior esquerdo do vídeo do anúncio. (1 a 20 caracteres)
+• Descrição Para descrições, aceitamos de 1 a 45 caracteres
+Recomendações para melhorar a performance do anúncio:
+• Recomendamos vídeos de 15 a 30 segundos de duração.
+• Mostre, não conte: normalmente no criativo, quanto mais você mostra, melhor nosso engajamento.
+• Experimente diferentes estilos criativos, convide influenciadores para ajudar a promover o conteúdo com comentários reais.
+• o Mantenha os principais elementos criativos no meio da tela. Isso evita que eles sejam cobertos pela descrição ou logotipo e para evitar que sejam levemente cortados nas laterais para caber em diferentes tamanhos de tela.
+IMAGEM: Imagem única
+• Apenas uma imagem no feed com musica de fundo
+2-5 imagens
+• Duas ou mais imagens rotacionando na ordem definida no feed com musica de fundo
+• A imagem muda a cada 3 segundos
+• Composição do anúncio: Imagem + Música + Nome da marca + Descrição + Logo
+• Tipo do arquivo: jpeg, png
+• Aspect ratio: deve ser 9:16. As imagens serão cortadas automaticamente para caber, ou você pode editar manualmente.
+• Dimensões: não menor que 450 * 800 pixels
+• Peso: até 20mb
+• Música: Você pode selecionar músicas da biblioteca de música comercial fornecida pela plataforma. Se nenhuma seleção for feita, corresponderemos automaticamente a música para você
+Logo:
+• Dimensão: ≥ 450x450px, Square 1:1
+• Aspect ratio: 0.5~2
+• File Type: .jpg, .jpeg, .png
+• File size: até 3 MB
+• Nome da marca: exibida no canto inferior esquerdo do vídeo do anúncio. (1 a 20 caracteres)
+• Descrição: Para descrições, aceitamos de 1 a 45 caracteres
+Recomendações para melhorar a performance do anúncio:
+• Coloque seu produto ou serviço na frente e no centro. Evite usar imagens abstratas que nao mostrem sua marca.
+• Evite colocar muito texto na imagem, foque na mensagem principal.
+• Mantenha os principais elementos criativos no meio da tela. Isso evita que eles sejam cobertos pela descrição e logotipo e para evitar que sejam levemente cortados nas laterais para caber em diferentes tamanhos de tela.
+ 82
+
+ BRAND EXCLUSIVE
+VIDEO
+• Composição do anúncio: Vídeo + Nome da marca + Descrição + Logo
+• Tempo do vídeo: 5 segundos a 10 minutos
+• Peso do vídeo: <100M
+• Video Bitrate: > 516kbps
+• Resolução do Vídeo: ≥ 500p (720p recommended)
+• Frame rate: >20fbps
+• Tipo do arquivo: .mp4 (MPEG-4/H.264/HEVC)
+• Dimensões Vertical: 9:16
+• Audio Bitrate: ≥ 64kbps
+Logo:
+• Dimensão: ≥ 450x450px, Square 1:1
+• Aspect ratio: 0.5~2
+• File Type: .jpg, .jpeg, .png
+• File size: até 3 MB
+• Nome da marca: exibida no canto inferior esquerdo do vídeo do anúncio. (1 a 20 caracteres)
+• Descrição: Para descrições, aceitamos de 1 a 45 caracteres
+Recomendações para melhorar a performance do anúncio:
+• Recomendamos vídeos de 15 a 30 segundos de duração.
+• Mostre, não conte: normalmente no criativo, quanto mais você mostra, melhor nosso engajamento.
+• Experimente diferentes estilos criativos, convide influenciadores para ajudar a promover o conteúdo com comentários reais.
+• Mantenha os principais elementos criativos no meio da tela. Isso evita que eles sejam cobertos pela descrição ou logotipo e para evitar que sejam levemente cortados nas laterais para caber em diferentes tamanhos de tela.
+IMAGEM Imagem única
+• Apenas uma imagem no feed com musica de fundo
+2-5 imagens
+• Duas ou mais imagens rotacionando na ordem definida no feed com musica de fundo
+• A imagem muda a cada 3 segundos
+• Composição do anúncio: Imagem + Música + Nome da marca + Descrição + Logo
+• Tipo do arquivo: jpeg, png
+• Aspect ratio: deve ser 9:16. As imagens serão cortadas automaticamente para caber, ou você pode editar manualmente.
+• Dimensões: não menor que 450 * 800 pixels
+• Peso: até 20mb
+• Música: Você pode selecionar músicas da biblioteca de música comercial fornecida pela plataforma. Se nenhuma seleção for feita, corresponderemos automaticamente a música para você
+Logo:
+• Dimensão: ≥ 450x450px, Square 1:1
+• Aspect ratio: 0.5~2
+• File Type: .jpg, .jpeg, .png
+• File size: até 3 MB
+• Nome da marca: exibida no canto inferior esquerdo do vídeo do anúncio. (1 a 20 caracteres)
+• Descrição: Para descrições, aceitamos de 1 a 45 caracteres
+Recomendações para melhorar a performance do anúncio:
+• Coloque seu produto ou serviço na frente e no centro. Evite usar imagens abstratas que não mostrem sua marca.
+• Evite colocar muito texto na imagem, foque na mensagem principal.
+• Mantenha os principais elementos criativos no meio da tela. Isso evita que eles sejam cobertos pela descrição e logotipo e para evitar que sejam levemente cortados nas laterais para caber em diferentes tamanhos de tela.
+ 83
