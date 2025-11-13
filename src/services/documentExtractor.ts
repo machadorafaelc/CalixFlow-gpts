@@ -6,6 +6,7 @@
  */
 
 import { ImageProcessor } from './imageProcessor';
+import { OCRService } from './ocrService';
 import * as pdfjsLib from 'pdfjs-dist';
 
 // Configurar worker do PDF.js usando o build local
@@ -16,6 +17,11 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 export class DocumentExtractor {
+  private ocrService: OCRService;
+  
+  constructor() {
+    this.ocrService = new OCRService();
+  }
   /**
    * Extrai texto de um arquivo
    * Suporta: TXT, PDF, DOC, DOCX e IMAGENS (JPG, PNG, etc.)
@@ -122,8 +128,25 @@ export class DocumentExtractor {
       }
       
       if (!fullText.trim()) {
-        console.warn('⚠️ PDF não contém texto extraível (pode ser imagem escaneada)');
-        return '[PDF SEM TEXTO] Este PDF parece ser uma imagem escaneada. Considere usar OCR.';
+        console.warn('⚠️  PDF não contém texto extraível (pode ser imagem escaneada)');
+        
+        // Tentar OCR se disponível
+        if (this.ocrService.isConfigured()) {
+          console.log('🔍 Tentando extrair texto com OCR...');
+          try {
+            const ocrText = await this.ocrService.extractTextFromPDF(file);
+            if (ocrText.trim()) {
+              console.log('✅ Texto extraído via OCR com sucesso!');
+              return ocrText.trim();
+            }
+          } catch (ocrError) {
+            console.error('❌ Erro ao fazer OCR:', ocrError);
+          }
+        } else {
+          console.warn('⚠️  OCR não configurado. Configure VITE_GOOGLE_VISION_API_KEY para processar PDFs escaneados.');
+        }
+        
+        return '[PDF SEM TEXTO] Este PDF parece ser uma imagem escaneada e OCR não está configurado.';
       }
       
       return fullText.trim();
