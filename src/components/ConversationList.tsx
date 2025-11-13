@@ -199,7 +199,10 @@ export function ConversationList({
                       />
                       <div className="absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-20 py-1 min-w-[120px]">
                         <button
-                          onClick={() => handleDeleteConversation(conversation.id)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDeleteConversation(conversation.id);
+                          }}
                           className="w-full flex items-center gap-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
                         >
                           <Trash2 size={14} />
