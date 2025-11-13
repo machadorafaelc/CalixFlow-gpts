@@ -6,6 +6,7 @@
 
 import OpenAI from 'openai';
 import { Message } from '../types/firestore';
+import ragService from './ragService';
 
 export interface ChatMessage {
   role: 'user' | 'assistant' | 'system';
@@ -42,7 +43,73 @@ export class ChatService {
   }
   
   /**
-   * Enviar mensagem e obter resposta
+   * Enviar mensagem com RAG (busca em documentos)
+   */
+  async sendMessageWithRAG(
+    messages: ChatMessage[],
+    clientId: string,
+    options: ChatOptions = {}
+  ): Promise<{
+    content: string;
+    tokenCount: number;
+    model: string;
+    sources?: string[];
+  }> {
+    try {
+      // Pegar a última mensagem do usuário
+      const lastUserMessage = [...messages].reverse().find(m => m.role === 'user');
+      
+      if (!lastUserMessage) {
+        return this.sendMessage(messages, options);
+      }
+      
+      // Buscar contexto relevante
+      console.log('🔍 Buscando contexto relevante...');
+      const ragContext = await ragService.searchRelevantContext(
+        lastUserMessage.content,
+        clientId,
+        3 // top 3 chunks mais relevantes
+      );
+      
+      // Se encontrou contexto relevante, adicionar ao system prompt
+      if (ragContext.contextText) {
+        console.log('✅ Contexto encontrado, adicionando à mensagem');
+        
+        const enhancedSystemPrompt = `${options.systemPrompt || ''}
+
+## CONTEXTO DOS DOCUMENTOS:
+
+Use as informações abaixo para responder a pergunta do usuário. Cite as fontes quando relevante.
+
+${ragContext.contextText}
+
+---
+
+Responda a pergunta do usuário usando as informações acima quando relevante. Se a resposta estiver nos documentos, cite a fonte.`;
+        
+        const result = await this.sendMessage(messages, {
+          ...options,
+          systemPrompt: enhancedSystemPrompt
+        });
+        
+        return {
+          ...result,
+          sources: ragContext.relevantChunks.map(c => c.source)
+        };
+      }
+      
+      // Se não encontrou contexto, enviar normalmente
+      console.log('⚠️  Nenhum contexto relevante encontrado');
+      return this.sendMessage(messages, options);
+      
+    } catch (error) {
+      console.error('Erro no RAG, enviando mensagem sem contexto:', error);
+      return this.sendMessage(messages, options);
+    }
+  }
+  
+  /**
+   * Enviar mensagem e obter resposta (sem RAG)
    */
   async sendMessage(
     messages: ChatMessage[],

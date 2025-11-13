@@ -81,6 +81,7 @@ export interface Message {
   // Metadados opcionais
   attachments?: MessageAttachment[];
   documentsUsed?: string[]; // IDs dos documentos usados no contexto
+  sources?: string[]; // Nomes dos documentos usados como fonte (RAG)
   tokenCount?: number;
   model?: string; // gpt-4o-mini, etc
 }

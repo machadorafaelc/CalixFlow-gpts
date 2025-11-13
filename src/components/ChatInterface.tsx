@@ -106,19 +106,28 @@ export function ChatInterface({
         { role: 'user', content: userMessage } as Message
       ]);
       
-      // Enviar para OpenAI
-      const response = await chatService.current.sendMessage(chatMessages, {
-        systemPrompt: systemPrompt || ChatService.createSystemPrompt(clientName)
-      });
+      // Pegar clientId da conversa
+      const conv = await ConversationService.getConversation(conversationId);
+      const clientId = conv?.clientId || 'brb';
       
-      // Adicionar resposta do assistente
+      // Enviar para OpenAI com RAG
+      const response = await chatService.current.sendMessageWithRAG(
+        chatMessages,
+        clientId,
+        {
+          systemPrompt: systemPrompt || ChatService.createSystemPrompt(clientName)
+        }
+      );
+      
+      // Adicionar resposta do assistente com fontes
       await MessageService.addMessage(
         conversationId,
         'assistant',
         response.content,
         {
           tokenCount: response.tokenCount,
-          model: response.model
+          model: response.model,
+          sources: response.sources
         }
       );
       
@@ -212,6 +221,26 @@ export function ChatInterface({
                   <p className="text-sm whitespace-pre-wrap break-words">
                     {message.content}
                   </p>
+                  
+                  {/* Exibir fontes se houver */}
+                  {message.sources && message.sources.length > 0 && (
+                    <div className="mt-3 pt-3 border-t border-gray-300">
+                      <p className="text-xs text-gray-600 font-medium mb-1">
+                        📚 Fontes consultadas:
+                      </p>
+                      <div className="flex flex-wrap gap-1">
+                        {message.sources.map((source, idx) => (
+                          <span
+                            key={idx}
+                            className="text-xs bg-white px-2 py-1 rounded border border-gray-300 text-gray-700"
+                          >
+                            {source}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  
                   <p
                     className={`text-xs mt-2 ${
                       message.role === 'user'
