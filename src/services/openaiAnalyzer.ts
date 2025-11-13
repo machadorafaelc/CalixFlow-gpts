@@ -53,7 +53,7 @@ export class OpenAIAnalyzer {
       const prompt = this.buildComparisonPrompt(piText, documentText, documentType);
       
       const response = await this.openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4o-mini', // Melhor custo-benefício: $0.15/1M input, $0.60/1M output
         messages: [
           {
             role: 'system',
@@ -80,53 +80,15 @@ export class OpenAIAnalyzer {
   }
   
   /**
-   * Analisa documento a partir de imagem usando GPT-4 Vision
+   * NOTA: Método analyzeDocumentImage foi removido.
+   * Agora usamos OCR local (Tesseract.js) + GPT-4o-mini para reduzir custos.
+   * De $196/mês para $2.80/mês em 2000 análises!
+   * 
+   * Fluxo atual:
+   * 1. ImageProcessor extrai texto da imagem (OCR local - grátis)
+   * 2. DocumentExtractor normaliza o texto
+   * 3. OpenAIAnalyzer.compareDocuments analisa (GPT-4o-mini - barato)
    */
-  async analyzeDocumentImage(
-    piText: string,
-    imageBase64: string,
-    documentType: string
-  ): Promise<AnalysisResult> {
-    try {
-      const prompt = this.buildImageAnalysisPrompt(piText, documentType);
-      
-      const response = await this.openai.chat.completions.create({
-        model: 'gpt-4-vision-preview',
-        messages: [
-          {
-            role: 'system',
-            content: this.getSystemPrompt()
-          },
-          {
-            role: 'user',
-            content: [
-              {
-                type: 'text',
-                text: prompt
-              },
-              {
-                type: 'image_url',
-                image_url: {
-                  url: `data:image/jpeg;base64,${imageBase64}`
-                }
-              }
-            ]
-          }
-        ],
-        temperature: 0.1,
-        max_tokens: 3000,
-      });
-      
-      const content = response.choices[0].message.content || '{}';
-      const result = this.parseAIResponse(content);
-      
-      return result;
-      
-    } catch (error) {
-      console.error('Erro ao analisar imagem com OpenAI:', error);
-      throw new Error(`Falha na análise de imagem: ${error instanceof Error ? error.message : 'Erro desconhecido'}`);
-    }
-  }
   
   /**
    * Retorna o prompt de sistema especializado com exemplos reais
@@ -402,46 +364,7 @@ IMPORTANTE: Retorne APENAS o JSON, sem \`\`\`json ou qualquer outro texto.
 `;
   }
   
-  /**
-   * Constrói o prompt para análise de imagem
-   */
-  private buildImageAnalysisPrompt(
-    piText: string,
-    documentType: string
-  ): string {
-    const fieldsToCompare = this.getFieldsForDocumentType(documentType);
-    const docTypeName = this.getDocumentTypeName(documentType);
-    
-    return `
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📄 DOCUMENTO BASE (PI - Pedido de Inserção)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-${piText}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📸 IMAGEM DO DOCUMENTO (${docTypeName})
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-A imagem anexa contém um documento ${docTypeName}.
-
-INSTRUÇÕES DE LEITURA DA IMAGEM:
-
-1. Leia CUIDADOSAMENTE todo o texto visível na imagem
-2. Identifique o tipo de documento (Nota Fiscal, Comprovante, etc.)
-3. Extraia os seguintes campos:
-${fieldsToCompare.join('\n')}
-
-4. Compare com os valores do PI fornecido acima
-5. Siga as mesmas regras de validação do prompt anterior
-
-ATENÇÃO ESPECIAL:
-- Se a imagem estiver desfocada ou ilegível, indique confidence baixo (0.3-0.5)
-- Se algum campo não estiver visível, indique "Não visível na imagem"
-- Seja CONSERVADOR: em caso de dúvida, marque como "warning" e explique
-
-Responda no mesmo formato JSON especificado anteriormente.
-`;
-  }
+  // buildImageAnalysisPrompt removido - não é mais necessário com OCR local
   
   /**
    * Retorna os campos a serem comparados para cada tipo de documento

@@ -1,11 +1,61 @@
 /**
- * Serviço para processar imagens de documentos
- * Converte imagens para base64 para envio ao GPT-4 Vision
+ * Serviço de Processamento de Imagens
+ * 
+ * Usa Tesseract.js (OCR local) para extrair texto de imagens
+ * Versão 2.0: OCR local para reduzir custos (de $196/mês para $2.80/mês)
  */
+
+import { createWorker } from 'tesseract.js';
 
 export class ImageProcessor {
   /**
-   * Converte arquivo de imagem para base64
+   * Extrai texto de uma imagem usando OCR (Tesseract.js)
+   * 
+   * @param imageFile - Arquivo de imagem (JPG, PNG, WEBP, GIF)
+   * @returns Texto extraído
+   */
+  static async extractTextFromImage(imageFile: File): Promise<string> {
+    try {
+      console.log('Iniciando OCR com Tesseract.js...');
+      console.log(`Arquivo: ${imageFile.name} (${(imageFile.size / 1024).toFixed(2)} KB)`);
+      
+      // Criar worker do Tesseract com idioma português
+      const worker = await createWorker('por', 1, {
+        logger: (m) => {
+          if (m.status === 'recognizing text') {
+            console.log(`OCR Progress: ${Math.round(m.progress * 100)}%`);
+          }
+        }
+      });
+      
+      // Processar imagem
+      const { data } = await worker.recognize(imageFile);
+      
+      // Encerrar worker
+      await worker.terminate();
+      
+      console.log('OCR concluído!');
+      console.log(`Confiança: ${Math.round(data.confidence)}%`);
+      console.log(`Texto extraído (${data.text.length} caracteres)`);
+      
+      if (data.text.trim().length === 0) {
+        throw new Error('Nenhum texto foi detectado na imagem. Verifique se a imagem está legível.');
+      }
+      
+      if (data.confidence < 30) {
+        console.warn(`Baixa confiança no OCR: ${data.confidence}%. Resultado pode ser impreciso.`);
+      }
+      
+      return data.text;
+      
+    } catch (error) {
+      console.error('Erro ao processar imagem com OCR:', error);
+      throw new Error(`Falha no OCR: ${error instanceof Error ? error.message : 'Erro desconhecido'}`);
+    }
+  }
+  
+  /**
+   * Converte File para base64 (caso necessário para alguma API)
    */
   static async fileToBase64(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
@@ -57,14 +107,16 @@ export class ImageProcessor {
       'image/jpg',
       'image/png',
       'image/webp',
-      'image/gif'
+      'image/gif',
+      'image/bmp',
+      'image/tiff'
     ];
     
     return supportedFormats.includes(file.type);
   }
   
   /**
-   * Redimensiona imagem se necessário (para economizar tokens)
+   * Redimensiona imagem se necessário (para melhorar OCR)
    */
   static async resizeImage(file: File, maxWidth: number = 2048): Promise<File> {
     return new Promise((resolve, reject) => {
@@ -112,7 +164,7 @@ export class ImageProcessor {
             });
             
             resolve(resizedFile);
-          }, file.type, 0.9); // Qualidade 90%
+          }, file.type, 0.95); // Qualidade 95% para OCR
         };
         
         img.onerror = () => {
@@ -132,7 +184,7 @@ export class ImageProcessor {
   
   /**
    * Processa arquivo de imagem completo
-   * Valida, redimensiona se necessário, e converte para base64
+   * Valida, redimensiona se necessário, e extrai texto com OCR
    */
   static async processImage(file: File): Promise<string> {
     // Validações
@@ -141,19 +193,21 @@ export class ImageProcessor {
     }
     
     if (!this.validateImageFormat(file)) {
-      throw new Error('Formato de imagem não suportado. Use JPG, PNG, WEBP ou GIF');
+      throw new Error('Formato de imagem não suportado. Use JPG, PNG, WEBP, GIF, BMP ou TIFF');
     }
     
     if (!this.validateFileSize(file, 10)) {
       throw new Error('Imagem muito grande. Tamanho máximo: 10MB');
     }
     
-    // Redimensiona se necessário
+    // Redimensiona se necessário (melhora performance do OCR)
     const resizedFile = await this.resizeImage(file, 2048);
     
-    // Converte para base64
-    const base64 = await this.fileToBase64(resizedFile);
+    // Extrai texto com OCR
+    const text = await this.extractTextFromImage(resizedFile);
     
-    return base64;
+    return text;
   }
 }
+
+export default ImageProcessor;
