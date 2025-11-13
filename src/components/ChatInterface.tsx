@@ -114,7 +114,7 @@ export function ChatInterface({
             console.log('Analisando imagem:', attachment.name);
             const imageDescription = await chatService.current.analyzeImage(
               attachment.url,
-              'Descreva esta imagem em detalhes. O que você vê?'
+              'Analise esta imagem em detalhes. Se houver TEXTO na imagem, extraia TODO o texto palavra por palavra com precisão (OCR). Descreva também o conteúdo visual da imagem. Formate a resposta assim:\n\n**TEXTO EXTRAÍDO:**\n[todo o texto encontrado]\n\n**DESCRIÇÃO VISUAL:**\n[descrição da imagem]'
             );
             attachmentContext += `\n\n[Imagem: ${attachment.name}]\n${imageDescription}`;
             
