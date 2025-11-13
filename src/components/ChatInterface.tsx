@@ -74,10 +74,13 @@ export function ChatInterface({
     }
   };
   
-  const scrollToBottom = () => {
+  const scrollToBottom = (delay: number = 300) => {
     setTimeout(() => {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 300); // Aumentado para dar tempo de carregar imagens
+      if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        console.log('📤 Scroll para o final executado');
+      }
+    }, delay);
   };
   
   const handleSendMessage = async () => {
@@ -201,8 +204,8 @@ export function ChatInterface({
       );
     } finally {
       setLoading(false);
-      // Scroll para o final após enviar mensagem
-      scrollToBottom();
+      // Scroll para o final após enviar mensagem (com delay maior para imagens)
+      scrollToBottom(500);
     }
   };
   
@@ -289,6 +292,7 @@ export function ChatInterface({
                               alt={attachment.name}
                               className="w-full max-w-xs rounded cursor-pointer hover:opacity-90 transition-opacity"
                               onClick={() => window.open(attachment.url, '_blank')}
+                              onLoad={() => scrollToBottom()}
                             />
                           ) : (
                             <a
