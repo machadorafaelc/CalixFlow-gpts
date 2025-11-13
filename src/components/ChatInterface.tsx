@@ -93,8 +93,9 @@ export function ChatInterface({
       // Atualizar última mensagem
       await ConversationService.updateLastMessage(conversationId, userMessage);
       
-      // Gerar título se for a primeira mensagem
-      if (messages.length === 0) {
+      // Gerar título se for a primeira mensagem do usuário
+      const conversation = await ConversationService.getConversation(conversationId);
+      if (conversation && conversation.messageCount === 1) {
         const title = await ConversationService.generateTitle(userMessage);
         await ConversationService.updateConversation(conversationId, { title });
       }

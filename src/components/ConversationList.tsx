@@ -178,11 +178,12 @@ export function ConversationList({
                       e.stopPropagation();
                       setMenuOpen(menuOpen === conversation.id ? null : conversation.id);
                     }}
-                    className={`p-1 rounded hover:bg-gray-200 transition-opacity ${
-                      menuOpen === conversation.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                    className={`p-1.5 rounded hover:bg-gray-200 transition-all ${
+                      menuOpen === conversation.id ? 'opacity-100 bg-gray-100' : 'opacity-0 group-hover:opacity-100'
                     }`}
+                    title="Opções"
                   >
-                    <MoreVertical size={14} className="text-gray-500" />
+                    <MoreVertical size={16} className="text-gray-600" />
                   </button>
                   
                   {menuOpen === conversation.id && (

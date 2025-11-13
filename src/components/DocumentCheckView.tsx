@@ -167,23 +167,15 @@ export function DocumentCheckView() {
         
         let analysisResult;
         
-        if (isImage) {
-          // Processa imagem e analisa com GPT-4 Vision
-          const imageBase64 = await ImageProcessor.processImage(doc.file);
-          analysisResult = await openaiAnalyzer.analyzeDocumentImage(
-            piText,
-            imageBase64,
-            key
-          );
-        } else {
-          // Extrai texto e analisa normalmente
-          const docText = await documentExtractor.extractText(doc.file);
-          analysisResult = await openaiAnalyzer.compareDocuments(
-            piText,
-            docText,
-            key
-          );
-        }
+        // Extrai texto (OCR para imagens, parsing para PDFs)
+        const docText = await documentExtractor.extractText(doc.file);
+        
+        // Analisa com GPT-4o-mini (mais barato)
+        analysisResult = await openaiAnalyzer.compareDocuments(
+          piText,
+          docText,
+          key
+        );
 
         // Converte para formato de resultado (MOSTRA TODOS OS CAMPOS, não apenas divergências)
         const issues = analysisResult.comparisons.map(comp => ({
