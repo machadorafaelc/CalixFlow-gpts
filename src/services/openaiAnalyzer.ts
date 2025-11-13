@@ -291,12 +291,15 @@ PASSO 2 - COMPARAÇÃO DETALHADA:
    - Verifique se data de emissão da NF é POSTERIOR à veiculação
    - NF emitida ANTES da veiculação = "critical"
    
-   Para NÚMERO DO PI (REGRA MAIS CRÍTICA):
+   Para NÚMERO DO PI (REGRA ABSOLUTA - SEM EXCEÇÕES):
+   - Este é o campo MAIS CRÍTICO de todos
    - Extraia o número do PI do documento PI (ex: "PI NÚMERO: 58378" → 58378)
    - Extraia o número do PI mencionado na NF (ex: "PI 99015" → 99015)
-   - Compare os números: DEVEM ser EXATAMENTE IGUAIS
-   - Se números diferentes = "critical" (REJEITAR IMEDIATAMENTE)
-   - Se PI não mencionado na NF = "critical"
+   - Compare os números: DEVEM ser EXATAMENTE IGUAIS, caractere por caractere
+   - Se números diferentes (ex: 58378 vs 99015) = severity "critical" + match false + overallStatus "rejected"
+   - Se PI não mencionado na NF = severity "critical" + match false + overallStatus "rejected"
+   - Se PI em formato diferente = severity "critical" + match false + overallStatus "rejected"
+   - ATENÇÃO: Se o número do PI diverge, o overallStatus DEVE ser "rejected", SEM EXCEÇÕES
    - ATENÇÃO: "PI 58378" ≠ "PI 99015" é ERRO CRÍTICO!
    
    Para DISCRIMINAÇÃO DA NF:
@@ -514,25 +517,61 @@ IMPORTANTE: Retorne APENAS o JSON, sem \`\`\`json ou qualquer outro texto.
         throw new Error('Formato de resposta inválido: falta overallStatus ou summary');
       }
       
-      // Validação adicional: garantir que divergências críticas resultem em rejeição
+      // LOG DETALHADO: Mostrar resposta da IA
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      console.log('📊 RESPOSTA DA IA:');
+      console.log(JSON.stringify(parsed, null, 2));
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      
+      // Validação CRÍTICA 1: Número do PI DEVE ser exatamente igual
+      const piComparison = parsed.comparisons.find(comp => {
+        const fieldLower = comp.field.toLowerCase();
+        return fieldLower.includes('número') && fieldLower.includes('pi') ||
+               fieldLower.includes('numero') && fieldLower.includes('pi') ||
+               fieldLower === 'pi' ||
+               fieldLower === 'número do pi' ||
+               fieldLower === 'numero do pi';
+      });
+      
+      if (piComparison) {
+        console.log('🔍 VALIDAÇÃO DE NÚMERO DO PI:');
+        console.log('  Campo:', piComparison.field);
+        console.log('  Valor no PI:', piComparison.piValue);
+        console.log('  Valor no Documento:', piComparison.documentValue);
+        console.log('  Match:', piComparison.match);
+        console.log('  Severity original:', piComparison.severity);
+        
+        // Se números são diferentes, REJEITAR IMEDIATAMENTE
+        if (!piComparison.match) {
+          console.warn('❌ NÚMERO DO PI DIVERGENTE - FORÇANDO REJEIÇÃO');
+          piComparison.severity = 'critical';
+          parsed.overallStatus = 'rejected';
+          parsed.summary = `REJEITADO: Número do PI divergente (PI: ${piComparison.piValue}, Documento: ${piComparison.documentValue}). ` + parsed.summary;
+        }
+      } else {
+        console.warn('⚠️ ATENÇÃO: Número do PI não foi comparado pela IA!');
+      }
+      
+      // Validação CRÍTICA 2: Garantir que divergências críticas resultem em rejeição
       const hasCriticalIssue = parsed.comparisons.some(comp => comp.severity === 'critical');
       if (hasCriticalIssue && parsed.overallStatus !== 'rejected') {
-        console.warn('Forçando status rejected devido a divergência crítica');
+        console.warn('❌ DIVERGÊNCIA CRÍTICA ENCONTRADA - FORÇANDO REJEIÇÃO');
+        console.log('Comparações críticas:', parsed.comparisons.filter(c => c.severity === 'critical'));
         parsed.overallStatus = 'rejected';
-        parsed.summary = 'Documentação REJEITADA devido a divergências críticas encontradas. ' + parsed.summary;
+        
+        const criticalFields = parsed.comparisons
+          .filter(c => c.severity === 'critical')
+          .map(c => c.field)
+          .join(', ');
+        
+        parsed.summary = `REJEITADO: Divergências críticas em ${criticalFields}. ` + parsed.summary;
       }
       
-      // Validação específica: verificar se número do PI foi comparado
-      const piComparison = parsed.comparisons.find(comp => 
-        comp.field.toLowerCase().includes('pi') || 
-        comp.field.toLowerCase().includes('número')
-      );
-      
-      if (piComparison && !piComparison.match) {
-        console.warn('Número do PI divergente detectado');
-        piComparison.severity = 'critical';
-        parsed.overallStatus = 'rejected';
-      }
+      // LOG FINAL
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      console.log('✅ STATUS FINAL:', parsed.overallStatus);
+      console.log('📝 RESUMO:', parsed.summary);
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       
       return parsed as AnalysisResult;
       
