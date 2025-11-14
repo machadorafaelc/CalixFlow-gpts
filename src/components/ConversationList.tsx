@@ -199,8 +199,9 @@ export function ConversationList({
                       />
                       <div className="absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-20 py-1 min-w-[120px]">
                         <button
-                          onClick={(e) => {
+                          onMouseDown={(e) => {
                             console.log('👆 Botão DELETAR clicado!');
+                            e.preventDefault();
                             e.stopPropagation();
                             handleDeleteConversation(conversation.id);
                           }}
