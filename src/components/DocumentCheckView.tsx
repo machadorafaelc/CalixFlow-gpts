@@ -438,12 +438,13 @@ export function DocumentCheckView() {
                     <Button
                       onClick={() => {
                         if (checkResult.results.length > 0) {
-                          const firstResult = checkResult.results[0];
-                          PDFReportService.generateCheckReport(
-                            {
-                              overallStatus: checkResult.overallStatus || 'warning',
-                              summary: firstResult.summary,
-                              comparisons: firstResult.issues.map(issue => ({
+                          // Mapear todos os resultados para o formato do PDF
+                          const documentResults = checkResult.results.map((result, index) => ({
+                            documentName: result.documentType || `Documento ${index + 1}`,
+                            result: {
+                              overallStatus: result.status,
+                              summary: result.summary,
+                              comparisons: result.issues.map(issue => ({
                                 field: issue.field,
                                 piValue: issue.piValue,
                                 documentValue: issue.documentValue,
@@ -452,9 +453,13 @@ export function DocumentCheckView() {
                                 severity: issue.severity,
                                 explanation: `${issue.field}: ${issue.match ? 'Valores conferem' : 'Divergência encontrada'}`
                               }))
-                            },
+                            }
+                          }));
+                          
+                          PDFReportService.generateMultiDocumentReport(
+                            checkResult.overallStatus || 'warning',
                             piDocument?.name || 'PI',
-                            documents.notaFiscal?.name || 'Documento'
+                            documentResults
                           );
                         }
                       }}
