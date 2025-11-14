@@ -41,21 +41,7 @@ export function GPTsCalixView() {
   const handleSelectClient = async (clientId: string) => {
     setSelectedClientId(clientId);
     setSelectedConversationId(null);
-    
-    // Criar nova conversa automaticamente
-    if (user) {
-      try {
-        const conversationId = await ConversationService.createConversation(
-          clientId,
-          user.uid,
-          'Nova conversa'
-        );
-        setSelectedConversationId(conversationId);
-        setKey(k => k + 1); // Forçar re-render da lista
-      } catch (error) {
-        console.error('Erro ao criar conversa:', error);
-      }
-    }
+    setKey(k => k + 1); // Forçar re-render da lista
   };
   
   const handleCreateConversation = async () => {
