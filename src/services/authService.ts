@@ -19,7 +19,8 @@ export interface UserProfile {
   uid: string;
   email: string;
   displayName: string;
-  role: 'admin' | 'user';
+  role: 'super_admin' | 'agency_admin' | 'user';
+  agencyId?: string;
   createdAt: Date;
   lastLogin: Date;
 }

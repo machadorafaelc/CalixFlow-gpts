@@ -13,13 +13,57 @@ export interface User {
   uid: string;
   email: string;
   displayName: string;
-  role: 'admin' | 'user';
+  role: 'super_admin' | 'agency_admin' | 'user';
+  agencyId?: string; // null para super_admin
   createdAt: Timestamp;
   lastLogin: Timestamp;
 }
 
 /**
- * Cliente (empresa/projeto)
+ * Agência (organização/tenant)
+ */
+export interface Agency {
+  id: string;
+  name: string;
+  description?: string;
+  logo?: string;
+  createdAt: Timestamp;
+  createdBy: string; // uid do super_admin
+  updatedAt: Timestamp;
+  status: 'active' | 'inactive';
+  userCount: number;
+  gptCount: number;
+}
+
+/**
+ * GPT (assistente de IA)
+ */
+export interface GPT {
+  id: string;
+  name: string;
+  description: string;
+  icon?: string;
+  systemPrompt: string;
+  createdAt: Timestamp;
+  createdBy: string; // uid do super_admin
+  updatedAt: Timestamp;
+  isGlobal: boolean; // se true, aparece para todas agências
+  model: string; // gpt-4o-mini, etc
+}
+
+/**
+ * Atribuição de GPT para Agência
+ */
+export interface GPTAssignment {
+  id: string;
+  gptId: string;
+  agencyId: string;
+  assignedAt: Timestamp;
+  assignedBy: string; // uid do super_admin
+}
+
+/**
+ * Cliente (empresa/projeto) - DEPRECATED: usar Agency
  */
 export interface Client {
   id: string;
@@ -165,4 +209,21 @@ export interface TeamInvite {
   createdBy: string;
   expiresAt: Timestamp;
   acceptedAt?: Timestamp;
+}
+
+/**
+ * Resultado da checagem de documentos
+ */
+export interface DocumentCheckResult {
+  overallStatus: 'approved' | 'rejected' | 'warning';
+  summary: string;
+  comparisons: {
+    field: string;
+    piValue: string;
+    documentValue: string;
+    match: boolean;
+    confidence: number;
+    severity: 'critical' | 'warning' | 'info';
+    explanation: string;
+  }[];
 }
