@@ -197,7 +197,7 @@ export function ConversationList({
                         className="fixed inset-0 z-10"
                         onClick={() => setMenuOpen(null)}
                       />
-                      <div className="absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-20 py-1 min-w-[120px]">
+                      <div className="absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-[100] py-1 min-w-[120px]">
                         <button
                           onMouseDown={(e) => {
                             console.log('👆 Botão DELETAR clicado!');
