@@ -57,8 +57,8 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
                   : 'text-gray-600 hover:text-purple-700 hover:bg-purple-50'
               }`}
             >
-              <Icon size={18} className="stroke-1" />
-              <span className="text-sm tracking-wide">{item.label}</span>
+              <Icon size={18} className="stroke-1 flex-shrink-0" />
+              <span className="text-sm tracking-wide text-left leading-tight">{item.label}</span>
             </button>
           );
         })}
