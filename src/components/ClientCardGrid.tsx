@@ -73,12 +73,12 @@ export function ClientCardGrid({ onSelectClient }: ClientCardGridProps) {
               className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 hover:border-purple-300 text-left"
             >
               {/* Avatar */}
-              <div className={`w-16 h-16 ${client.logo ? 'bg-white' : `bg-gradient-to-br ${getGradientForId(client.id)}`} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 overflow-hidden`}>
+              <div className={`w-20 h-20 ${client.logo ? 'bg-white border border-gray-100' : `bg-gradient-to-br ${getGradientForId(client.id)}`} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 overflow-hidden`}>
                 {client.logo ? (
                   <img
                     src={client.logo}
                     alt={client.name}
-                    className="w-full h-full object-contain p-2"
+                    className="w-full h-full object-contain p-3"
                   />
                 ) : (
                   <span className="text-2xl font-bold text-white">
