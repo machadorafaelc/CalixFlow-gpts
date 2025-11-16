@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import { Building2, FileText, MessageSquare, Sparkles } from 'lucide-react';
 import { Client } from '../types/firestore';
 import { ClientService } from '../services/clientService';
+import { getGradientForId, getInitials } from '../utils/colorUtils';
 
 interface ClientCardGridProps {
   onSelectClient: (clientId: string) => void;
@@ -33,25 +34,7 @@ export function ClientCardGrid({ onSelectClient }: ClientCardGridProps) {
     }
   };
 
-  const getInitials = (name: string): string => {
-    const words = name.split(' ');
-    if (words.length >= 2) {
-      return (words[0][0] + words[1][0]).toUpperCase();
-    }
-    return name.substring(0, 2).toUpperCase();
-  };
 
-  const getGradient = (index: number): string => {
-    const gradients = [
-      'from-purple-500 to-pink-500',
-      'from-blue-500 to-cyan-500',
-      'from-green-500 to-emerald-500',
-      'from-orange-500 to-red-500',
-      'from-indigo-500 to-purple-500',
-      'from-teal-500 to-green-500',
-    ];
-    return gradients[index % gradients.length];
-  };
 
   if (loading) {
     return (
@@ -90,7 +73,7 @@ export function ClientCardGrid({ onSelectClient }: ClientCardGridProps) {
               className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-200 hover:border-purple-300 text-left"
             >
               {/* Avatar */}
-              <div className={`w-16 h-16 bg-gradient-to-br ${getGradient(index)} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-16 h-16 bg-gradient-to-br ${getGradientForId(client.id)} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                 <span className="text-2xl font-bold text-white">
                   {getInitials(client.name)}
                 </span>

@@ -10,6 +10,7 @@ import { Button } from './ui/button';
 import { Client } from '../types/firestore';
 import { ClientService } from '../services/clientService';
 import { useAuth } from '../contexts/AuthContext';
+import { getGradientForId, getInitials } from '../utils/colorUtils';
 
 interface ClientSelectorProps {
   selectedClientId: string | null;
@@ -94,8 +95,8 @@ export function ClientSelector({
         className="w-full flex items-center justify-between gap-3 px-4 py-3 bg-white border border-gray-200 rounded-lg hover:border-purple-300 hover:bg-purple-50/50 transition-all"
       >
         <div className="flex items-center gap-3 flex-1 min-w-0">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white font-medium flex-shrink-0">
-            {selectedClient?.name?.[0]?.toUpperCase() || 'C'}
+          <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${selectedClient ? getGradientForId(selectedClient.id) : 'from-purple-600 to-pink-600'} flex items-center justify-center text-white font-medium flex-shrink-0`}>
+            {selectedClient ? getInitials(selectedClient.name) : 'C'}
           </div>
           <div className="flex-1 min-w-0 text-left">
             <p className="text-sm font-medium text-gray-900 truncate">
@@ -133,8 +134,8 @@ export function ClientSelector({
                 onClick={() => handleSelectClient(client.id)}
                 className="w-full flex items-center gap-3 px-4 py-3 hover:bg-purple-50 transition-colors border-b border-gray-100 last:border-0"
               >
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white font-medium flex-shrink-0">
-                  {client.name[0].toUpperCase()}
+                <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${getGradientForId(client.id)} flex items-center justify-center text-white font-medium flex-shrink-0`}>
+                  {getInitials(client.name)}
                 </div>
                 <div className="flex-1 min-w-0 text-left">
                   <p className="text-sm font-medium text-gray-900 truncate">
