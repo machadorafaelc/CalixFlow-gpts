@@ -6,12 +6,14 @@
 
 import { useState, useEffect } from 'react';
 import { ClientSelector } from './ClientSelector';
+import { ClientCardGrid } from './ClientCardGrid';
 import { ConversationList } from './ConversationList';
 import { ChatInterface } from './ChatInterface';
 import { ConversationService } from '../services/conversationService';
 import { ClientService } from '../services/clientService';
 import { useAuth } from '../contexts/AuthContext';
 import { Client } from '../types/firestore';
+import { ArrowLeft } from 'lucide-react';
 
 export function GPTsCalixView() {
   const { user } = useAuth();
@@ -67,70 +69,80 @@ export function GPTsCalixView() {
   
   return (
     <div className="flex-1 flex h-screen overflow-hidden">
-      {/* Sidebar de Conversas */}
-      <div className="w-80 border-r border-gray-200 bg-white flex flex-col">
-        {/* Seletor de Cliente */}
-        <div className="p-4 border-b border-gray-200">
-          <ClientSelector
-            selectedClientId={selectedClientId}
-            onSelectClient={handleSelectClient}
-          />
-        </div>
-        
-        {/* Lista de Conversas */}
-        {selectedClientId && (
-          <ConversationList
-            key={key}
-            clientId={selectedClientId}
-            selectedConversationId={selectedConversationId}
-            onSelectConversation={handleSelectConversation}
-            onCreateConversation={handleCreateConversation}
-          />
-        )}
-      </div>
-      
-      {/* Área de Chat */}
-      <div className="flex-1 flex flex-col bg-gray-50">
-        {selectedConversationId && selectedClient ? (
-          <ChatInterface
-            key={selectedConversationId}
-            conversationId={selectedConversationId}
-            clientName={selectedClient.name}
-            systemPrompt={selectedClient.description}
-          />
-        ) : (
-          <div className="flex-1 flex items-center justify-center">
-            <div className="text-center max-w-md">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center mx-auto mb-6">
-                <svg
-                  className="w-10 h-10 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                  />
-                </svg>
-              </div>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-3">
-                Bem-vindo ao Chat CalixFlow
-              </h2>
-              <p className="text-gray-600 mb-6">
-                Selecione um cliente para começar uma conversa com IA especializada.
-              </p>
-              {!selectedClientId && (
-                <p className="text-sm text-gray-500">
-                  👆 Escolha um cliente no seletor acima
-                </p>
-              )}
+      {/* Mostrar grid de cards quando não houver cliente selecionado */}
+      {!selectedClientId ? (
+        <ClientCardGrid onSelectClient={handleSelectClient} />
+      ) : (
+        <>
+          {/* Sidebar de Conversas */}
+          <div className="w-80 border-r border-gray-200 bg-white flex flex-col">
+            {/* Botão Voltar + Seletor de Cliente */}
+            <div className="p-4 border-b border-gray-200">
+              <button
+                onClick={() => setSelectedClientId(null)}
+                className="flex items-center gap-2 text-sm text-gray-600 hover:text-purple-600 mb-3 transition-colors"
+              >
+                <ArrowLeft size={16} />
+                Voltar para GPTs
+              </button>
+              <ClientSelector
+                selectedClientId={selectedClientId}
+                onSelectClient={handleSelectClient}
+              />
             </div>
+            
+            {/* Lista de Conversas */}
+            <ConversationList
+              key={key}
+              clientId={selectedClientId}
+              selectedConversationId={selectedConversationId}
+              onSelectConversation={handleSelectConversation}
+              onCreateConversation={handleCreateConversation}
+            />
           </div>
-        )}
-      </div>
+          
+          {/* Área de Chat */}
+          <div className="flex-1 flex flex-col bg-gray-50">
+            {selectedConversationId && selectedClient ? (
+              <ChatInterface
+                key={selectedConversationId}
+                conversationId={selectedConversationId}
+                clientName={selectedClient.name}
+                systemPrompt={selectedClient.description}
+              />
+            ) : (
+              <div className="flex-1 flex items-center justify-center">
+                <div className="text-center max-w-md">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center mx-auto mb-6">
+                    <svg
+                      className="w-10 h-10 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                      />
+                    </svg>
+                  </div>
+                  <h2 className="text-2xl font-semibold text-gray-900 mb-3">
+                    Bem-vindo ao Chat CalixFlow
+                  </h2>
+                  <p className="text-gray-600 mb-6">
+                    Selecione um cliente para começar uma conversa com IA especializada.
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    👆 Escolha um cliente no seletor acima
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
