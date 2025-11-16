@@ -151,9 +151,20 @@ export function ChatInterface({
       
       // Gerar título se for a primeira mensagem do usuário
       const conversation = await ConversationService.getConversation(conversationId);
+      console.log('📝 Verificando título automático:');
+      console.log('  - messageCount:', conversation?.messageCount);
+      console.log('  - Primeira mensagem?', conversation?.messageCount === 1);
+      
       if (conversation && conversation.messageCount === 1) {
-        const title = await ConversationService.generateTitle(userMessage || 'Anexos enviados');
-        await ConversationService.updateConversation(conversationId, { title });
+        console.log('🎯 Gerando título automático...');
+        try {
+          const title = await ConversationService.generateTitle(userMessage || 'Anexos enviados');
+          console.log('✅ Título gerado:', title);
+          await ConversationService.updateConversation(conversationId, { title });
+          console.log('✅ Título atualizado na conversa');
+        } catch (error) {
+          console.error('❌ Erro ao gerar título:', error);
+        }
       }
       
       // Preparar histórico de mensagens para OpenAI (usar fullMessage com contexto dos anexos)
