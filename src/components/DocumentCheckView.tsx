@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { DocumentExtractor } from '../services/documentExtractor';
 import { OpenAIAnalyzer } from '../services/openaiAnalyzer';
 import { ImageProcessor } from '../services/imageProcessor';
+import { CoordinatorAgent, FinalReport } from '../services/multiAgentSystem';
 import { Upload, FileCheck, AlertCircle, CheckCircle, XCircle, FileText, Loader2, Trash2, Download } from 'lucide-react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
@@ -132,36 +133,16 @@ export function DocumentCheckView() {
         overallStatus: null,
       });
 
-      const documentExtractor = new DocumentExtractor();
-      const openaiAnalyzer = new OpenAIAnalyzer();
-
-      // Extrai texto do PI
-      console.log('\n\n='.repeat(50));
-      console.log('🚨 INICIANDO EXTRAÇÃO DE TEXTO DO PI');
-      console.log('='.repeat(50));
-      console.log('Arquivo PI:', piDocument.file.name);
-      console.log('Tipo:', piDocument.file.type);
-      console.log('Tamanho:', piDocument.file.size, 'bytes');
+      // Preparar documentos para análise
+      const docsToAnalyze: Array<{ file: File; type: string }> = [];
       
-      setCheckResult(prev => prev ? { ...prev, progress: 10 } : null);
-      const piText = await documentExtractor.extractText(piDocument.file);
-      
-      console.log('\n✅ TEXTO DO PI EXTRAÍDO:');
-      console.log('Primeiros 500 caracteres:', piText.substring(0, 500));
-      console.log('Total de caracteres:', piText.length);
-      console.log('='.repeat(50) + '\n');
-
-      const results: AnalysisResult[] = [];
-      let currentProgress = 20;
-      
-      // Conta documentos para análise
-      const docsToAnalyze: Array<{ key: string; doc: UploadedDocument }> = [];
-      
-      if (documents.notaFiscal) docsToAnalyze.push({ key: 'notaFiscal', doc: documents.notaFiscal });
-      if (documents.artigo299) docsToAnalyze.push({ key: 'artigo299', doc: documents.artigo299 });
-      if (documents.relatorios) docsToAnalyze.push({ key: 'relatorios', doc: documents.relatorios });
-      if (documents.simplesNacional) docsToAnalyze.push({ key: 'simplesNacional', doc: documents.simplesNacional });
-      documents.outros.forEach(doc => docsToAnalyze.push({ key: 'outros', doc }));
+      if (documents.notaFiscal?.file) docsToAnalyze.push({ file: documents.notaFiscal.file, type: 'notaFiscal' });
+      if (documents.artigo299?.file) docsToAnalyze.push({ file: documents.artigo299.file, type: 'artigo299' });
+      if (documents.relatorios?.file) docsToAnalyze.push({ file: documents.relatorios.file, type: 'relatorios' });
+      if (documents.simplesNacional?.file) docsToAnalyze.push({ file: documents.simplesNacional.file, type: 'simplesNacional' });
+      documents.outros.forEach(doc => {
+        if (doc.file) docsToAnalyze.push({ file: doc.file, type: 'outros' });
+      });
 
       if (docsToAnalyze.length === 0) {
         alert('Por favor, adicione pelo menos um documento para validação.');
@@ -169,65 +150,37 @@ export function DocumentCheckView() {
         return;
       }
 
-      const progressIncrement = 70 / docsToAnalyze.length;
+      // Usar sistema multi-agente
+      const coordinator = new CoordinatorAgent();
+      
+      const finalReport = await coordinator.analyzeDocumentsWithProgress(
+        piDocument.file,
+        docsToAnalyze,
+        (phase, progress, message) => {
+          console.log(`[${phase}] ${progress}% - ${message}`);
+          setCheckResult(prev => prev ? { ...prev, progress } : null);
+        }
+      );
 
-      // Analisa cada documento
-      for (const { key, doc } of docsToAnalyze) {
-        if (!doc.file) continue;
-
-        // Verifica se é imagem
-        const isImage = documentExtractor.isImage(doc.file);
-        
-        let analysisResult;
-        
-        // Extrai texto (OCR para imagens, parsing para PDFs)
-        console.log('\n' + '-'.repeat(50));
-        console.log('📝 EXTRAINDO DOCUMENTO:', doc.name);
-        console.log('Tipo:', doc.file.type);
-        
-        const docText = await documentExtractor.extractText(doc.file);
-        
-        console.log('✅ Texto extraído:', docText.substring(0, 300));
-        console.log('Total:', docText.length, 'caracteres');
-        console.log('-'.repeat(50) + '\n');
-        
-        // Analisa com GPT-4o-mini (mais barato)
-        analysisResult = await openaiAnalyzer.compareDocuments(
-          piText,
-          docText,
-          key
-        );
-
-        // Converte para formato de resultado (MOSTRA TODOS OS CAMPOS, não apenas divergências)
-        const issues = analysisResult.comparisons.map(comp => ({
+      // Converter FinalReport para formato da interface
+      const results: AnalysisResult[] = finalReport.analyses.map(analysis => ({
+        documentType: analysis.documentType,
+        status: analysis.status,
+        issues: analysis.comparisons.map(comp => ({
           field: comp.field,
           piValue: comp.piValue,
           documentValue: comp.documentValue,
           severity: comp.severity,
           match: comp.match
-        }));
-
-        results.push({
-          documentType: doc.name,
-          status: analysisResult.overallStatus,
-          issues,
-          summary: analysisResult.summary
-        });
-
-        currentProgress += progressIncrement;
-        setCheckResult(prev => prev ? { ...prev, progress: Math.min(Math.round(currentProgress), 90) } : null);
-      }
-
-      // Determina status geral
-      const hasRejection = results.some(r => r.status === 'rejected');
-      const hasWarning = results.some(r => r.status === 'warning');
-      const overallStatus = hasRejection ? 'rejected' : (hasWarning ? 'warning' : 'approved');
+        })),
+        summary: analysis.summary
+      }));
 
       setCheckResult({
         status: 'completed',
         progress: 100,
         results,
-        overallStatus
+        overallStatus: finalReport.overallStatus
       });
 
     } catch (error) {
