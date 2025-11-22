@@ -1,57 +1,110 @@
 /**
  * Serviço de Processamento de Imagens
  * 
- * Usa Tesseract.js (OCR local) para extrair texto de imagens
- * Versão 2.0: OCR local para reduzir custos (de $196/mês para $2.80/mês)
+ * Versão 3.0: Sistema híbrido de OCR com pré-processamento avançado
+ * - Pré-processamento de imagens (binarização, denoising, contraste)
+ * - Múltiplas engines: Google Vision, GPT-4 Vision, Tesseract
+ * - Fallback automático
+ * - Indicadores de qualidade
  */
 
-import { createWorker } from 'tesseract.js';
+import { EnhancedOCRService, OCRResult } from './enhancedOCRService';
+import { ImagePreprocessor } from './imagePreprocessor';
 
 export class ImageProcessor {
+  private static ocrService = new EnhancedOCRService();
+
   /**
-   * Extrai texto de uma imagem usando OCR (Tesseract.js)
+   * Extrai texto de uma imagem usando OCR avançado
    * 
    * @param imageFile - Arquivo de imagem (JPG, PNG, WEBP, GIF)
-   * @returns Texto extraído
+   * @param options - Opções de processamento
+   * @returns Resultado do OCR com texto e metadados
    */
-  static async extractTextFromImage(imageFile: File): Promise<string> {
+  static async extractTextFromImage(
+    imageFile: File,
+    options?: {
+      preprocess?: boolean;
+      engine?: 'google-vision' | 'tesseract' | 'gpt-vision' | 'auto' | 'hybrid';
+      language?: string;
+    }
+  ): Promise<OCRResult> {
     try {
-      console.log('Iniciando OCR com Tesseract.js...');
-      console.log(`Arquivo: ${imageFile.name} (${(imageFile.size / 1024).toFixed(2)} KB)`);
+      console.log('🔍 Iniciando OCR avançado...');
+      console.log(`   Arquivo: ${imageFile.name} (${(imageFile.size / 1024).toFixed(2)} KB)`);
       
-      // Criar worker do Tesseract com idioma português
-      const worker = await createWorker('por', 1, {
-        logger: (m) => {
-          if (m.status === 'recognizing text') {
-            console.log(`OCR Progress: ${Math.round(m.progress * 100)}%`);
-          }
-        }
+      const preprocess = options?.preprocess !== false; // Default: true
+      const engine = options?.engine || 'auto';
+      const language = options?.language || 'por';
+
+      // Modo híbrido: usa múltiplas engines
+      if (engine === 'hybrid') {
+        const result = await this.ocrService.extractTextHybrid(imageFile);
+        this.logResult(result);
+        return result;
+      }
+
+      // Modo normal: usa engine específica ou auto
+      const result = await this.ocrService.extractText(imageFile, {
+        preprocess,
+        preferredEngine: engine,
+        language
       });
-      
-      // Processar imagem
-      const { data } = await worker.recognize(imageFile);
-      
-      // Encerrar worker
-      await worker.terminate();
-      
-      console.log('OCR concluído!');
-      console.log(`Confiança: ${Math.round(data.confidence)}%`);
-      console.log(`Texto extraído (${data.text.length} caracteres)`);
-      
-      if (data.text.trim().length === 0) {
-        throw new Error('Nenhum texto foi detectado na imagem. Verifique se a imagem está legível.');
-      }
-      
-      if (data.confidence < 30) {
-        console.warn(`Baixa confiança no OCR: ${data.confidence}%. Resultado pode ser impreciso.`);
-      }
-      
-      return data.text;
+
+      this.logResult(result);
+      this.validateResult(result);
+
+      return result;
       
     } catch (error) {
-      console.error('Erro ao processar imagem com OCR:', error);
+      console.error('❌ Erro ao processar imagem com OCR:', error);
       throw new Error(`Falha no OCR: ${error instanceof Error ? error.message : 'Erro desconhecido'}`);
     }
+  }
+
+  /**
+   * Extrai apenas o texto (compatibilidade com versão anterior)
+   */
+  static async extractText(imageFile: File): Promise<string> {
+    const result = await this.extractTextFromImage(imageFile);
+    return result.text;
+  }
+
+  /**
+   * Loga resultado do OCR
+   */
+  private static logResult(result: OCRResult): void {
+    console.log('✅ OCR concluído!');
+    console.log(`   Engine: ${result.engine}`);
+    console.log(`   Confiança: ${Math.round(result.confidence)}%`);
+    console.log(`   Tempo: ${(result.processingTime / 1000).toFixed(2)}s`);
+    console.log(`   Palavras: ${result.metadata?.wordCount || 0}`);
+    console.log(`   Pré-processado: ${result.metadata?.preprocessed ? 'SIM' : 'NÃO'}`);
+    console.log(`   Texto extraído (${result.text.length} caracteres)`);
+    
+    if (result.text.length > 0) {
+      console.log(`   Preview: ${result.text.substring(0, 100)}...`);
+    }
+  }
+
+  /**
+   * Valida resultado do OCR
+   */
+  private static validateResult(result: OCRResult): void {
+    if (result.text.trim().length === 0) {
+      throw new Error('Nenhum texto foi detectado na imagem. Verifique se a imagem está legível.');
+    }
+    
+    if (result.confidence < 30) {
+      console.warn(`⚠️  Baixa confiança no OCR: ${result.confidence}%. Resultado pode ser impreciso.`);
+    }
+  }
+
+  /**
+   * Pré-processa imagem para melhorar OCR
+   */
+  static async preprocessImage(file: File): Promise<File> {
+    return ImagePreprocessor.fullPreprocess(file);
   }
   
   /**
@@ -119,74 +172,19 @@ export class ImageProcessor {
    * Redimensiona imagem se necessário (para melhorar OCR)
    */
   static async resizeImage(file: File, maxWidth: number = 2048): Promise<File> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      
-      reader.onload = (e) => {
-        const img = new Image();
-        
-        img.onload = () => {
-          // Se a imagem já é menor que o máximo, retorna original
-          if (img.width <= maxWidth) {
-            resolve(file);
-            return;
-          }
-          
-          // Calcula novas dimensões mantendo aspect ratio
-          const ratio = maxWidth / img.width;
-          const newWidth = maxWidth;
-          const newHeight = img.height * ratio;
-          
-          // Cria canvas para redimensionar
-          const canvas = document.createElement('canvas');
-          canvas.width = newWidth;
-          canvas.height = newHeight;
-          
-          const ctx = canvas.getContext('2d');
-          if (!ctx) {
-            reject(new Error('Erro ao criar contexto do canvas'));
-            return;
-          }
-          
-          // Desenha imagem redimensionada
-          ctx.drawImage(img, 0, 0, newWidth, newHeight);
-          
-          // Converte de volta para File
-          canvas.toBlob((blob) => {
-            if (!blob) {
-              reject(new Error('Erro ao converter canvas para blob'));
-              return;
-            }
-            
-            const resizedFile = new File([blob], file.name, {
-              type: file.type,
-              lastModified: Date.now()
-            });
-            
-            resolve(resizedFile);
-          }, file.type, 0.95); // Qualidade 95% para OCR
-        };
-        
-        img.onerror = () => {
-          reject(new Error('Erro ao carregar imagem'));
-        };
-        
-        img.src = e.target?.result as string;
-      };
-      
-      reader.onerror = () => {
-        reject(new Error('Erro ao ler arquivo'));
-      };
-      
-      reader.readAsDataURL(file);
-    });
+    return ImagePreprocessor.resizeForOCR(file, 300); // 300 DPI ideal para OCR
   }
   
   /**
-   * Processa arquivo de imagem completo
-   * Valida, redimensiona se necessário, e extrai texto com OCR
+   * Processa arquivo de imagem completo com validações
    */
-  static async processImage(file: File): Promise<string> {
+  static async processImage(
+    file: File,
+    options?: {
+      preprocess?: boolean;
+      engine?: 'google-vision' | 'tesseract' | 'gpt-vision' | 'auto' | 'hybrid';
+    }
+  ): Promise<OCRResult> {
     // Validações
     if (!this.isImage(file)) {
       throw new Error('Arquivo não é uma imagem válida');
@@ -200,13 +198,57 @@ export class ImageProcessor {
       throw new Error('Imagem muito grande. Tamanho máximo: 10MB');
     }
     
-    // Redimensiona se necessário (melhora performance do OCR)
-    const resizedFile = await this.resizeImage(file, 2048);
-    
     // Extrai texto com OCR
-    const text = await this.extractTextFromImage(resizedFile);
-    
-    return text;
+    return this.extractTextFromImage(file, options);
+  }
+
+  /**
+   * Obtém engines de OCR disponíveis
+   */
+  static getAvailableEngines(): string[] {
+    return this.ocrService.getAvailableEngines();
+  }
+
+  /**
+   * Recomenda melhor engine para o arquivo
+   */
+  static recommendEngine(file: File): 'google-vision' | 'gpt-vision' | 'tesseract' | 'hybrid' {
+    return this.ocrService.recommendEngine(file.type, file.size);
+  }
+
+  /**
+   * Obtém informações sobre qualidade do OCR
+   */
+  static getQualityIndicator(confidence: number): {
+    level: 'excellent' | 'good' | 'fair' | 'poor';
+    color: string;
+    message: string;
+  } {
+    if (confidence >= 90) {
+      return {
+        level: 'excellent',
+        color: 'green',
+        message: 'Excelente qualidade de leitura'
+      };
+    } else if (confidence >= 70) {
+      return {
+        level: 'good',
+        color: 'blue',
+        message: 'Boa qualidade de leitura'
+      };
+    } else if (confidence >= 50) {
+      return {
+        level: 'fair',
+        color: 'yellow',
+        message: 'Qualidade razoável - revise o texto'
+      };
+    } else {
+      return {
+        level: 'poor',
+        color: 'red',
+        message: 'Baixa qualidade - recomendamos nova digitalização'
+      };
+    }
   }
 }
 
