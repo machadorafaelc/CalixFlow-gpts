@@ -8,6 +8,7 @@
 import { DocumentExtractor } from './documentExtractor';
 import { ImageProcessor } from './imageProcessor';
 import { BatchProcessor, RetryWithBackoff } from '../utils/concurrencyControl';
+import { SharedMemory } from './sharedMemory';
 
 // ============================================================================
 // TIPOS E INTERFACES
@@ -445,12 +446,15 @@ export class CoordinatorAgent {
   private synthesizerAgent: SynthesizerAgent;
   private batchProcessor: BatchProcessor<any, any>;
   private retryHandler: RetryWithBackoff;
+  private memory?: SharedMemory;
 
   constructor(
     options?: {
       maxConcurrent?: number;
       rateLimit?: { maxRequests: number; windowMs: number };
       maxRetries?: number;
+      agencyId?: string;
+      enableMemory?: boolean;
     }
   ) {
     this.extractorAgent = new DocumentExtractorAgent();
@@ -469,6 +473,29 @@ export class CoordinatorAgent {
       1000,
       10000
     );
+    
+    // Configurar memória compartilhada
+    if (options?.enableMemory && options?.agencyId) {
+      this.memory = new SharedMemory(options.agencyId);
+      this.initializeMemory();
+    }
+  }
+
+  /**
+   * Inicializa memória compartilhada
+   */
+  private async initializeMemory(): Promise<void> {
+    if (this.memory) {
+      await this.memory.initialize();
+      console.log('🧠 Memória compartilhada inicializada');
+    }
+  }
+
+  /**
+   * Obtém acesso à memória compartilhada
+   */
+  getMemory(): SharedMemory | undefined {
+    return this.memory;
   }
 
   /**
