@@ -227,3 +227,134 @@ export interface DocumentCheckResult {
     explanation: string;
   }[];
 }
+
+/**
+ * PI (Plano de Inserção)
+ * 
+ * Representa um plano de inserção de mídia que passa por 3 departamentos:
+ * Mídia → Checking → Financeiro
+ */
+export interface PI {
+  id: string;
+  numero: string; // Número do PI (ex: "60001")
+  
+  // Relacionamentos
+  agencyId: string; // Agência dona do PI
+  clientId?: string; // Cliente/GPT associado (opcional)
+  
+  // Informações da campanha
+  cliente: string; // Nome do cliente
+  campanha: string;
+  meio: 'TV' | 'Rádio' | 'Digital' | 'Impresso' | 'OOH' | 'Cinema';
+  veiculo: string; // Nome do veículo (ex: "Globo", "Google Ads")
+  
+  // Status e workflow
+  status: PIStatus;
+  departamento: 'midia' | 'checking' | 'financeiro';
+  responsavel: string; // Nome do responsável atual
+  
+  // Valores e datas
+  valor: number;
+  dataEntrada: Timestamp;
+  prazo: Timestamp;
+  
+  // Metadados
+  createdAt: Timestamp;
+  createdBy: string; // uid do usuário ou "api" se veio do ERP
+  updatedAt: Timestamp;
+  updatedBy: string;
+  
+  // Histórico de mudanças
+  historico?: PIHistoryEntry[];
+  
+  // Dados do ERP (se veio via API)
+  erpData?: {
+    erpId: string; // ID no sistema ERP
+    syncedAt: Timestamp;
+    rawData?: any; // Dados originais do ERP
+  };
+}
+
+/**
+ * Status possíveis de um PI
+ */
+export type PIStatus = 
+  | 'checking_analise'           // Checking: Em Análise
+  | 'pendente_veiculo'           // Pendente: Veículo
+  | 'pendente_midia'             // Pendente: Mídia
+  | 'pendente_fiscalizadora'     // Pendente: Fiscalizadora
+  | 'aguardando_conformidade'    // Cliente: Aguardando Conformidade
+  | 'faturado'                   // FATURADO
+  | 'cancelado'                  // PI CANCELADO
+  | 'aprovado'                   // Aprovado
+  | 'em_producao';               // Em Produção
+
+/**
+ * Entrada no histórico de um PI
+ */
+export interface PIHistoryEntry {
+  timestamp: Timestamp;
+  userId: string;
+  userName: string;
+  action: 'created' | 'status_changed' | 'department_changed' | 'assigned' | 'updated' | 'commented';
+  description: string;
+  oldValue?: any;
+  newValue?: any;
+}
+
+/**
+ * Configuração de status de PI
+ */
+export interface PIStatusConfig {
+  label: string;
+  color: string; // Classe Tailwind
+  description?: string;
+}
+
+/**
+ * Comentário em um PI
+ */
+export interface PIComment {
+  id: string;
+  piId: string;
+  userId: string;
+  userName: string;
+  userPhoto?: string;
+  content: string;
+  createdAt: Timestamp;
+  attachments?: {
+    name: string;
+    url: string;
+    type: string;
+  }[];
+}
+
+/**
+ * Filtros para listagem de PIs
+ */
+export interface PIFilters {
+  agencyId?: string;
+  clientId?: string;
+  departamento?: 'midia' | 'checking' | 'financeiro';
+  status?: PIStatus;
+  responsavel?: string;
+  meio?: string;
+  dataInicio?: Date;
+  dataFim?: Date;
+  searchTerm?: string;
+}
+
+/**
+ * UserProfile (atualizado com campos do sistema multi-tenant)
+ */
+export interface UserProfile {
+  uid: string;
+  email: string;
+  displayName?: string;
+  photoURL?: string;
+  role: 'super_admin' | 'agency_admin' | 'user';
+  agencyId?: string; // null para super_admin
+  departamento?: 'midia' | 'checking' | 'financeiro'; // Departamento do usuário para PIs
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}

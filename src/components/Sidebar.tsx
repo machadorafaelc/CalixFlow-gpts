@@ -1,4 +1,4 @@
-import { Bot, FileCheck, LogOut, User, BarChart3, Building2, Settings, Users } from 'lucide-react';
+import { Bot, FileCheck, LogOut, User, BarChart3, Building2, Settings, Users, ClipboardList } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from './ui/button';
 import calixLogo from 'figma:asset/f03f62b37801fa1aca88a766c230976358254a8f.png';
@@ -15,6 +15,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
   const menuItems = [
     { id: 'gpts', label: 'GPTs Cálix', icon: Bot, roles: ['super_admin', 'agency_admin', 'user'] },
     { id: 'document-check', label: 'Checagem de Documentos', icon: FileCheck, roles: ['super_admin', 'agency_admin', 'user'] },
+    { id: 'pauta-pis', label: 'Pauta de PIs', icon: ClipboardList, roles: ['super_admin', 'agency_admin', 'user'] },
     { id: 'dashboard', label: 'Dashboard', icon: BarChart3, roles: ['super_admin', 'agency_admin'] },
     
     // Separador visual (admin)
