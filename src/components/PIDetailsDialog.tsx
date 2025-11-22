@@ -24,6 +24,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { PI, PIStatus } from '../types/firestore';
+import { PIComments } from './PIComments';
 
 // Configuração de status
 const statusConfig: Record<PIStatus, { label: string; color: string }> = {
@@ -49,6 +50,7 @@ interface PIDetailsDialogProps {
   pi: PI;
   open: boolean;
   onClose: () => void;
+  onEdit?: (pi: PI) => void;
   formatCurrency: (value: number) => string;
   formatDate: (timestamp: any) => string;
 }
@@ -57,6 +59,7 @@ export function PIDetailsDialog({
   pi,
   open,
   onClose,
+  onEdit,
   formatCurrency,
   formatDate,
 }: PIDetailsDialogProps) {
@@ -217,6 +220,10 @@ export function PIDetailsDialog({
               </div>
             </>
           )}
+
+          {/* Comentários */}
+          <Separator />
+          <PIComments piId={pi.id} />
         </div>
 
         {/* Ações */}
@@ -224,9 +231,14 @@ export function PIDetailsDialog({
           <Button variant="outline" onClick={onClose}>
             Fechar
           </Button>
-          <Button className="bg-purple-600 hover:bg-purple-700">
-            Editar PI
-          </Button>
+          {onEdit && (
+            <Button 
+              className="bg-purple-600 hover:bg-purple-700"
+              onClick={() => onEdit(pi)}
+            >
+              Editar PI
+            </Button>
+          )}
         </div>
       </DialogContent>
     </Dialog>

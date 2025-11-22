@@ -54,6 +54,9 @@ import { PI, PIStatus, GPT } from '../types/firestore';
 import { KanbanView } from '../components/PIKanbanView';
 import { ListView } from '../components/PIListView';
 import { PIDetailsDialog } from '../components/PIDetailsDialog';
+import { PIFormDialog } from '../components/PIFormDialog';
+import { PIDashboard } from '../components/PIDashboard';
+import { exportPIsToExcel, exportPIsToCSV, exportPIsToJSON, printPIsReport } from '../utils/piExport';
 
 // Configuração de status
 const statusConfig: Record<PIStatus, { label: string; color: string }> = {
@@ -82,13 +85,16 @@ export function PautaPIsView() {
   const [pis, setPis] = useState<PI[]>([]);
   const [clients, setClients] = useState<GPT[]>([]);
   const [selectedClient, setSelectedClient] = useState<string>('all');
-  const [viewMode, setViewMode] = useState<'list' | 'kanban'>('kanban');
+  const [viewMode, setViewMode] = useState<'list' | 'kanban' | 'dashboard'>('kanban');
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterDepartment, setFilterDepartment] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [selectedPI, setSelectedPI] = useState<PI | null>(null);
   const [showPIDialog, setShowPIDialog] = useState(false);
+  const [showFormDialog, setShowFormDialog] = useState(false);
+  const [editingPI, setEditingPI] = useState<PI | null>(null);
+  const [showExportMenu, setShowExportMenu] = useState(false);
 
   // Carregar dados iniciais
   useEffect(() => {
@@ -227,11 +233,66 @@ export function PautaPIsView() {
               <p className="text-gray-600">Gerenciamento de Planos de Inserção</p>
             </div>
             <div className="flex items-center gap-3">
-              <Button variant="outline" size="sm">
-                <Download size={16} className="mr-2" />
-                Exportar
-              </Button>
-              <Button size="sm" className="bg-purple-600 hover:bg-purple-700">
+              <div className="relative">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setShowExportMenu(!showExportMenu)}
+                >
+                  <Download size={16} className="mr-2" />
+                  Exportar
+                </Button>
+                {showExportMenu && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                    <div className="py-1">
+                      <button
+                        onClick={() => {
+                          exportPIsToExcel(filteredPIs, `pis-${new Date().toISOString().split('T')[0]}.xlsx`);
+                          setShowExportMenu(false);
+                        }}
+                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Exportar para Excel
+                      </button>
+                      <button
+                        onClick={() => {
+                          exportPIsToCSV(filteredPIs, `pis-${new Date().toISOString().split('T')[0]}.csv`);
+                          setShowExportMenu(false);
+                        }}
+                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Exportar para CSV
+                      </button>
+                      <button
+                        onClick={() => {
+                          exportPIsToJSON(filteredPIs, `pis-${new Date().toISOString().split('T')[0]}.json`);
+                          setShowExportMenu(false);
+                        }}
+                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Exportar para JSON
+                      </button>
+                      <button
+                        onClick={() => {
+                          printPIsReport(filteredPIs);
+                          setShowExportMenu(false);
+                        }}
+                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Imprimir Relatório
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <Button 
+                size="sm" 
+                className="bg-purple-600 hover:bg-purple-700"
+                onClick={() => {
+                  setEditingPI(null);
+                  setShowFormDialog(true);
+                }}
+              >
                 <Plus size={16} className="mr-2" />
                 Novo PI
               </Button>
@@ -283,10 +344,20 @@ export function PautaPIsView() {
             {/* Toggle View Mode */}
             <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
               <Button
+                variant={viewMode === 'dashboard' ? 'default' : 'ghost'}
+                size="sm"
+                onClick={() => setViewMode('dashboard')}
+                className="h-8"
+                title="Dashboard"
+              >
+                <BarChart3 size={16} />
+              </Button>
+              <Button
                 variant={viewMode === 'kanban' ? 'default' : 'ghost'}
                 size="sm"
                 onClick={() => setViewMode('kanban')}
                 className="h-8"
+                title="Kanban"
               >
                 <LayoutGrid size={16} />
               </Button>
@@ -295,6 +366,7 @@ export function PautaPIsView() {
                 size="sm"
                 onClick={() => setViewMode('list')}
                 className="h-8"
+                title="Lista"
               >
                 <List size={16} />
               </Button>
@@ -321,7 +393,9 @@ export function PautaPIsView() {
           {/* Conteúdo */}
           <div className="flex-1 overflow-auto p-6">
             <TabsContent value={selectedClient} className="mt-0 h-full">
-              {viewMode === 'kanban' ? (
+              {viewMode === 'dashboard' ? (
+                <PIDashboard pis={filteredPIs} />
+              ) : viewMode === 'kanban' ? (
                 <KanbanView
                   pisByDepartment={pisByDepartment}
                   onDrop={handleDrop}
@@ -350,10 +424,28 @@ export function PautaPIsView() {
               setShowPIDialog(false);
               setSelectedPI(null);
             }}
+            onEdit={(pi) => {
+              setShowPIDialog(false);
+              setEditingPI(pi);
+              setShowFormDialog(true);
+            }}
             formatCurrency={formatCurrency}
             formatDate={formatDate}
           />
         )}
+
+        {/* Dialog de Formulário (Criar/Editar) */}
+        <PIFormDialog
+          open={showFormDialog}
+          onClose={() => {
+            setShowFormDialog(false);
+            setEditingPI(null);
+          }}
+          onSuccess={() => {
+            loadData();
+          }}
+          pi={editingPI}
+        />
       </div>
     </DndProvider>
   );
