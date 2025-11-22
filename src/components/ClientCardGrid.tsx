@@ -8,6 +8,8 @@ import { useState, useEffect } from 'react';
 import { Building2, FileText, MessageSquare, Sparkles } from 'lucide-react';
 import { Client } from '../types/firestore';
 import { ClientService } from '../services/clientService';
+import { GPTService } from '../services/gptService';
+import { useAuth } from '../contexts/AuthContext';
 import { getGradientForId, getInitials } from '../utils/colorUtils';
 
 interface ClientCardGridProps {
@@ -15,18 +17,41 @@ interface ClientCardGridProps {
 }
 
 export function ClientCardGrid({ onSelectClient }: ClientCardGridProps) {
+  const { userProfile } = useAuth();
   const [clients, setClients] = useState<Client[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadClients();
-  }, []);
+  }, [userProfile]);
 
   const loadClients = async () => {
     try {
       setLoading(true);
-      const clientList = await ClientService.listClients();
-      setClients(clientList);
+      
+      // Super admin vê todos os GPTs
+      if (userProfile?.role === 'super_admin') {
+        const clientList = await ClientService.listClients();
+        setClients(clientList);
+      } 
+      // Agency admin e users veem apenas GPTs da sua agência
+      else if (userProfile?.agencyId) {
+        const gpts = await GPTService.getGPTsByAgency(userProfile.agencyId);
+        // Converter GPTs para formato Client (compatibilidade)
+        const clientList = gpts.map(gpt => ({
+          id: gpt.id,
+          name: gpt.name,
+          description: gpt.description,
+          logo: gpt.logo,
+          conversationCount: gpt.conversationCount || 0,
+          documentCount: gpt.documentCount || 0,
+          createdAt: gpt.createdAt,
+          updatedAt: gpt.updatedAt,
+        }));
+        setClients(clientList);
+      } else {
+        setClients([]);
+      }
     } catch (error) {
       console.error('Erro ao carregar clientes:', error);
     } finally {

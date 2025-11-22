@@ -1,4 +1,4 @@
-import { Bot, FileCheck, LogOut, User, BarChart3 } from 'lucide-react';
+import { Bot, FileCheck, LogOut, User, BarChart3, Building2, Settings, Users } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from './ui/button';
 import calixLogo from 'figma:asset/f03f62b37801fa1aca88a766c230976358254a8f.png';
@@ -11,12 +11,30 @@ interface SidebarProps {
 export function Sidebar({ currentView, onViewChange }: SidebarProps) {
   const { user, userProfile, logout } = useAuth();
 
+  // Menu items com controle de acesso por role
   const menuItems = [
-    { id: 'gpts', label: 'GPTs Cálix', icon: Bot },
-    { id: 'document-check', label: 'Checagem de Documentos', icon: FileCheck },
-    { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
-    { id: 'teams', label: 'Equipes', icon: User },
+    { id: 'gpts', label: 'GPTs Cálix', icon: Bot, roles: ['super_admin', 'agency_admin', 'user'] },
+    { id: 'document-check', label: 'Checagem de Documentos', icon: FileCheck, roles: ['super_admin', 'agency_admin', 'user'] },
+    { id: 'dashboard', label: 'Dashboard', icon: BarChart3, roles: ['super_admin', 'agency_admin'] },
+    
+    // Separador visual (admin)
+    { id: 'separator-admin', label: '', icon: null, roles: ['super_admin'], separator: true },
+    
+    // Menu de administração (super_admin only)
+    { id: 'agencies', label: 'Gerenciar Agências', icon: Building2, roles: ['super_admin'] },
+    { id: 'gpts-management', label: 'Gerenciar GPTs', icon: Settings, roles: ['super_admin'] },
+    { id: 'gpt-assignment', label: 'Atribuir GPTs', icon: Bot, roles: ['super_admin'] },
+    { id: 'users', label: 'Gerenciar Usuários', icon: Users, roles: ['super_admin'] },
+    
+    // Menu de equipe (agency_admin)
+    { id: 'teams', label: 'Equipes', icon: User, roles: ['agency_admin'] },
   ];
+
+  // Filtrar menu items baseado no role do usuário
+  const visibleMenuItems = menuItems.filter((item) => {
+    const userRole = userProfile?.role || 'user';
+    return item.roles.includes(userRole);
+  });
 
   const handleLogout = async () => {
     try {
@@ -25,6 +43,19 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
       console.error('Erro ao fazer logout:', error);
     }
   };
+
+  // Badge de role
+  const getRoleBadge = () => {
+    const role = userProfile?.role || 'user';
+    const badges = {
+      super_admin: { label: 'Super Admin', color: 'bg-red-100 text-red-700' },
+      agency_admin: { label: 'Admin', color: 'bg-blue-100 text-blue-700' },
+      user: { label: 'Usuário', color: 'bg-gray-100 text-gray-700' },
+    };
+    return badges[role as keyof typeof badges] || badges.user;
+  };
+
+  const roleBadge = getRoleBadge();
 
   return (
     <div className="w-64 bg-gray-50/50 border-r border-gray-200/50 min-h-screen p-8 flex flex-col">
@@ -45,8 +76,22 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
       
       {/* Menu de Navegação */}
       <nav className="space-y-2 flex-1">
-        {menuItems.map((item) => {
+        {visibleMenuItems.map((item) => {
+          // Separador visual
+          if (item.separator) {
+            return (
+              <div key={item.id} className="py-2">
+                <div className="border-t border-gray-300"></div>
+                <p className="text-xs text-gray-500 mt-3 px-2 font-medium uppercase tracking-wider">
+                  Administração
+                </p>
+              </div>
+            );
+          }
+
           const Icon = item.icon;
+          if (!Icon) return null;
+
           return (
             <button
               key={item.id}
@@ -78,6 +123,9 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
             <p className="text-xs text-gray-500 truncate">
               {user?.email || ''}
             </p>
+            <span className={`inline-block text-xs px-2 py-0.5 rounded-full mt-1 ${roleBadge.color}`}>
+              {roleBadge.label}
+            </span>
           </div>
         </div>
 

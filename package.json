@@ -63,6 +63,7 @@
     },
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "setup-admin": "tsx scripts/setup-super-admin.ts"
     }
 }

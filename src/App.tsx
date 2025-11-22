@@ -6,8 +6,13 @@ import { GPTsCalixView } from './components/GPTsCalixView';
 import { DocumentCheckView } from './components/DocumentCheckView';
 import { DashboardView } from './views/DashboardView';
 import { TeamManagementView } from './views/TeamManagementView';
+import { AgencyManagementView } from './views/AgencyManagementView';
+import { GPTManagementView } from './views/GPTManagementView';
+import { GPTAssignmentView } from './views/GPTAssignmentView';
+import { UserManagementView } from './views/UserManagementView';
 import { LoginView } from './components/LoginView';
 import { RegisterView } from './components/RegisterView';
+import { SuperAdminSetup } from './components/SuperAdminSetup';
 
 function AppContent() {
   const [currentView, setCurrentView] = useState('gpts');
@@ -27,6 +32,14 @@ function AppContent() {
         return <DashboardView />;
       case 'teams':
         return <TeamManagementView />;
+      case 'agencies':
+        return <AgencyManagementView />;
+      case 'gpts-management':
+        return <GPTManagementView />;
+      case 'gpt-assignment':
+        return <GPTAssignmentView />;
+      case 'users':
+        return <UserManagementView />;
       default:
         return <GPTsCalixView />;
     }
@@ -41,6 +54,7 @@ function AppContent() {
 
   return (
     <ProtectedRoute fallback={authComponent}>
+      <SuperAdminSetup />
       <div className="size-full flex bg-stone-50/30">
         <Sidebar 
           currentView={currentView} 

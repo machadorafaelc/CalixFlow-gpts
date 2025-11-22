@@ -62,3 +62,29 @@ export function getInitials(name: string): string {
   }
   return name.substring(0, 2).toUpperCase();
 }
+
+/**
+ * Paletas de cores com valores hexadecimais para uso em estilos inline
+ */
+const colorPalettes = [
+  { from: '#9333ea', to: '#ec4899' }, // purple-pink
+  { from: '#3b82f6', to: '#06b6d4' }, // blue-cyan
+  { from: '#22c55e', to: '#10b981' }, // green-emerald
+  { from: '#f97316', to: '#ef4444' }, // orange-red
+  { from: '#6366f1', to: '#9333ea' }, // indigo-purple
+  { from: '#14b8a6', to: '#22c55e' }, // teal-green
+  { from: '#f43f5e', to: '#ec4899' }, // rose-pink
+  { from: '#f59e0b', to: '#f97316' }, // amber-orange
+  { from: '#8b5cf6', to: '#d946ef' }, // violet-fuchsia
+  { from: '#0ea5e9', to: '#3b82f6' }, // sky-blue
+];
+
+/**
+ * Retorna uma paleta de cores consistente baseada no ID
+ * Retorna cores em formato hexadecimal para uso em estilos inline
+ */
+export function getColorPalette(id: string): { from: string; to: string } {
+  const hash = hashString(id);
+  const index = hash % colorPalettes.length;
+  return colorPalettes[index];
+}
