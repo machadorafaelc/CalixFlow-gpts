@@ -9,6 +9,7 @@ import { DocumentExtractor } from './documentExtractor';
 import { ImageProcessor } from './imageProcessor';
 import { BatchProcessor, RetryWithBackoff } from '../utils/concurrencyControl';
 import { SharedMemory } from './sharedMemory';
+import { ValidationAgent, CorrectionAgent, LearningAgent, ValidationResult, CorrectionSuggestion } from './specializedAgents';
 
 // ============================================================================
 // TIPOS E INTERFACES
@@ -447,6 +448,9 @@ export class CoordinatorAgent {
   private batchProcessor: BatchProcessor<any, any>;
   private retryHandler: RetryWithBackoff;
   private memory?: SharedMemory;
+  private validationAgent?: ValidationAgent;
+  private correctionAgent?: CorrectionAgent;
+  private learningAgent?: LearningAgent;
 
   constructor(
     options?: {
@@ -478,6 +482,12 @@ export class CoordinatorAgent {
     if (options?.enableMemory && options?.agencyId) {
       this.memory = new SharedMemory(options.agencyId);
       this.initializeMemory();
+      
+      // Inicializar agentes especializados
+      this.validationAgent = new ValidationAgent(this.memory);
+      this.correctionAgent = new CorrectionAgent(this.memory);
+      this.learningAgent = new LearningAgent(this.memory);
+      console.log('🎯 Agentes especializados inicializados');
     }
   }
 
@@ -685,6 +695,33 @@ export class CoordinatorAgent {
     const [piData, ...documentsData] = await Promise.all(extractionPromises);
     onProgress?.('extraction', 40, `${documents.length + 1} documentos extraídos`);
 
+    // VALIDAÇÃO: Validar dados extraídos (se agentes especializados habilitados)
+    if (this.validationAgent) {
+      onProgress?.('validation', 42, 'Validando dados extraídos...');
+      
+      const validations: ValidationResult[] = [];
+      validations.push(await this.validationAgent.validateExtractedData(piData.extractedFields, 'pi'));
+      
+      for (let i = 0; i < documentsData.length; i++) {
+        const validation = await this.validationAgent.validateExtractedData(
+          documentsData[i].extractedFields,
+          documents[i].type
+        );
+        validations.push(validation);
+      }
+      
+      const avgScore = validations.reduce((sum, v) => sum + v.score, 0) / validations.length;
+      onProgress?.('validation', 45, `Validação concluída (${avgScore.toFixed(0)}% de qualidade)`);
+      
+      // Aprender com validações
+      if (this.learningAgent) {
+        for (let i = 0; i < validations.length; i++) {
+          const docType = i === 0 ? 'pi' : documents[i - 1].type;
+          await this.learningAgent.learnFromValidation(validations[i], docType);
+        }
+      }
+    }
+
     // FASE 2: Comparação PARALELA (40-80%)
     onProgress?.('comparison', 45, 'Iniciando comparações paralelas...');
     
@@ -693,7 +730,23 @@ export class CoordinatorAgent {
     );
 
     const analyses = await Promise.all(comparisonPromises);
-    onProgress?.('comparison', 80, `${analyses.length} comparações concluídas`);
+    onProgress?.('comparison', 75, `${analyses.length} comparações concluídas`);
+
+    // CORREÇÃO: Sugerir correções (se agentes especializados habilitados)
+    if (this.correctionAgent) {
+      onProgress?.('correction', 78, 'Analisando divergências...');
+      
+      const allComparisons = analyses.flatMap(a => a.comparisons);
+      const suggestions = await this.correctionAgent.suggestCorrections(allComparisons);
+      
+      if (suggestions.length > 0) {
+        onProgress?.('correction', 80, `${suggestions.length} sugestões de correção geradas`);
+        
+        // Adicionar sugestões ao relatório (será incluído na síntese)
+        // Por enquanto, apenas logar
+        console.log(`💡 ${suggestions.length} sugestões de correção disponíveis`);
+      }
+    }
 
     // FASE 3: Síntese (80-100%)
     onProgress?.('synthesis', 85, 'Gerando relatório final...');
