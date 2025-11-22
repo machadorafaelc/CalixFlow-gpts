@@ -18,6 +18,7 @@ import {
   GripVertical,
   User,
   DollarSign,
+  BarChart3,
 } from 'lucide-react';
 import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
@@ -99,7 +100,22 @@ export function PautaPIsView() {
   // Carregar dados iniciais
   useEffect(() => {
     loadData();
-  }, [userProfile]);
+  }, []);
+
+  // Fechar menu de exportação ao clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (showExportMenu) {
+        const target = event.target as HTMLElement;
+        if (!target.closest('.export-menu-container')) {
+          setShowExportMenu(false);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showExportMenu]);
 
   const loadData = async () => {
     if (!userProfile) return;
@@ -233,7 +249,7 @@ export function PautaPIsView() {
               <p className="text-gray-600">Gerenciamento de Planos de Inserção</p>
             </div>
             <div className="flex items-center gap-3">
-              <div className="relative">
+              <div className="relative export-menu-container">
                 <Button 
                   variant="outline" 
                   size="sm"
