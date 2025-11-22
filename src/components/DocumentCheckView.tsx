@@ -3,6 +3,7 @@ import { DocumentExtractor } from '../services/documentExtractor';
 import { OpenAIAnalyzer } from '../services/openaiAnalyzer';
 import { ImageProcessor } from '../services/imageProcessor';
 import { CoordinatorAgent, FinalReport } from '../services/multiAgentSystem';
+import { useAuth } from '../contexts/AuthContext';
 import { Upload, FileCheck, AlertCircle, CheckCircle, XCircle, FileText, Loader2, Trash2, Download } from 'lucide-react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
@@ -39,7 +40,8 @@ interface DocumentCheckResult {
   overallStatus: 'approved' | 'rejected' | 'warning' | null;
 }
 
-export function DocumentCheckView() {
+export default function DocumentCheckView() {
+  const { user } = useAuth();
   const [piDocument, setPiDocument] = useState<UploadedDocument | null>(null);
   const [documents, setDocuments] = useState<{
     notaFiscal: UploadedDocument | null;
@@ -154,7 +156,9 @@ export function DocumentCheckView() {
       const coordinator = new CoordinatorAgent({
         maxConcurrent: 3,  // Máximo 3 requisições simultâneas
         rateLimit: { maxRequests: 10, windowMs: 1000 },  // 10 req/s
-        maxRetries: 3  // Até 3 tentativas em caso de erro
+        maxRetries: 3,  // Até 3 tentativas em caso de erro
+        agencyId: user?.agencyId,  // ID da agência para memória compartilhada
+        enableMemory: true  // Habilita sistema de memória e aprendizado
       });
       
       const finalReport = await coordinator.analyzeDocumentsWithProgressParallel(

@@ -3,7 +3,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { Sidebar } from './components/Sidebar';
 import { GPTsCalixView } from './components/GPTsCalixView';
-import { DocumentCheckView } from './components/DocumentCheckView';
+import DocumentCheckView from './components/DocumentCheckView';
 import { DashboardView } from './views/DashboardView';
 import { TeamManagementView } from './views/TeamManagementView';
 import { AgencyManagementView } from './views/AgencyManagementView';
