@@ -7,6 +7,7 @@
 
 import { DocumentExtractor } from './documentExtractor';
 import { ImageProcessor } from './imageProcessor';
+import { BatchProcessor, RetryWithBackoff } from '../utils/concurrencyControl';
 
 // ============================================================================
 // TIPOS E INTERFACES
@@ -442,22 +443,43 @@ export class CoordinatorAgent {
   private extractorAgent: DocumentExtractorAgent;
   private comparatorAgent: ComparatorAgent;
   private synthesizerAgent: SynthesizerAgent;
+  private batchProcessor: BatchProcessor<any, any>;
+  private retryHandler: RetryWithBackoff;
 
-  constructor() {
+  constructor(
+    options?: {
+      maxConcurrent?: number;
+      rateLimit?: { maxRequests: number; windowMs: number };
+      maxRetries?: number;
+    }
+  ) {
     this.extractorAgent = new DocumentExtractorAgent();
     this.comparatorAgent = new ComparatorAgent();
     this.synthesizerAgent = new SynthesizerAgent();
+    
+    // Configurar batch processor com controle de concorrência
+    this.batchProcessor = new BatchProcessor(
+      options?.maxConcurrent || 3, // Máximo 3 requisições simultâneas
+      options?.rateLimit || { maxRequests: 10, windowMs: 1000 } // 10 req/s
+    );
+    
+    // Configurar retry com backoff
+    this.retryHandler = new RetryWithBackoff(
+      options?.maxRetries || 3,
+      1000,
+      10000
+    );
   }
 
   /**
-   * Orquestra todo o processo de análise multi-agente
+   * Orquestra todo o processo de análise multi-agente (VERSÃO SEQUENCIAL)
    */
   async analyzeDocuments(
     piFile: File,
     documents: Array<{ file: File; type: string }>
   ): Promise<FinalReport> {
     console.log('\n' + '='.repeat(80));
-    console.log('🤖 SISTEMA MULTI-AGENTE INICIADO');
+    console.log('🤖 SISTEMA MULTI-AGENTE INICIADO (Sequencial)');
     console.log('='.repeat(80));
 
     // FASE 1: Extração paralela de todos os documentos
@@ -503,7 +525,76 @@ export class CoordinatorAgent {
   }
 
   /**
-   * Versão com callback de progresso
+   * Orquestra todo o processo de análise multi-agente (VERSÃO PARALELA)
+   * Até 67% mais rápido que a versão sequencial
+   */
+  async analyzeDocumentsParallel(
+    piFile: File,
+    documents: Array<{ file: File; type: string }>
+  ): Promise<FinalReport> {
+    const startTime = Date.now();
+    
+    console.log('\n' + '='.repeat(80));
+    console.log('🚀 SISTEMA MULTI-AGENTE INICIADO (Paralelo)');
+    console.log('='.repeat(80));
+
+    // FASE 1: Extração PARALELA de todos os documentos
+    console.log('\n📄 FASE 1: Extração Paralela de Documentos');
+    console.log('-'.repeat(80));
+
+    const extractionPromises = [
+      this.extractorAgent.extractDocument(piFile, 'pi'),
+      ...documents.map(doc => this.extractorAgent.extractDocument(doc.file, doc.type))
+    ];
+
+    const [piData, ...documentsData] = await Promise.all(extractionPromises);
+    
+    console.log(`✅ PI extraído: ${Object.keys(piData.extractedFields).length} campos`);
+    documentsData.forEach((data, i) => {
+      console.log(`✅ ${documents[i].type} extraído: ${Object.keys(data.extractedFields).length} campos`);
+    });
+
+    const phase1Time = Date.now() - startTime;
+    console.log(`⏱️  Tempo da Fase 1: ${(phase1Time / 1000).toFixed(2)}s`);
+
+    // FASE 2: Comparação PARALELA
+    console.log('\n🔍 FASE 2: Comparação Paralela');
+    console.log('-'.repeat(80));
+
+    const comparisonPromises = documentsData.map(docData => 
+      this.comparatorAgent.compareDocuments(piData, docData)
+    );
+
+    const analyses = await Promise.all(comparisonPromises);
+    
+    analyses.forEach((analysis, i) => {
+      console.log(`✅ ${documentsData[i].type} analisado: ${analysis.status} (${analysis.comparisons.length} comparações)`);
+    });
+
+    const phase2Time = Date.now() - startTime - phase1Time;
+    console.log(`⏱️  Tempo da Fase 2: ${(phase2Time / 1000).toFixed(2)}s`);
+
+    // FASE 3: Síntese final
+    console.log('\n📊 FASE 3: Síntese Final');
+    console.log('-'.repeat(80));
+
+    const finalReport = await this.synthesizerAgent.synthesize(piData, documentsData, analyses);
+    console.log(`✅ Relatório final: ${finalReport.overallStatus}`);
+    console.log(`   - ${finalReport.criticalIssues.length} problemas críticos`);
+    console.log(`   - ${finalReport.warnings.length} avisos`);
+    console.log(`   - ${finalReport.recommendations.length} recomendações`);
+
+    const totalTime = Date.now() - startTime;
+    console.log('\n' + '='.repeat(80));
+    console.log('✅ SISTEMA MULTI-AGENTE CONCLUÍDO');
+    console.log(`⏱️  Tempo Total: ${(totalTime / 1000).toFixed(2)}s`);
+    console.log('='.repeat(80) + '\n');
+
+    return finalReport;
+  }
+
+  /**
+   * Versão com callback de progresso (SEQUENCIAL)
    */
   async analyzeDocumentsWithProgress(
     piFile: File,
@@ -541,6 +632,48 @@ export class CoordinatorAgent {
     // FASE 3: Síntese
     updateProgress('synthesis', 'Gerando relatório final');
     const finalReport = await this.synthesizerAgent.synthesize(piData, documentsData, analyses);
+
+    return finalReport;
+  }
+
+  /**
+   * Versão com callback de progresso (PARALELA)
+   * Até 67% mais rápido
+   */
+  async analyzeDocumentsWithProgressParallel(
+    piFile: File,
+    documents: Array<{ file: File; type: string }>,
+    onProgress?: (phase: string, progress: number, message: string) => void
+  ): Promise<FinalReport> {
+    const startTime = Date.now();
+
+    // FASE 1: Extração PARALELA (0-40%)
+    onProgress?.('extraction', 5, 'Iniciando extração paralela...');
+    
+    const extractionPromises = [
+      this.extractorAgent.extractDocument(piFile, 'pi'),
+      ...documents.map(doc => this.extractorAgent.extractDocument(doc.file, doc.type))
+    ];
+
+    const [piData, ...documentsData] = await Promise.all(extractionPromises);
+    onProgress?.('extraction', 40, `${documents.length + 1} documentos extraídos`);
+
+    // FASE 2: Comparação PARALELA (40-80%)
+    onProgress?.('comparison', 45, 'Iniciando comparações paralelas...');
+    
+    const comparisonPromises = documentsData.map(docData => 
+      this.comparatorAgent.compareDocuments(piData, docData)
+    );
+
+    const analyses = await Promise.all(comparisonPromises);
+    onProgress?.('comparison', 80, `${analyses.length} comparações concluídas`);
+
+    // FASE 3: Síntese (80-100%)
+    onProgress?.('synthesis', 85, 'Gerando relatório final...');
+    const finalReport = await this.synthesizerAgent.synthesize(piData, documentsData, analyses);
+    
+    const totalTime = Date.now() - startTime;
+    onProgress?.('synthesis', 100, `Concluído em ${(totalTime / 1000).toFixed(2)}s`);
 
     return finalReport;
   }

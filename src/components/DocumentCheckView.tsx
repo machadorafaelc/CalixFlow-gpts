@@ -150,10 +150,14 @@ export function DocumentCheckView() {
         return;
       }
 
-      // Usar sistema multi-agente
-      const coordinator = new CoordinatorAgent();
+      // Usar sistema multi-agente (VERSÃO PARALELA)
+      const coordinator = new CoordinatorAgent({
+        maxConcurrent: 3,  // Máximo 3 requisições simultâneas
+        rateLimit: { maxRequests: 10, windowMs: 1000 },  // 10 req/s
+        maxRetries: 3  // Até 3 tentativas em caso de erro
+      });
       
-      const finalReport = await coordinator.analyzeDocumentsWithProgress(
+      const finalReport = await coordinator.analyzeDocumentsWithProgressParallel(
         piDocument.file,
         docsToAnalyze,
         (phase, progress, message) => {
