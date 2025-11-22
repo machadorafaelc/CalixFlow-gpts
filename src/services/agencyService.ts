@@ -21,18 +21,21 @@ export class AgencyService {
   /**
    * Criar nova agência
    */
-  static async createAgency(
-    name: string,
-    description: string,
-    createdBy: string
-  ): Promise<string> {
+  static async createAgency(data: {
+    name: string;
+    description?: string;
+    logo?: string;
+    status?: 'active' | 'inactive';
+    createdBy: string;
+  }): Promise<string> {
     const agencyData = {
-      name,
-      description,
+      name: data.name,
+      description: data.description || '',
+      logo: data.logo || '',
       createdAt: serverTimestamp(),
-      createdBy,
+      createdBy: data.createdBy,
       updatedAt: serverTimestamp(),
-      status: 'active' as const,
+      status: (data.status || 'active') as const,
       userCount: 0,
       gptCount: 0
     };
