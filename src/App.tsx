@@ -11,6 +11,7 @@ import { GPTManagementView } from './views/GPTManagementView';
 import { GPTAssignmentView } from './views/GPTAssignmentView';
 import { UserManagementView } from './views/UserManagementView';
 import { PautaPIsView } from './views/PautaPIsView';
+import { PautaPIsViewV2 } from './views/PautaPIsViewV2';
 import { LoginView } from './components/LoginView';
 import { RegisterView } from './components/RegisterView';
 import { SuperAdminSetup } from './components/SuperAdminSetup';
@@ -42,7 +43,7 @@ function AppContent() {
       case 'users':
         return <UserManagementView />;
       case 'pauta-pis':
-        return <PautaPIsView />;
+        return <PautaPIsViewV2 />;
       default:
         return <GPTsCalixView />;
     }

@@ -13,8 +13,10 @@ export interface User {
   uid: string;
   email: string;
   displayName: string;
+  photoURL?: string; // URL da foto do usuário
   role: 'super_admin' | 'agency_admin' | 'user';
   agencyId?: string; // null para super_admin
+  department?: 'midia' | 'checking' | 'financeiro'; // Departamento do colaborador
   createdAt: Timestamp;
   lastLogin: Timestamp;
 }
@@ -252,6 +254,8 @@ export interface PI {
   status: PIStatus;
   departamento: 'midia' | 'checking' | 'financeiro';
   responsavel: string; // Nome do responsável atual
+  responsavelId?: string; // UID do responsável
+  responsavelPhoto?: string; // URL da foto do responsável
   
   // Valores e datas
   valor: number;

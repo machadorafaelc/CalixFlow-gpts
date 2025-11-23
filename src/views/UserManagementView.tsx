@@ -17,6 +17,7 @@ export function UserManagementView() {
     displayName: '',
     role: 'user' as 'super_admin' | 'agency_admin' | 'user',
     agencyId: '',
+    department: '' as '' | 'midia' | 'checking' | 'financeiro',
   });
 
   useEffect(() => {
@@ -49,6 +50,7 @@ export function UserManagementView() {
           displayName: formData.displayName,
           role: formData.role,
           agencyId: formData.agencyId || undefined,
+          department: formData.department || undefined,
         });
       } else {
         // Para criar novo usuário, precisamos primeiro criar no Firebase Auth
@@ -59,7 +61,7 @@ export function UserManagementView() {
       
       setShowForm(false);
       setEditingUser(null);
-      setFormData({ email: '', displayName: '', role: 'user', agencyId: '' });
+      setFormData({ email: '', displayName: '', role: 'user', agencyId: '', department: '' });
       loadData();
     } catch (error) {
       console.error('Erro ao salvar usuário:', error);
@@ -73,6 +75,7 @@ export function UserManagementView() {
       displayName: user.displayName || '',
       role: user.role,
       agencyId: user.agencyId || '',
+      department: user.department || '',
     });
     setShowForm(true);
   };
@@ -91,7 +94,7 @@ export function UserManagementView() {
   const handleCancel = () => {
     setShowForm(false);
     setEditingUser(null);
-    setFormData({ email: '', displayName: '', role: 'user', agencyId: '' });
+    setFormData({ email: '', displayName: '', role: 'user', agencyId: '', department: '' });
   };
 
   const getRoleBadge = (role: string) => {
@@ -187,24 +190,42 @@ export function UserManagementView() {
               </div>
 
               {formData.role !== 'super_admin' && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Agência *
-                  </label>
-                  <select
-                    value={formData.agencyId}
-                    onChange={(e) => setFormData({ ...formData, agencyId: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    required
-                  >
-                    <option value="">Selecione uma agência</option>
-                    {agencies.map((agency) => (
-                      <option key={agency.id} value={agency.id}>
-                        {agency.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                <>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Agência *
+                    </label>
+                    <select
+                      value={formData.agencyId}
+                      onChange={(e) => setFormData({ ...formData, agencyId: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      required
+                    >
+                      <option value="">Selecione uma agência</option>
+                      {agencies.map((agency) => (
+                        <option key={agency.id} value={agency.id}>
+                          {agency.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Departamento
+                    </label>
+                    <select
+                      value={formData.department}
+                      onChange={(e) => setFormData({ ...formData, department: e.target.value as any })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    >
+                      <option value="">Nenhum</option>
+                      <option value="midia">Mídia</option>
+                      <option value="checking">Checking</option>
+                      <option value="financeiro">Financeiro</option>
+                    </select>
+                  </div>
+                </>
               )}
 
               <div className="flex gap-3 pt-4">
