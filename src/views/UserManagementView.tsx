@@ -10,6 +10,7 @@ export function UserManagementView() {
   const [users, setUsers] = useState<UserProfile[]>([]);
   const [agencies, setAgencies] = useState<Agency[]>([]);
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingUser, setEditingUser] = useState<UserProfile | null>(null);
   const [formData, setFormData] = useState({
@@ -45,6 +46,7 @@ export function UserManagementView() {
     if (!user) return;
 
     try {
+      setSaving(true);
       if (editingUser) {
         await UserService.updateUser(editingUser.uid, {
           displayName: formData.displayName,
@@ -52,6 +54,7 @@ export function UserManagementView() {
           agencyId: formData.agencyId || undefined,
           department: formData.department || undefined,
         });
+        alert('✅ Usuário atualizado com sucesso!');
       } else {
         // Para criar novo usuário, precisamos primeiro criar no Firebase Auth
         // Isso normalmente seria feito via Cloud Functions ou Admin SDK
@@ -62,9 +65,12 @@ export function UserManagementView() {
       setShowForm(false);
       setEditingUser(null);
       setFormData({ email: '', displayName: '', role: 'user', agencyId: '', department: '' });
-      loadData();
+      await loadData();
     } catch (error) {
       console.error('Erro ao salvar usuário:', error);
+      alert('❌ Erro ao salvar usuário: ' + (error as Error).message);
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -231,9 +237,10 @@ export function UserManagementView() {
               <div className="flex gap-3 pt-4">
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                  disabled={saving}
+                  className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {editingUser ? 'Salvar Alterações' : 'Enviar Convite'}
+                  {saving ? 'Salvando...' : (editingUser ? 'Salvar Alterações' : 'Enviar Convite')}
                 </button>
                 <button
                   type="button"
