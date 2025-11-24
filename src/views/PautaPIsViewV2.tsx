@@ -28,10 +28,15 @@ export function PautaPIsViewV2() {
   }, [userProfile]);
 
   const loadData = async () => {
-    if (!userProfile?.agencyId) return;
-
     try {
       setLoading(true);
+      
+      if (!userProfile?.agencyId) {
+        setPis([]);
+        setUsers([]);
+        return;
+      }
+
       const [pisData, usersData] = await Promise.all([
         PIService.listPIs({ agencyId: userProfile.agencyId }),
         UserService.listUsers()
