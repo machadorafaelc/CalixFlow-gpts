@@ -3,7 +3,7 @@ import { Building2, Plus, Search, ArrowLeft } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { useAuth } from '../contexts/AuthContext';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, addDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { Client } from '../types/firestore';
 
@@ -17,13 +17,19 @@ export function GPClientsView({ onBack, onClientSelect }: GPClientsViewProps) {
   const [clients, setClients] = useState<Client[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [newClientName, setNewClientName] = useState('');
+  const [newClientDescription, setNewClientDescription] = useState('');
 
   useEffect(() => {
     loadClients();
   }, [userProfile]);
 
   const loadClients = async () => {
-    if (!userProfile?.agencyId) return;
+    if (!userProfile?.agencyId) {
+      setLoading(false);
+      return;
+    }
 
     try {
       setLoading(true);
@@ -72,6 +78,13 @@ export function GPClientsView({ onBack, onClientSelect }: GPClientsViewProps) {
               <p className="text-stone-500 mt-1">Gerencie clientes e suas campanhas</p>
             </div>
           </div>
+          <Button
+            onClick={() => setShowCreateModal(true)}
+            className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2"
+          >
+            <Plus className="size-4" />
+            Novo Cliente
+          </Button>
         </div>
       </div>
 
@@ -192,6 +205,85 @@ export function GPClientsView({ onBack, onClientSelect }: GPClientsViewProps) {
           )}
         </div>
       </div>
+
+      {/* Modal: Criar Cliente */}
+      {showCreateModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Novo Cliente</h3>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Nome do Cliente
+                </label>
+                <input
+                  type="text"
+                  value={newClientName}
+                  onChange={(e) => setNewClientName(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                  placeholder="Ex: Banco da Amazônia"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Descrição (opcional)
+                </label>
+                <textarea
+                  value={newClientDescription}
+                  onChange={(e) => setNewClientDescription(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                  rows={3}
+                  placeholder="Descreva o cliente..."
+                />
+              </div>
+            </div>
+
+            <div className="flex gap-3 mt-6">
+              <Button
+                onClick={() => {
+                  setShowCreateModal(false);
+                  setNewClientName('');
+                  setNewClientDescription('');
+                }}
+                variant="outline"
+                className="flex-1"
+              >
+                Cancelar
+              </Button>
+              <Button
+                onClick={async () => {
+                  if (!newClientName.trim() || !userProfile?.agencyId) return;
+                  
+                  try {
+                    await addDoc(collection(db, 'clients'), {
+                      agencyId: userProfile.agencyId,
+                      name: newClientName,
+                      description: newClientDescription,
+                      status: 'active',
+                      createdAt: Timestamp.now(),
+                      updatedAt: Timestamp.now()
+                    });
+                    
+                    setShowCreateModal(false);
+                    setNewClientName('');
+                    setNewClientDescription('');
+                    loadClients();
+                  } catch (error) {
+                    console.error('Erro ao criar cliente:', error);
+                    alert('Erro ao criar cliente');
+                  }
+                }}
+                disabled={!newClientName.trim()}
+                className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
+              >
+                Criar
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
