@@ -17,6 +17,7 @@ import { PautaPIsViewV2 } from './views/PautaPIsViewV2';
 import { PlanosMidiaView } from './views/PlanosMidiaView';
 import { GPTDebugView } from './views/GPTDebugView';
 import { ProjectManagementHub } from './views/ProjectManagementHub';
+import { GPClientsView } from './views/GPClientsView';
 import { LoginView } from './components/LoginView';
 import { RegisterView } from './components/RegisterView';
 import { SuperAdminSetup } from './components/SuperAdminSetup';
@@ -51,6 +52,8 @@ function AppContent() {
         return <UserManagementView />;
       case 'clients':
         return <ClientManagementView />;
+      case 'gp-clients':
+        return <GPClientsView onBack={() => setCurrentView('project-management')} onClientSelect={(id, name) => console.log('Cliente selecionado:', id, name)} />;
       case 'pauta-pis':
         return <PautaPIsViewV2 />;
       case 'planos-midia':

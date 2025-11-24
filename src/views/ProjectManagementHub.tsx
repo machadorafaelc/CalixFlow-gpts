@@ -28,7 +28,7 @@ export function ProjectManagementHub({ onNavigate }: ProjectManagementHubProps) 
       iconColor: 'text-blue-600',
     },
     {
-      id: 'clients',
+      id: 'gp-clients',
       title: 'Clientes',
       description: 'Gerencie clientes, campanhas e a hierarquia de projetos',
       icon: Building2,
