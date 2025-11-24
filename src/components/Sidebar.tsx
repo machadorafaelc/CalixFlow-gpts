@@ -1,7 +1,7 @@
 import { Bot, FileCheck, LogOut, User, BarChart3, Building2, Settings, Users, ClipboardList, Sparkles, Kanban } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from './ui/button';
-import calixLogo from 'figma:asset/f03f62b37801fa1aca88a766c230976358254a8f.png';
+
 
 interface SidebarProps {
   currentView: string;
@@ -66,16 +66,9 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
     <div className="w-64 bg-gray-50/50 border-r border-gray-200/50 min-h-screen p-8 flex flex-col">
       {/* Logo e Branding */}
       <div className="mb-12">
-        <div className="flex flex-col items-start gap-4">
-          <img 
-            src={calixLogo} 
-            alt="CalixFlow" 
-            className="h-12 w-auto"
-          />
-          <div className="border-l-2 border-purple-400 pl-4">
-            <h1 className="text-purple-900 tracking-wide text-2xl font-medium">CalixFlow</h1>
-            <p className="text-gray-600 mt-1">Gestão</p>
-          </div>
+        <div className="border-l-2 border-purple-400 pl-4">
+          <h1 className="text-purple-900 tracking-wide text-3xl font-bold">VegaFlow</h1>
+          <p className="text-gray-600 mt-1">Gestão Inteligente</p>
         </div>
       </div>
       
