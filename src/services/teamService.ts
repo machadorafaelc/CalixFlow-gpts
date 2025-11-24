@@ -1,367 +1,307 @@
-/**
- * Serviço de Equipes
- * 
- * Gerencia equipes, membros e permissões
- */
-
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  addDoc,
-  updateDoc,
+import { 
+  collection, 
+  doc, 
+  getDoc, 
+  getDocs, 
+  addDoc, 
+  updateDoc, 
   deleteDoc,
-  query,
+  query, 
   where,
   orderBy,
-  Timestamp,
-  serverTimestamp
+  Timestamp
 } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import { Team, TeamMember, TeamInvite } from '../types/firestore';
+import { Team, TeamMember, Department, TeamRole } from '../types/firestore';
 
 export class TeamService {
+  private static COLLECTION = 'teams';
+  private static MEMBERS_COLLECTION = 'team_members';
+
   /**
-   * Criar nova equipe
+   * Criar novo time
    */
-  static async createTeam(
-    name: string,
-    description: string | undefined,
-    createdBy: string,
-    clientIds: string[] = []
-  ): Promise<string> {
-    try {
-      const teamData = {
-        name,
-        description,
-        createdAt: serverTimestamp(),
-        createdBy,
-        updatedAt: serverTimestamp(),
-        memberCount: 1,
-        clientIds
-      };
-      
-      const teamRef = await addDoc(collection(db, 'teams'), teamData);
-      
-      // Adicionar criador como admin
-      await this.addMember(
-        teamRef.id,
-        createdBy,
-        'admin',
-        createdBy,
-        '', // email será atualizado
-        ''  // displayName será atualizado
-      );
-      
-      console.log('Equipe criada:', teamRef.id);
-      return teamRef.id;
-      
-    } catch (error) {
-      console.error('Erro ao criar equipe:', error);
-      throw error;
-    }
+  static async createTeam(data: {
+    agencyId: string;
+    clientId: string;
+    department: Department;
+    createdBy: string;
+  }): Promise<string> {
+    const teamData: Omit<Team, 'id'> = {
+      agencyId: data.agencyId,
+      clientId: data.clientId,
+      department: data.department,
+      members: {
+        gerente: [],
+        supervisor: [],
+        coordenador: [],
+        analista: [],
+      },
+      createdAt: Timestamp.now(),
+      createdBy: data.createdBy,
+      updatedAt: Timestamp.now(),
+    };
+
+    const docRef = await addDoc(collection(db, this.COLLECTION), teamData);
+    return docRef.id;
   }
-  
+
   /**
-   * Obter equipe por ID
+   * Buscar time por ID
    */
   static async getTeam(teamId: string): Promise<Team | null> {
-    try {
-      const teamDoc = await getDoc(doc(db, 'teams', teamId));
-      
-      if (!teamDoc.exists()) {
-        return null;
-      }
-      
-      return {
-        id: teamDoc.id,
-        ...teamDoc.data()
-      } as Team;
-      
-    } catch (error) {
-      console.error('Erro ao obter equipe:', error);
+    const docRef = doc(db, this.COLLECTION, teamId);
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.exists()) {
       return null;
     }
+
+    return {
+      id: docSnap.id,
+      ...docSnap.data(),
+    } as Team;
   }
-  
+
   /**
-   * Listar equipes do usuário
+   * Listar times de um cliente
    */
-  static async listUserTeams(userId: string): Promise<Team[]> {
-    try {
-      // Buscar memberships do usuário
-      const membersQuery = query(
-        collection(db, 'teamMembers'),
-        where('userId', '==', userId)
-      );
-      
-      const membersSnapshot = await getDocs(membersQuery);
-      const teamIds = membersSnapshot.docs.map(doc => doc.data().teamId);
-      
-      if (teamIds.length === 0) {
-        return [];
-      }
-      
-      // Buscar equipes
-      const teams: Team[] = [];
-      for (const teamId of teamIds) {
-        const team = await this.getTeam(teamId);
-        if (team) {
-          teams.push(team);
-        }
-      }
-      
-      return teams.sort((a, b) => 
-        b.createdAt.toMillis() - a.createdAt.toMillis()
-      );
-      
-    } catch (error) {
-      console.error('Erro ao listar equipes:', error);
-      return [];
-    }
+  static async listTeamsByClient(clientId: string): Promise<Team[]> {
+    const q = query(
+      collection(db, this.COLLECTION),
+      where('clientId', '==', clientId),
+      orderBy('department', 'asc')
+    );
+
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    } as Team));
   }
-  
+
   /**
-   * Adicionar membro à equipe
+   * Listar times de uma agência
+   */
+  static async listTeamsByAgency(agencyId: string): Promise<Team[]> {
+    const q = query(
+      collection(db, this.COLLECTION),
+      where('agencyId', '==', agencyId)
+    );
+
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    } as Team));
+  }
+
+  /**
+   * Buscar time específico de um cliente e departamento
+   */
+  static async getTeamByClientAndDepartment(
+    clientId: string,
+    department: Department
+  ): Promise<Team | null> {
+    const q = query(
+      collection(db, this.COLLECTION),
+      where('clientId', '==', clientId),
+      where('department', '==', department)
+    );
+
+    const querySnapshot = await getDocs(q);
+    
+    if (querySnapshot.empty) {
+      return null;
+    }
+
+    const doc = querySnapshot.docs[0];
+    return {
+      id: doc.id,
+      ...doc.data(),
+    } as Team;
+  }
+
+  /**
+   * Adicionar membro ao time
    */
   static async addMember(
     teamId: string,
     userId: string,
-    role: 'admin' | 'editor' | 'viewer',
-    addedBy: string,
-    userEmail: string,
-    userDisplayName?: string
-  ): Promise<string> {
-    try {
-      const memberData = {
-        teamId,
-        userId,
-        role,
-        addedAt: serverTimestamp(),
-        addedBy,
-        userEmail,
-        userDisplayName
-      };
-      
-      const memberRef = await addDoc(collection(db, 'teamMembers'), memberData);
-      
-      // Incrementar contador de membros
-      const teamRef = doc(db, 'teams', teamId);
-      const teamDoc = await getDoc(teamRef);
-      const currentCount = teamDoc.data()?.memberCount || 0;
-      
-      await updateDoc(teamRef, {
-        memberCount: currentCount + 1,
-        updatedAt: serverTimestamp()
-      });
-      
-      console.log('Membro adicionado:', memberRef.id);
-      return memberRef.id;
-      
-    } catch (error) {
-      console.error('Erro ao adicionar membro:', error);
-      throw error;
-    }
-  }
-  
-  /**
-   * Listar membros da equipe
-   */
-  static async listTeamMembers(teamId: string): Promise<TeamMember[]> {
-    try {
-      const membersQuery = query(
-        collection(db, 'teamMembers'),
-        where('teamId', '==', teamId),
-        orderBy('addedAt', 'desc')
-      );
-      
-      const membersSnapshot = await getDocs(membersQuery);
-      
-      return membersSnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      })) as TeamMember[];
-      
-    } catch (error) {
-      console.error('Erro ao listar membros:', error);
-      return [];
-    }
-  }
-  
-  /**
-   * Obter role do usuário na equipe
-   */
-  static async getUserRole(teamId: string, userId: string): Promise<'admin' | 'editor' | 'viewer' | null> {
-    try {
-      const membersQuery = query(
-        collection(db, 'teamMembers'),
-        where('teamId', '==', teamId),
-        where('userId', '==', userId)
-      );
-      
-      const membersSnapshot = await getDocs(membersQuery);
-      
-      if (membersSnapshot.empty) {
-        return null;
-      }
-      
-      return membersSnapshot.docs[0].data().role as 'admin' | 'editor' | 'viewer';
-      
-    } catch (error) {
-      console.error('Erro ao obter role:', error);
-      return null;
-    }
-  }
-  
-  /**
-   * Atualizar role de membro
-   */
-  static async updateMemberRole(
-    memberId: string,
-    newRole: 'admin' | 'editor' | 'viewer'
+    role: TeamRole,
+    addedBy: string
   ): Promise<void> {
-    try {
-      const memberRef = doc(db, 'teamMembers', memberId);
-      await updateDoc(memberRef, {
-        role: newRole
-      });
-      
-      console.log('Role atualizado:', memberId, newRole);
-      
-    } catch (error) {
-      console.error('Erro ao atualizar role:', error);
-      throw error;
+    const team = await this.getTeam(teamId);
+    if (!team) throw new Error('Time não encontrado');
+
+    // Adicionar ao array do cargo
+    const updatedMembers = { ...team.members };
+    if (!updatedMembers[role].includes(userId)) {
+      updatedMembers[role] = [...updatedMembers[role], userId];
     }
+
+    // Atualizar time
+    const docRef = doc(db, this.COLLECTION, teamId);
+    await updateDoc(docRef, {
+      members: updatedMembers,
+      updatedAt: Timestamp.now(),
+    });
+
+    // Criar registro de membro
+    const memberData: Omit<TeamMember, 'id'> = {
+      userId,
+      teamId,
+      clientId: team.clientId,
+      department: team.department,
+      role,
+      addedAt: Timestamp.now(),
+      addedBy,
+    };
+
+    await addDoc(collection(db, this.MEMBERS_COLLECTION), memberData);
   }
-  
+
   /**
-   * Remover membro da equipe
+   * Remover membro do time
    */
-  static async removeMember(memberId: string, teamId: string): Promise<void> {
-    try {
-      await deleteDoc(doc(db, 'teamMembers', memberId));
-      
-      // Decrementar contador de membros
-      const teamRef = doc(db, 'teams', teamId);
-      const teamDoc = await getDoc(teamRef);
-      const currentCount = teamDoc.data()?.memberCount || 1;
-      
-      await updateDoc(teamRef, {
-        memberCount: Math.max(0, currentCount - 1),
-        updatedAt: serverTimestamp()
-      });
-      
-      console.log('Membro removido:', memberId);
-      
-    } catch (error) {
-      console.error('Erro ao remover membro:', error);
-      throw error;
-    }
-  }
-  
-  /**
-   * Atualizar equipe
-   */
-  static async updateTeam(
-    teamId: string,
-    updates: {
-      name?: string;
-      description?: string;
-      clientIds?: string[];
-    }
-  ): Promise<void> {
-    try {
-      const teamRef = doc(db, 'teams', teamId);
-      await updateDoc(teamRef, {
-        ...updates,
-        updatedAt: serverTimestamp()
-      });
-      
-      console.log('Equipe atualizada:', teamId);
-      
-    } catch (error) {
-      console.error('Erro ao atualizar equipe:', error);
-      throw error;
-    }
-  }
-  
-  /**
-   * Deletar equipe
-   */
-  static async deleteTeam(teamId: string): Promise<void> {
-    try {
-      // Remover todos os membros
-      const members = await this.listTeamMembers(teamId);
-      for (const member of members) {
-        await deleteDoc(doc(db, 'teamMembers', member.id));
-      }
-      
-      // Remover equipe
-      await deleteDoc(doc(db, 'teams', teamId));
-      
-      console.log('Equipe deletada:', teamId);
-      
-    } catch (error) {
-      console.error('Erro ao deletar equipe:', error);
-      throw error;
-    }
-  }
-  
-  /**
-   * Verificar se usuário tem permissão
-   */
-  static async hasPermission(
+  static async removeMember(
     teamId: string,
     userId: string,
-    requiredRole: 'admin' | 'editor' | 'viewer'
-  ): Promise<boolean> {
-    try {
-      const userRole = await this.getUserRole(teamId, userId);
-      
-      if (!userRole) {
-        return false;
+    role: TeamRole
+  ): Promise<void> {
+    const team = await this.getTeam(teamId);
+    if (!team) throw new Error('Time não encontrado');
+
+    // Remover do array do cargo
+    const updatedMembers = { ...team.members };
+    updatedMembers[role] = updatedMembers[role].filter(id => id !== userId);
+
+    // Atualizar time
+    const docRef = doc(db, this.COLLECTION, teamId);
+    await updateDoc(docRef, {
+      members: updatedMembers,
+      updatedAt: Timestamp.now(),
+    });
+
+    // Deletar registro de membro
+    const q = query(
+      collection(db, this.MEMBERS_COLLECTION),
+      where('teamId', '==', teamId),
+      where('userId', '==', userId),
+      where('role', '==', role)
+    );
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (docSnapshot) => {
+      await deleteDoc(doc(db, this.MEMBERS_COLLECTION, docSnapshot.id));
+    });
+  }
+
+  /**
+   * Listar times de um usuário
+   */
+  static async listTeamsByUser(userId: string): Promise<TeamMember[]> {
+    const q = query(
+      collection(db, this.MEMBERS_COLLECTION),
+      where('userId', '==', userId)
+    );
+
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    } as TeamMember));
+  }
+
+  /**
+   * Verificar se usuário está em um time
+   */
+  static async isUserInTeam(teamId: string, userId: string): Promise<boolean> {
+    const team = await this.getTeam(teamId);
+    if (!team) return false;
+
+    return Object.values(team.members).some(members => members.includes(userId));
+  }
+
+  /**
+   * Obter cargo do usuário no time
+   */
+  static async getUserRoleInTeam(teamId: string, userId: string): Promise<TeamRole | null> {
+    const team = await this.getTeam(teamId);
+    if (!team) return null;
+
+    for (const [role, members] of Object.entries(team.members)) {
+      if (members.includes(userId)) {
+        return role as TeamRole;
       }
-      
-      // Hierarquia de permissões: admin > editor > viewer
-      const roleHierarchy = {
-        'admin': 3,
-        'editor': 2,
-        'viewer': 1
-      };
-      
-      return roleHierarchy[userRole] >= roleHierarchy[requiredRole];
-      
-    } catch (error) {
-      console.error('Erro ao verificar permissão:', error);
-      return false;
     }
+
+    return null;
   }
-  
+
   /**
-   * Obter descrição do role
+   * Deletar time
    */
-  static getRoleDescription(role: 'admin' | 'editor' | 'viewer'): string {
-    const descriptions = {
-      'admin': 'Pode gerenciar equipe, adicionar/remover membros e editar tudo',
-      'editor': 'Pode criar e editar conversas e documentos',
-      'viewer': 'Pode apenas visualizar conversas e documentos'
-    };
-    
-    return descriptions[role];
+  static async deleteTeam(teamId: string): Promise<void> {
+    // Deletar registros de membros
+    const q = query(
+      collection(db, this.MEMBERS_COLLECTION),
+      where('teamId', '==', teamId)
+    );
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (docSnapshot) => {
+      await deleteDoc(doc(db, this.MEMBERS_COLLECTION, docSnapshot.id));
+    });
+
+    // Deletar time
+    const docRef = doc(db, this.COLLECTION, teamId);
+    await deleteDoc(docRef);
   }
-  
+
   /**
-   * Obter badge de role
+   * Copiar time para outro cliente
    */
-  static getRoleBadge(role: 'admin' | 'editor' | 'viewer'): { color: string; label: string } {
-    const badges = {
-      'admin': { color: 'bg-red-100 text-red-800', label: 'Admin' },
-      'editor': { color: 'bg-blue-100 text-blue-800', label: 'Editor' },
-      'viewer': { color: 'bg-gray-100 text-gray-800', label: 'Viewer' }
+  static async copyTeam(
+    sourceTeamId: string,
+    targetClientId: string,
+    createdBy: string
+  ): Promise<string> {
+    const sourceTeam = await this.getTeam(sourceTeamId);
+    if (!sourceTeam) throw new Error('Time de origem não encontrado');
+
+    // Criar novo time com os mesmos membros
+    const newTeamData: Omit<Team, 'id'> = {
+      agencyId: sourceTeam.agencyId,
+      clientId: targetClientId,
+      department: sourceTeam.department,
+      members: { ...sourceTeam.members },
+      createdAt: Timestamp.now(),
+      createdBy,
+      updatedAt: Timestamp.now(),
     };
-    
-    return badges[role];
+
+    const docRef = await addDoc(collection(db, this.COLLECTION), newTeamData);
+    const newTeamId = docRef.id;
+
+    // Criar registros de membros
+    for (const [role, userIds] of Object.entries(sourceTeam.members)) {
+      for (const userId of userIds) {
+        const memberData: Omit<TeamMember, 'id'> = {
+          userId,
+          teamId: newTeamId,
+          clientId: targetClientId,
+          department: sourceTeam.department,
+          role: role as TeamRole,
+          addedAt: Timestamp.now(),
+          addedBy: createdBy,
+        };
+
+        await addDoc(collection(db, this.MEMBERS_COLLECTION), memberData);
+      }
+    }
+
+    return newTeamId;
   }
 }
 

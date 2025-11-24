@@ -26,6 +26,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
     { id: 'gpts-management', label: 'Gerenciar GPTs', icon: Settings, roles: ['super_admin'] },
     { id: 'gpt-assignment', label: 'Atribuir GPTs', icon: Bot, roles: ['super_admin'] },
     { id: 'users', label: 'Gerenciar Usuários', icon: Users, roles: ['super_admin'] },
+    { id: 'clients', label: 'Gerenciar Clientes', icon: Building2, roles: ['super_admin', 'agency_admin'] },
     
     // Menu de equipe (agency_admin)
     { id: 'teams', label: 'Equipes', icon: User, roles: ['agency_admin'] },

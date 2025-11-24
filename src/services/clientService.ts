@@ -1,181 +1,134 @@
-/**
- * Serviço de Gerenciamento de Clientes
- */
-
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  addDoc,
-  updateDoc,
+import { 
+  collection, 
+  doc, 
+  getDoc, 
+  getDocs, 
+  addDoc, 
+  updateDoc, 
   deleteDoc,
-  query,
+  query, 
+  where,
   orderBy,
-  Timestamp,
-  where
+  Timestamp
 } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { Client } from '../types/firestore';
 
 export class ClientService {
   private static COLLECTION = 'clients';
-  
+
   /**
    * Criar novo cliente
    */
-  static async createClient(
-    name: string,
-    description: string,
-    createdBy: string
-  ): Promise<string> {
-    try {
-      const client: Omit<Client, 'id'> = {
-        name,
-        description,
-        createdAt: Timestamp.now(),
-        createdBy,
-        updatedAt: Timestamp.now(),
-        documentCount: 0,
-        conversationCount: 0
-      };
-      
-      const docRef = await addDoc(collection(db, this.COLLECTION), client);
-      
-      console.log('Cliente criado:', name);
-      
-      return docRef.id;
-      
-    } catch (error) {
-      console.error('Erro ao criar cliente:', error);
-      throw new Error('Erro ao criar cliente');
-    }
+  static async createClient(data: {
+    agencyId: string;
+    name: string;
+    description?: string;
+    logo?: string;
+    createdBy: string;
+  }): Promise<string> {
+    const clientData: Omit<Client, 'id'> = {
+      agencyId: data.agencyId,
+      name: data.name,
+      description: data.description,
+      logo: data.logo,
+      status: 'active',
+      piCount: 0,
+      createdAt: Timestamp.now(),
+      createdBy: data.createdBy,
+      updatedAt: Timestamp.now(),
+    };
+
+    const docRef = await addDoc(collection(db, this.COLLECTION), clientData);
+    return docRef.id;
   }
-  
+
   /**
-   * Listar todos os clientes
-   */
-  static async listClients(): Promise<Client[]> {
-    try {
-      const q = query(
-        collection(db, this.COLLECTION),
-        orderBy('name', 'asc')
-      );
-      
-      const querySnapshot = await getDocs(q);
-      
-      const clients: Client[] = [];
-      querySnapshot.forEach((doc) => {
-        clients.push({
-          id: doc.id,
-          ...doc.data()
-        } as Client);
-      });
-      
-      return clients;
-      
-    } catch (error) {
-      console.error('Erro ao listar clientes:', error);
-      throw new Error('Erro ao listar clientes');
-    }
-  }
-  
-  /**
-   * Obter cliente por ID
+   * Buscar cliente por ID
    */
   static async getClient(clientId: string): Promise<Client | null> {
-    try {
-      const docRef = doc(db, this.COLLECTION, clientId);
-      const docSnap = await getDoc(docRef);
-      
-      if (docSnap.exists()) {
-        return {
-          id: docSnap.id,
-          ...docSnap.data()
-        } as Client;
-      }
-      
-      return null;
-      
-    } catch (error) {
-      console.error('Erro ao obter cliente:', error);
+    const docRef = doc(db, this.COLLECTION, clientId);
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.exists()) {
       return null;
     }
+
+    return {
+      id: docSnap.id,
+      ...docSnap.data(),
+    } as Client;
   }
-  
+
+  /**
+   * Listar clientes de uma agência
+   */
+  static async listClients(agencyId: string): Promise<Client[]> {
+    const q = query(
+      collection(db, this.COLLECTION),
+      where('agencyId', '==', agencyId),
+      orderBy('name', 'asc')
+    );
+
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    } as Client));
+  }
+
   /**
    * Atualizar cliente
    */
   static async updateClient(
     clientId: string,
-    updates: Partial<Omit<Client, 'id' | 'createdAt' | 'createdBy'>>
+    data: Partial<Omit<Client, 'id' | 'agencyId' | 'createdAt' | 'createdBy'>>
   ): Promise<void> {
-    try {
-      const docRef = doc(db, this.COLLECTION, clientId);
-      
-      await updateDoc(docRef, {
-        ...updates,
-        updatedAt: Timestamp.now()
-      });
-      
-      console.log('Cliente atualizado:', clientId);
-      
-    } catch (error) {
-      console.error('Erro ao atualizar cliente:', error);
-      throw new Error('Erro ao atualizar cliente');
-    }
+    const docRef = doc(db, this.COLLECTION, clientId);
+    await updateDoc(docRef, {
+      ...data,
+      updatedAt: Timestamp.now(),
+    });
   }
-  
+
   /**
    * Deletar cliente
    */
   static async deleteClient(clientId: string): Promise<void> {
-    try {
-      const docRef = doc(db, this.COLLECTION, clientId);
-      await deleteDoc(docRef);
-      
-      console.log('Cliente deletado:', clientId);
-      
-      // TODO: Deletar também documentos e conversas relacionadas
-      
-    } catch (error) {
-      console.error('Erro ao deletar cliente:', error);
-      throw new Error('Erro ao deletar cliente');
-    }
+    const docRef = doc(db, this.COLLECTION, clientId);
+    await deleteDoc(docRef);
   }
-  
+
   /**
-   * Incrementar contador de documentos
+   * Incrementar contador de PIs
    */
-  static async incrementDocumentCount(clientId: string): Promise<void> {
-    try {
-      const client = await this.getClient(clientId);
-      if (!client) return;
-      
-      await this.updateClient(clientId, {
-        documentCount: client.documentCount + 1
-      });
-      
-    } catch (error) {
-      console.error('Erro ao incrementar contador de documentos:', error);
-    }
+  static async incrementPICount(clientId: string, increment: number = 1): Promise<void> {
+    const client = await this.getClient(clientId);
+    if (!client) return;
+
+    const docRef = doc(db, this.COLLECTION, clientId);
+    await updateDoc(docRef, {
+      piCount: (client.piCount || 0) + increment,
+      updatedAt: Timestamp.now(),
+    });
   }
-  
+
   /**
-   * Incrementar contador de conversas
+   * Buscar clientes ativos de uma agência
    */
-  static async incrementConversationCount(clientId: string): Promise<void> {
-    try {
-      const client = await this.getClient(clientId);
-      if (!client) return;
-      
-      await this.updateClient(clientId, {
-        conversationCount: client.conversationCount + 1
-      });
-      
-    } catch (error) {
-      console.error('Erro ao incrementar contador de conversas:', error);
-    }
+  static async listActiveClients(agencyId: string): Promise<Client[]> {
+    const q = query(
+      collection(db, this.COLLECTION),
+      where('agencyId', '==', agencyId),
+      where('status', '==', 'active'),
+      orderBy('name', 'asc')
+    );
+
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    } as Client));
   }
 }
 

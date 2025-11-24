@@ -38,6 +38,67 @@ export interface Agency {
 }
 
 /**
+ * Cliente da agência
+ */
+export interface Client {
+  id: string;
+  agencyId: string; // Agência dona do cliente
+  name: string; // Nome do cliente (ex: "Banco da Amazônia")
+  description?: string;
+  logo?: string;
+  status: 'active' | 'inactive';
+  createdAt: Timestamp;
+  createdBy: string;
+  updatedAt: Timestamp;
+  piCount: number; // Número de PIs do cliente
+}
+
+/**
+ * Cargo hierárquico no time
+ */
+export type TeamRole = 'gerente' | 'supervisor' | 'coordenador' | 'analista';
+
+/**
+ * Departamento
+ */
+export type Department = 'midia' | 'checking' | 'financeiro';
+
+/**
+ * Time de um cliente em um departamento específico
+ */
+export interface Team {
+  id: string;
+  agencyId: string; // Agência
+  clientId: string; // Cliente associado
+  department: Department; // Departamento (Mídia, Checking, Financeiro)
+  
+  // Membros do time por cargo
+  members: {
+    gerente: string[]; // UIDs dos gerentes
+    supervisor: string[]; // UIDs dos supervisores
+    coordenador: string[]; // UIDs dos coordenadores
+    analista: string[]; // UIDs dos analistas
+  };
+  
+  createdAt: Timestamp;
+  createdBy: string;
+  updatedAt: Timestamp;
+}
+
+/**
+ * Membro de um time (para facilitar consultas)
+ */
+export interface TeamMember {
+  userId: string;
+  teamId: string;
+  clientId: string;
+  department: Department;
+  role: TeamRole;
+  addedAt: Timestamp;
+  addedBy: string;
+}
+
+/**
  * GPT (assistente de IA)
  */
 export interface GPT {
@@ -64,20 +125,7 @@ export interface GPTAssignment {
   assignedBy: string; // uid do super_admin
 }
 
-/**
- * Cliente (empresa/projeto) - DEPRECATED: usar Agency
- */
-export interface Client {
-  id: string;
-  name: string;
-  description?: string;
-  logo?: string;
-  createdAt: Timestamp;
-  createdBy: string; // uid do usuário que criou
-  updatedAt: Timestamp;
-  documentCount: number; // quantidade de documentos
-  conversationCount: number; // quantidade de conversas
-}
+
 
 /**
  * Documento do cliente (manual de marca, briefing, etc)
