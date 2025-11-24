@@ -31,18 +31,29 @@ export function PautaPIsViewV2() {
     try {
       setLoading(true);
       
-      if (!userProfile?.agencyId) {
+      if (!userProfile) {
         setPis([]);
         setUsers([]);
         return;
       }
 
+      // Super admin vê todos os PIs, outros veem apenas da sua agência
+      const isSuperAdmin = userProfile.role === 'super_admin';
+      const filters = isSuperAdmin ? {} : { agencyId: userProfile.agencyId };
+
       const [pisData, usersData] = await Promise.all([
-        PIService.listPIs({ agencyId: userProfile.agencyId }),
+        PIService.listPIs(filters),
         UserService.listUsers()
       ]);
+      
       setPis(pisData);
-      setUsers(usersData.filter(u => u.agencyId === userProfile.agencyId));
+      
+      // Super admin vê todos os usuários, outros veem apenas da sua agência
+      if (isSuperAdmin) {
+        setUsers(usersData);
+      } else {
+        setUsers(usersData.filter(u => u.agencyId === userProfile.agencyId));
+      }
     } catch (error) {
       console.error('Erro ao carregar dados:', error);
     } finally {
