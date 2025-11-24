@@ -13,6 +13,7 @@ import { UserManagementView } from './views/UserManagementView';
 import { ClientManagementView } from './views/ClientManagementView';
 import { PautaPIsView } from './views/PautaPIsView';
 import { PautaPIsViewV2 } from './views/PautaPIsViewV2';
+import { PlanosMidiaView } from './views/PlanosMidiaView';
 import { LoginView } from './components/LoginView';
 import { RegisterView } from './components/RegisterView';
 import { SuperAdminSetup } from './components/SuperAdminSetup';
@@ -47,6 +48,8 @@ function AppContent() {
         return <ClientManagementView />;
       case 'pauta-pis':
         return <PautaPIsViewV2 />;
+      case 'planos-midia':
+        return <PlanosMidiaView />;
       default:
         return <GPTsCalixView />;
     }

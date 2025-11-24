@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, List, LayoutGrid, Download, Search, Filter, BarChart3 } from 'lucide-react';
+import { FileText, List, LayoutGrid, Download, Search, Filter, BarChart3, Sparkles } from 'lucide-react';
 import { PIService } from '../services/piService';
 import { UserService } from '../services/userService';
-import { PI, UserProfile } from '../types/firestore';
+import { PI, UserProfile, Client, PlanoMidia } from '../types/firestore';
 import { useAuth } from '../contexts/AuthContext';
+import PlanoMidiaGenerator from '../components/PlanoMidiaGenerator';
+import { ClientService } from '../services/clientService';
 
 export function PautaPIsViewV2() {
   const { user, userProfile } = useAuth();
   const [pis, setPis] = useState<PI[]>([]);
+  const [clients, setClients] = useState<Client[]>([]);
+  const [showPMGenerator, setShowPMGenerator] = useState(false);
   const [users, setUsers] = useState<UserProfile[]>([]);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<'table' | 'kanban'>('table');
@@ -41,12 +45,14 @@ export function PautaPIsViewV2() {
       const isSuperAdmin = userProfile.role === 'super_admin';
       const filters = isSuperAdmin ? {} : { agencyId: userProfile.agencyId };
 
-      const [pisData, usersData] = await Promise.all([
+      const [pisData, usersData, clientsData] = await Promise.all([
         PIService.listPIs(filters),
-        UserService.listUsers()
+        UserService.listUsers(),
+        userProfile.agencyId ? ClientService.listClients(userProfile.agencyId) : Promise.resolve([])
       ]);
       
       setPis(pisData);
+      setClients(clientsData);
       
       // Super admin vê todos os usuários, outros veem apenas da sua agência
       if (isSuperAdmin) {
@@ -71,8 +77,8 @@ export function PautaPIsViewV2() {
     faturados: pis.filter(pi => pi.status === 'faturado').length,
   };
 
-  // Obter lista de clientes únicos
-  const clients = ['all', ...Array.from(new Set(pis.map(pi => pi.cliente)))];
+  // Obter lista de nomes de clientes únicos
+  const clientNames = ['all', ...Array.from(new Set(pis.map(pi => pi.cliente)))];
 
   // Filtrar PIs
   const filteredPIs = pis.filter(pi => {
@@ -168,14 +174,23 @@ export function PautaPIsViewV2() {
       <div className="max-w-[1600px] mx-auto">
         {/* Header */}
         <div className="mb-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-3 bg-purple-100 rounded-xl">
-              <FileText className="text-purple-600" size={28} />
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-purple-100 rounded-xl">
+                <FileText className="text-purple-600" size={28} />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Pauta de PIs</h1>
+                <p className="text-gray-600">Gestão centralizada de Pedidos de Inserção por cliente</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Pauta de PIs</h1>
-              <p className="text-gray-600">Gestão centralizada de Pedidos de Inserção por cliente</p>
-            </div>
+            <button
+              onClick={() => setShowPMGenerator(true)}
+              className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center gap-2 font-medium"
+            >
+              <Sparkles size={20} />
+              Gerar Plano de Mídia com IA
+            </button>
           </div>
         </div>
 
@@ -225,17 +240,17 @@ export function PautaPIsViewV2() {
         {/* Tabs de Clientes */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6 p-4">
           <div className="flex gap-2 overflow-x-auto pb-2">
-            {clients.map(client => (
+            {clientNames.map(clientName => (
               <button
-                key={client}
-                onClick={() => setSelectedClient(client)}
+                key={clientName}
+                onClick={() => setSelectedClient(clientName)}
                 className={`px-4 py-2 rounded-lg whitespace-nowrap transition-colors ${
-                  selectedClient === client
+                  selectedClient === clientName
                     ? 'bg-purple-600 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
-                {client === 'all' ? 'Todos os Clientes' : client}
+                {clientName === 'all' ? 'Todos os Clientes' : clientName}
               </button>
             ))}
           </div>
@@ -454,6 +469,19 @@ export function PautaPIsViewV2() {
           </div>
         )}
       </div>
+      
+      {/* Modal de Geração de Plano de Mídia */}
+      {showPMGenerator && (
+        <PlanoMidiaGenerator
+          clients={clients}
+          onClose={() => setShowPMGenerator(false)}
+          onPlanoGerado={(plano) => {
+            console.log('Plano gerado:', plano);
+            // Recarregar dados se necessário
+            loadData();
+          }}
+        />
+      )}
     </div>
   );
 }

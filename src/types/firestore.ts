@@ -410,3 +410,65 @@ export interface UserProfile {
   createdAt: Timestamp;
   updatedAt: Timestamp;
 }
+
+/**
+ * Plano de Mídia (PM)
+ */
+export interface PlanoMidia {
+  id: string;
+  agencyId: string;
+  clientId: string;
+  cliente: string;
+  campanha: string;
+  periodo: {
+    inicio: string;
+    fim: string;
+  };
+  verba: number;
+  distribuicao: DistribuicaoCanal[];
+  status: 'rascunho' | 'aprovado' | 'em_execucao' | 'concluido' | 'cancelado';
+  createdBy: string;
+  createdAt: any;
+  updatedAt: any;
+  geradoPorIA: boolean;
+  confiancaIA?: number; // 0-100
+  feedbackUsuario?: 'aprovado' | 'rejeitado' | 'modificado';
+}
+
+export interface DistribuicaoCanal {
+  canal: 'TV' | 'Internet' | 'Radio' | 'OOH' | 'Jornal' | 'Revista';
+  porcentagem: number;
+  valor: number;
+  veiculos: VeiculoPlano[];
+}
+
+export interface VeiculoPlano {
+  nome: string;
+  formato: string;
+  quantidade: number;
+  valorUnitario: number;
+  valorTotal: number;
+  periodo: {
+    inicio: string;
+    fim: string;
+  };
+}
+
+/**
+ * Dados de treinamento para IA
+ */
+export interface PMTrainingData {
+  id: string;
+  agencyId: string;
+  clientId: string;
+  cliente: string;
+  setor: string;
+  verba: number;
+  distribuicao: Record<string, number>; // canal -> porcentagem
+  performance?: {
+    alcance?: number;
+    conversao?: number;
+    roi?: number;
+  };
+  createdAt: any;
+}
