@@ -472,3 +472,142 @@ export interface PMTrainingData {
   };
   createdAt: any;
 }
+
+// ============================================
+// GESTÃO DE PROJETOS
+// ============================================
+
+/**
+ * Campanha de um cliente
+ */
+export interface Campaign {
+  id: string;
+  agencyId: string; // Agência dona
+  clientId: string; // Cliente dono
+  name: string; // Nome da campanha
+  description?: string;
+  status: 'planning' | 'active' | 'paused' | 'completed' | 'cancelled';
+  budget?: number; // Orçamento total
+  startDate?: Timestamp;
+  endDate?: Timestamp;
+  members: string[]; // UIDs dos membros atribuídos
+  createdBy: string; // UID do criador
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+
+/**
+ * Job (tarefa/projeto) dentro de uma campanha
+ */
+export interface Job {
+  id: string;
+  agencyId: string;
+  campaignId: string; // Campanha pai
+  clientId: string; // Cliente (denormalizado para queries)
+  title: string;
+  description?: string;
+  status: 'backlog' | 'todo' | 'in_progress' | 'review' | 'done' | 'cancelled';
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  assignedTo: string[]; // UIDs dos responsáveis
+  dueDate?: Timestamp;
+  startDate?: Timestamp;
+  completedAt?: Timestamp;
+  tags?: string[]; // Tags para organização
+  attachments?: string[]; // URLs de arquivos
+  createdBy: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+
+/**
+ * Task (subtarefa) dentro de um Job
+ */
+export interface Task {
+  id: string;
+  agencyId: string;
+  jobId: string; // Job pai
+  title: string;
+  description?: string;
+  status: 'todo' | 'in_progress' | 'done';
+  assignedTo?: string; // UID do responsável
+  dueDate?: Timestamp;
+  completedAt?: Timestamp;
+  createdBy: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+
+/**
+ * Time/Equipe
+ */
+export interface Team {
+  id: string;
+  agencyId: string;
+  name: string; // Nome do time
+  description?: string;
+  department: 'midia' | 'checking' | 'financeiro' | 'criacao' | 'atendimento' | 'outros';
+  leaderId?: string; // UID do líder do time
+  members: string[]; // UIDs dos membros
+  color?: string; // Cor para identificação visual
+  createdBy: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+
+/**
+ * Evento de Pauta (reunião, deadline, etc)
+ */
+export interface PautaEvent {
+  id: string;
+  agencyId: string;
+  title: string;
+  description?: string;
+  type: 'meeting' | 'deadline' | 'review' | 'presentation' | 'other';
+  date: Timestamp; // Data/hora do evento
+  duration?: number; // Duração em minutos
+  location?: string; // Local ou link da reunião
+  attendees: string[]; // UIDs dos participantes
+  relatedTo?: {
+    type: 'campaign' | 'job' | 'client';
+    id: string;
+  };
+  createdBy: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+
+/**
+ * Comentário (pode ser em Job, Task, Campaign, etc)
+ */
+export interface Comment {
+  id: string;
+  agencyId: string;
+  relatedTo: {
+    type: 'job' | 'task' | 'campaign';
+    id: string;
+  };
+  content: string;
+  authorId: string; // UID do autor
+  mentions?: string[]; // UIDs mencionados
+  attachments?: string[];
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+
+/**
+ * Notificação para usuário
+ */
+export interface Notification {
+  id: string;
+  userId: string; // UID do destinatário
+  agencyId: string;
+  type: 'task_assigned' | 'job_updated' | 'comment_mention' | 'deadline_approaching' | 'event_reminder';
+  title: string;
+  message: string;
+  relatedTo?: {
+    type: 'job' | 'task' | 'campaign' | 'event';
+    id: string;
+  };
+  read: boolean;
+  createdAt: Timestamp;
+}

@@ -16,6 +16,7 @@ import { PautaPIsView } from './views/PautaPIsView';
 import { PautaPIsViewV2 } from './views/PautaPIsViewV2';
 import { PlanosMidiaView } from './views/PlanosMidiaView';
 import { GPTDebugView } from './views/GPTDebugView';
+import { ProjectManagementHub } from './views/ProjectManagementHub';
 import { LoginView } from './components/LoginView';
 import { RegisterView } from './components/RegisterView';
 import { SuperAdminSetup } from './components/SuperAdminSetup';
@@ -30,6 +31,8 @@ function AppContent() {
 
   const renderView = () => {
     switch (currentView) {
+      case 'project-management':
+        return <ProjectManagementHub onNavigate={handleViewChange} />;
       case 'gpts':
         return <GPTsCalixView />;
       case 'document-check':
