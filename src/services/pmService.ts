@@ -335,20 +335,28 @@ export async function registerFeedback(
 export async function listPlanosMidia(agencyId: string, clientId?: string): Promise<PlanoMidia[]> {
   try {
     const pmRef = collection(db, 'planos_midia');
-    let q = query(pmRef, where('agencyId', '==', agencyId), orderBy('createdAt', 'desc'));
+    let q = query(pmRef, where('agencyId', '==', agencyId));
     
     if (clientId) {
-      q = query(pmRef, where('agencyId', '==', agencyId), where('clientId', '==', clientId), orderBy('createdAt', 'desc'));
+      q = query(pmRef, where('agencyId', '==', agencyId), where('clientId', '==', clientId));
     }
     
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({
+    const planos = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
     })) as PlanoMidia[];
+    
+    // Ordenar no cliente (JavaScript) ao invés de no Firestore
+    return planos.sort((a, b) => {
+      const aTime = a.createdAt?.toMillis?.() || 0;
+      const bTime = b.createdAt?.toMillis?.() || 0;
+      return bTime - aTime; // desc
+    });
   } catch (error) {
     console.error('Erro ao listar planos de mídia:', error);
-    throw error;
+    // Retornar array vazio ao invés de throw para não travar a página
+    return [];
   }
 }
 
