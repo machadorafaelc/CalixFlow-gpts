@@ -25,6 +25,18 @@ export function GPClientsView({ onBack, onClientSelect }: GPClientsViewProps) {
     loadClients();
   }, [userProfile]);
 
+  const handleOpenCreateModal = () => {
+    setNewClientName('');
+    setNewClientDescription('');
+    setShowCreateModal(true);
+  };
+
+  const handleCloseCreateModal = () => {
+    setShowCreateModal(false);
+    setNewClientName('');
+    setNewClientDescription('');
+  };
+
   const loadClients = async () => {
     if (!userProfile?.agencyId) {
       setLoading(false);
@@ -79,11 +91,11 @@ export function GPClientsView({ onBack, onClientSelect }: GPClientsViewProps) {
             </div>
           </div>
           <Button
-            onClick={() => setShowCreateModal(true)}
+            onClick={handleOpenCreateModal}
             className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2"
           >
             <Plus className="size-4" />
-            Novo Cliente
+            Cadastrar Cliente
           </Button>
         </div>
       </div>
@@ -92,7 +104,7 @@ export function GPClientsView({ onBack, onClientSelect }: GPClientsViewProps) {
       <div className="h-[calc(100vh-120px)] overflow-y-auto p-12">
         <div className="max-w-7xl mx-auto">
           {/* Search Bar */}
-          <div className="mb-8 flex items-center gap-4">
+          <div className="mb-8 flex flex-col md:flex-row md:items-center gap-4">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-gray-400" />
               <input
@@ -103,6 +115,13 @@ export function GPClientsView({ onBack, onClientSelect }: GPClientsViewProps) {
                 className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
+            <Button
+              onClick={handleOpenCreateModal}
+              className="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700 text-white gap-2"
+            >
+              <Plus className="size-4" />
+              Cadastrar Cliente
+            </Button>
           </div>
 
           {/* Stats */}
@@ -157,6 +176,15 @@ export function GPClientsView({ onBack, onClientSelect }: GPClientsViewProps) {
               <p className="text-gray-500">
                 {searchTerm ? 'Nenhum cliente encontrado' : 'Nenhum cliente cadastrado'}
               </p>
+              {!searchTerm && clients.length === 0 && (
+                <Button
+                  onClick={handleOpenCreateModal}
+                  className="mt-6 gap-2 bg-emerald-600 hover:bg-emerald-700 text-white"
+                >
+                  <Plus className="size-4" />
+                  Cadastrar Cliente
+                </Button>
+              )}
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -242,11 +270,7 @@ export function GPClientsView({ onBack, onClientSelect }: GPClientsViewProps) {
 
             <div className="flex gap-3 mt-6">
               <Button
-                onClick={() => {
-                  setShowCreateModal(false);
-                  setNewClientName('');
-                  setNewClientDescription('');
-                }}
+                onClick={handleCloseCreateModal}
                 variant="outline"
                 className="flex-1"
               >
@@ -266,9 +290,7 @@ export function GPClientsView({ onBack, onClientSelect }: GPClientsViewProps) {
                       updatedAt: Timestamp.now()
                     });
                     
-                    setShowCreateModal(false);
-                    setNewClientName('');
-                    setNewClientDescription('');
+                    handleCloseCreateModal();
                     loadClients();
                   } catch (error) {
                     console.error('Erro ao criar cliente:', error);
