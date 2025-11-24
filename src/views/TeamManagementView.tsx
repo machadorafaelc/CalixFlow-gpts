@@ -32,6 +32,8 @@ export function TeamManagementView() {
   const [showAddMemberModal, setShowAddMemberModal] = useState(false);
 
   // Form states
+  const [teamType, setTeamType] = useState<string>(''); // Tipo selecionado
+  const [customTeamName, setCustomTeamName] = useState(''); // Nome customizado
   const [newTeamName, setNewTeamName] = useState('');
   const [newTeamDescription, setNewTeamDescription] = useState('');
   const [newMemberEmail, setNewMemberEmail] = useState('');
@@ -303,16 +305,71 @@ export function TeamManagementView() {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Nome da Equipe
+                    Tipo de Equipe
                   </label>
-                  <input
-                    type="text"
-                    value={newTeamName}
-                    onChange={(e) => setNewTeamName(e.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                    placeholder="Ex: Equipe de Marketing"
-                  />
+                  <select
+                    value={teamType}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setTeamType(value);
+                      
+                      if (value !== 'custom') {
+                        setNewTeamName(value);
+                        setCustomTeamName('');
+                        
+                        // Auto-sugerir descrição
+                        const descriptions: Record<string, string> = {
+                          'Mídia': 'Responsável por planejamento e compra de mídia',
+                          'Criação': 'Responsável por criação de conteúdo e peças',
+                          'Atendimento': 'Responsável pelo relacionamento com clientes',
+                          'Planejamento': 'Responsável por estratégia e planejamento de campanhas',
+                          'Checking': 'Responsável por validação e checagem de documentos',
+                          'Financeiro': 'Responsável por gestão financeira e pagamentos',
+                          'BI': 'Responsável por análise de dados e relatórios',
+                          'Produção': 'Responsável por produção de conteúdo',
+                          'Estúdio': 'Responsável por produção audiovisual',
+                          'Recursos Humanos': 'Responsável por gestão de pessoas e talentos'
+                        };
+                        setNewTeamDescription(descriptions[value] || '');
+                      } else {
+                        setNewTeamName('');
+                        setNewTeamDescription('');
+                      }
+                    }}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white"
+                  >
+                    <option value="">Selecione um tipo...</option>
+                    <option value="Mídia">Mídia</option>
+                    <option value="Criação">Criação</option>
+                    <option value="Atendimento">Atendimento</option>
+                    <option value="Planejamento">Planejamento</option>
+                    <option value="Checking">Checking</option>
+                    <option value="Financeiro">Financeiro</option>
+                    <option value="BI">BI</option>
+                    <option value="Produção">Produção</option>
+                    <option value="Estúdio">Estúdio</option>
+                    <option value="Recursos Humanos">Recursos Humanos</option>
+                    <option value="custom">Personalizado...</option>
+                  </select>
                 </div>
+
+                {teamType === 'custom' && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Nome Personalizado
+                    </label>
+                    <input
+                      type="text"
+                      value={customTeamName}
+                      onChange={(e) => {
+                        setCustomTeamName(e.target.value);
+                        setNewTeamName(e.target.value);
+                      }}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                      placeholder="Digite o nome da equipe..."
+                    />
+                  </div>
+                )}
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
