@@ -2,12 +2,16 @@ import { useState, useEffect } from 'react';
 import { Building2, Bot, Link2, Unlink, Check } from 'lucide-react';
 import { AgencyService } from '../services/agencyService';
 import { GPTService } from '../services/gptService';
-import { Agency, GPT } from '../types/firestore';
+import { Agency, GPT, GPTAssignment } from '../types/firestore';
 import { getColorPalette } from '../utils/colorUtils';
+import { useAuth } from '../contexts/AuthContext';
+import { toast } from 'sonner';
 
 export function GPTAssignmentView() {
+  const { user } = useAuth();
   const [agencies, setAgencies] = useState<Agency[]>([]);
   const [gpts, setGPTs] = useState<GPT[]>([]);
+  const [assignments, setAssignments] = useState<GPTAssignment[]>([]);
   const [selectedAgency, setSelectedAgency] = useState<Agency | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -25,8 +29,17 @@ export function GPTAssignmentView() {
       ]);
       setAgencies(agenciesData);
       setGPTs(gptsData);
+      
+      // Carregar todas as assignments
+      const allAssignments: GPTAssignment[] = [];
+      for (const gpt of gptsData) {
+        const gptAssignments = await GPTService.getGPTAssignments(gpt.id);
+        allAssignments.push(...gptAssignments);
+      }
+      setAssignments(allAssignments);
     } catch (error) {
       console.error('Erro ao carregar dados:', error);
+      toast.error('Erro ao carregar dados');
     } finally {
       setLoading(false);
     }
@@ -34,30 +47,51 @@ export function GPTAssignmentView() {
 
   const isGPTAssigned = (gptId: string): boolean => {
     if (!selectedAgency) return false;
-    const gpt = gpts.find((g) => g.id === gptId);
-    return gpt?.agencyIds?.includes(selectedAgency.id) || false;
+    return assignments.some(
+      (a) => a.gptId === gptId && a.agencyId === selectedAgency.id
+    );
+  };
+
+  const getAssignmentId = (gptId: string): string | null => {
+    if (!selectedAgency) return null;
+    const assignment = assignments.find(
+      (a) => a.gptId === gptId && a.agencyId === selectedAgency.id
+    );
+    return assignment?.id || null;
   };
 
   const handleToggleAssignment = async (gptId: string) => {
-    if (!selectedAgency) return;
+    if (!selectedAgency || !user) return;
 
     try {
       setSaving(true);
       const isAssigned = isGPTAssigned(gptId);
 
       if (isAssigned) {
-        await GPTService.unassignGPTFromAgency(gptId, selectedAgency.id);
+        // Desatribuir
+        const assignmentId = getAssignmentId(gptId);
+        if (assignmentId) {
+          await GPTService.unassignGPT(assignmentId);
+          toast.success('GPT desatribuído com sucesso');
+        }
       } else {
-        await GPTService.assignGPTToAgency(gptId, selectedAgency.id);
+        // Atribuir
+        await GPTService.assignGPT(gptId, selectedAgency.id, user.uid);
+        toast.success('GPT atribuído com sucesso');
       }
 
       // Reload data
       await loadData();
     } catch (error) {
       console.error('Erro ao atribuir/desatribuir GPT:', error);
+      toast.error('Erro ao processar atribuição');
     } finally {
       setSaving(false);
     }
+  };
+
+  const getAgencyGPTCount = (agencyId: string): number => {
+    return assignments.filter((a) => a.agencyId === agencyId).length;
   };
 
   if (loading) {
@@ -116,7 +150,7 @@ export function GPTAssignmentView() {
                       <div className="flex-1">
                         <div className="font-medium text-gray-900">{agency.name}</div>
                         <div className="text-xs text-gray-500">
-                          {gpts.filter((g) => g.agencyIds?.includes(agency.id)).length} GPTs
+                          {getAgencyGPTCount(agency.id)} GPTs
                         </div>
                       </div>
                     </div>
