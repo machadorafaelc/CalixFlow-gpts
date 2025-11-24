@@ -44,20 +44,48 @@ export function PlanosMidiaView() {
     try {
       setLoading(true);
       
-      const [planosData, clientsData, performanceStats, metrics, patterns, improvements] = await Promise.all([
-        listPlanosMidia(userProfile.agencyId),
-        ClientService.listClients(userProfile.agencyId),
-        getPerformanceStats(userProfile.agencyId),
-        getLearningMetrics(userProfile.agencyId),
-        analyzeSuccessPatterns(userProfile.agencyId),
-        suggestImprovements(userProfile.agencyId)
-      ]);
+      // Carregar dados essenciais
+      const planosData = await listPlanosMidia(userProfile.agencyId).catch(err => {
+        console.error('Erro ao carregar planos:', err);
+        return [];
+      });
+      
+      const clientsData = await ClientService.listClients(userProfile.agencyId).catch(err => {
+        console.error('Erro ao carregar clientes:', err);
+        return [];
+      });
       
       setPlanos(planosData);
       setClients(clientsData);
-      setStats(performanceStats);
-      setLearningMetrics(metrics);
-      setSuggestions(improvements);
+      
+      // Carregar métricas (não-bloqueante)
+      getPerformanceStats(userProfile.agencyId)
+        .then(setStats)
+        .catch(err => {
+          console.error('Erro ao carregar stats:', err);
+          setStats({
+            totalPMs: planosData.length,
+            aprovados: 0,
+            rejeitados: 0,
+            modificados: 0,
+            confianciaMedia: 0
+          });
+        });
+      
+      getLearningMetrics(userProfile.agencyId)
+        .then(setLearningMetrics)
+        .catch(err => {
+          console.error('Erro ao carregar learning metrics:', err);
+          setLearningMetrics(null);
+        });
+      
+      suggestImprovements(userProfile.agencyId)
+        .then(setSuggestions)
+        .catch(err => {
+          console.error('Erro ao carregar sugestões:', err);
+          setSuggestions([]);
+        });
+      
     } catch (error) {
       console.error('Erro ao carregar dados:', error);
       toast.error('Erro ao carregar planos de mídia');
