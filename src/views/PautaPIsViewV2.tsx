@@ -4,14 +4,14 @@ import { PIService } from '../services/piService';
 import { UserService } from '../services/userService';
 import { PI, UserProfile, Client, PlanoMidia } from '../types/firestore';
 import { useAuth } from '../contexts/AuthContext';
-import PlanoMidiaGenerator from '../components/PlanoMidiaGenerator';
+
 import { ClientService } from '../services/clientService';
 
 export function PautaPIsViewV2() {
   const { user, userProfile } = useAuth();
   const [pis, setPis] = useState<PI[]>([]);
   const [clients, setClients] = useState<Client[]>([]);
-  const [showPMGenerator, setShowPMGenerator] = useState(false);
+
   const [users, setUsers] = useState<UserProfile[]>([]);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<'table' | 'kanban'>('table');
@@ -184,13 +184,7 @@ export function PautaPIsViewV2() {
                 <p className="text-gray-600">Gestão centralizada de Pedidos de Inserção por cliente</p>
               </div>
             </div>
-            <button
-              onClick={() => setShowPMGenerator(true)}
-              className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl flex items-center gap-2 font-medium"
-            >
-              <Sparkles size={20} />
-              Gerar Plano de Mídia com IA
-            </button>
+
           </div>
         </div>
 
@@ -469,19 +463,7 @@ export function PautaPIsViewV2() {
           </div>
         )}
       </div>
-      
-      {/* Modal de Geração de Plano de Mídia */}
-      {showPMGenerator && (
-        <PlanoMidiaGenerator
-          clients={clients}
-          onClose={() => setShowPMGenerator(false)}
-          onPlanoGerado={(plano) => {
-            console.log('Plano gerado:', plano);
-            // Recarregar dados se necessário
-            loadData();
-          }}
-        />
-      )}
+
     </div>
   );
 }
