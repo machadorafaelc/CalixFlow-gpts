@@ -33,7 +33,7 @@ export function PautaPIsViewV2() {
     try {
       setLoading(true);
       const [pisData, usersData] = await Promise.all([
-        PIService.listPIs(userProfile.agencyId),
+        PIService.listPIs({ agencyId: userProfile.agencyId }),
         UserService.listUsers()
       ]);
       setPis(pisData);
