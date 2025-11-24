@@ -18,7 +18,7 @@ import {
   Eye
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import TeamService from '../services/teamService';
+import GenericTeamService from '../services/genericTeamService';
 import { Team, TeamMember } from '../types/firestore';
 import { Button } from '../components/ui/button';
 
@@ -54,7 +54,7 @@ export function TeamManagementView() {
     
     try {
       setLoading(true);
-      const userTeams = await TeamService.listUserTeams(user.uid);
+      const userTeams = await GenericTeamService.listUserTeams(user.uid);
       setTeams(userTeams);
       
       if (userTeams.length > 0 && !selectedTeam) {
@@ -69,7 +69,7 @@ export function TeamManagementView() {
 
   const loadTeamMembers = async (teamId: string) => {
     try {
-      const members = await TeamService.listTeamMembers(teamId);
+      const members = await GenericTeamService.listTeamMembers(teamId);
       setTeamMembers(members);
     } catch (error) {
       console.error('Erro ao carregar membros:', error);
@@ -80,7 +80,7 @@ export function TeamManagementView() {
     if (!user || !newTeamName.trim()) return;
     
     try {
-      await TeamService.createTeam(
+      await GenericTeamService.createTeam(
         newTeamName,
         newTeamDescription,
         user.uid,
@@ -116,7 +116,7 @@ export function TeamManagementView() {
 
   const handleUpdateRole = async (memberId: string, newRole: 'admin' | 'editor' | 'viewer') => {
     try {
-      await TeamService.updateMemberRole(memberId, newRole);
+      await GenericTeamService.updateMemberRole(memberId, newRole);
       await loadTeamMembers(selectedTeam!.id);
     } catch (error) {
       console.error('Erro ao atualizar role:', error);
@@ -132,7 +132,7 @@ export function TeamManagementView() {
     }
     
     try {
-      await TeamService.removeMember(memberId, selectedTeam.id);
+      await GenericTeamService.removeMember(memberId, selectedTeam.id);
       await loadTeamMembers(selectedTeam.id);
     } catch (error) {
       console.error('Erro ao remover membro:', error);
@@ -249,7 +249,7 @@ export function TeamManagementView() {
 
                   <div className="space-y-3">
                     {teamMembers.map((member) => {
-                      const roleBadge = TeamService.getRoleBadge(member.role);
+                      const roleBadge = GenericTeamService.getRoleBadge(member.role);
                       
                       return (
                         <div
@@ -439,7 +439,7 @@ export function TeamManagementView() {
                     <option value="admin">Admin - Controle total</option>
                   </select>
                   <p className="text-xs text-gray-500 mt-2">
-                    {TeamService.getRoleDescription(newMemberRole)}
+                    {GenericTeamService.getRoleDescription(newMemberRole)}
                   </p>
                 </div>
               </div>
