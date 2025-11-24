@@ -8,6 +8,7 @@ import { DashboardView } from './views/DashboardView';
 import { TeamManagementView } from './views/TeamManagementView';
 import { AgencyManagementView } from './views/AgencyManagementView';
 import { GPTManagementView } from './views/GPTManagementView';
+import { GPTManagementViewV2 } from './views/GPTManagementViewV2';
 import { GPTAssignmentView } from './views/GPTAssignmentView';
 import { UserManagementView } from './views/UserManagementView';
 import { ClientManagementView } from './views/ClientManagementView';
@@ -40,7 +41,7 @@ function AppContent() {
       case 'agencies':
         return <AgencyManagementView />;
       case 'gpts-management':
-        return <GPTManagementView />;
+        return <GPTManagementViewV2 />;
       case 'gpt-assignment':
         return <GPTAssignmentView />;
       case 'users':
