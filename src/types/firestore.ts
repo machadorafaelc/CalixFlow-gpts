@@ -611,3 +611,68 @@ export interface Notification {
   read: boolean;
   createdAt: Timestamp;
 }
+
+/**
+ * Nota Fiscal de Colaborador
+ */
+export interface NotaFiscal {
+  id: string;
+  agencyId: string;
+  userId: string; // UID do colaborador que enviou
+  userEmail: string;
+  userDisplayName: string;
+  
+  // Arquivo
+  fileName: string;
+  fileUrl: string; // URL do arquivo no Storage
+  driveFileId?: string; // ID do arquivo no Google Drive
+  driveFolderId?: string; // ID da pasta do colaborador no Drive
+  
+  // Validação
+  status: 'pending' | 'validating' | 'approved' | 'rejected';
+  validationResult?: {
+    isValid: boolean;
+    errors: string[];
+    warnings: string[];
+    extractedData?: {
+      numero?: string;
+      valor?: number;
+      data?: string;
+      cnpj?: string;
+      [key: string]: any;
+    };
+  };
+  
+  // Processamento
+  processedAt?: Timestamp;
+  processedBy?: string; // UID do RH que processou
+  rejectionReason?: string;
+  
+  // Notificações
+  emailSent: boolean;
+  emailSentAt?: Timestamp;
+  rhNotified: boolean;
+  
+  // Metadados
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+
+/**
+ * Configuração de RH por Agência
+ */
+export interface RHConfig {
+  id: string; // Mesmo ID da agência
+  agencyId: string;
+  rhEmails: string[]; // Lista de emails do RH para notificação
+  driveFolderId: string; // ID da pasta raiz no Drive para notas
+  emailTemplate?: string; // Template customizado de email
+  validationRules?: {
+    requiredFields?: string[];
+    maxFileSize?: number; // em MB
+    allowedFormats?: string[]; // ['pdf', 'jpg', 'png']
+    [key: string]: any;
+  };
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}

@@ -18,6 +18,7 @@ import { PlanosMidiaView } from './views/PlanosMidiaView';
 import { GPTDebugView } from './views/GPTDebugView';
 import { ProjectManagementHub } from './views/ProjectManagementHub';
 import { GPClientsView } from './views/GPClientsView';
+import { NotasFiscaisView } from './views/NotasFiscaisView';
 import { LoginView } from './components/LoginView';
 import { RegisterView } from './components/RegisterView';
 import { SuperAdminSetup } from './components/SuperAdminSetup';
@@ -58,6 +59,8 @@ function AppContent() {
         return <PautaPIsViewV2 />;
       case 'planos-midia':
         return <PlanosMidiaView />;
+      case 'notas-fiscais':
+        return <NotasFiscaisView />;
       case 'gpt-debug':
         return <GPTDebugView />;
       default:
