@@ -235,7 +235,6 @@ export function UserManagementView() {
                       <option value="financeiro">Financeiro</option>
                     </select>
                   </div>
-                </>
               )}
 
               <div className="flex gap-3 pt-4">
