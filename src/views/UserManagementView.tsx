@@ -48,12 +48,23 @@ export function UserManagementView() {
     try {
       setSaving(true);
       if (editingUser) {
-        await UserService.updateUser(editingUser.uid, {
+        // Construir objeto de atualização apenas com campos definidos
+        const updateData: any = {
           displayName: formData.displayName,
           role: formData.role,
-          agencyId: formData.agencyId || undefined,
-          department: formData.department || undefined,
-        });
+        };
+        
+        // Adicionar agencyId apenas se tiver valor
+        if (formData.agencyId) {
+          updateData.agencyId = formData.agencyId;
+        }
+        
+        // Adicionar department apenas se tiver valor
+        if (formData.department) {
+          updateData.department = formData.department;
+        }
+        
+        await UserService.updateUser(editingUser.uid, updateData);
         alert('✅ Usuário atualizado com sucesso!');
       } else {
         // Para criar novo usuário, precisamos primeiro criar no Firebase Auth
