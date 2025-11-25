@@ -195,36 +195,40 @@ export function UserManagementView() {
                 </select>
               </div>
 
-              {formData.role !== 'super_admin' && (
-                <>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Agência *
-                    </label>
-                    <select
-                      value={formData.agencyId}
-                      onChange={(e) => setFormData({ ...formData, agencyId: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      required
-                    >
-                      <option value="">Selecione uma agência</option>
-                      {agencies.map((agency) => (
-                        <option key={agency.id} value={agency.id}>
-                          {agency.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Agência {formData.role !== 'super_admin' && '*'}
+                </label>
+                <select
+                  value={formData.agencyId}
+                  onChange={(e) => setFormData({ ...formData, agencyId: e.target.value })}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  required={formData.role !== 'super_admin'}
+                >
+                  <option value="">Selecione uma agência</option>
+                  {agencies.map((agency) => (
+                    <option key={agency.id} value={agency.id}>
+                      {agency.name}
+                    </option>
+                  ))}
+                </select>
+                <p className="text-xs text-gray-500 mt-1">
+                  {formData.role === 'super_admin' 
+                    ? 'Opcional para Super Admins. Defina para acessar funcionalidades específicas de agência.'
+                    : 'Obrigatório para usuários e admins de agência.'}
+                </p>
+              </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Departamento
-                    </label>
-                    <select
-                      value={formData.department}
-                      onChange={(e) => setFormData({ ...formData, department: e.target.value as any })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    >
+              {formData.role !== 'super_admin' && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Departamento
+                  </label>
+                  <select
+                    value={formData.department}
+                    onChange={(e) => setFormData({ ...formData, department: e.target.value as any })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  >
                       <option value="">Nenhum</option>
                       <option value="midia">Mídia</option>
                       <option value="checking">Checking</option>
