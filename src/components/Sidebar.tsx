@@ -1,7 +1,7 @@
 import { Bot, FileCheck, LogOut, User, BarChart3, Building2, Settings, Users, ClipboardList, Sparkles, Kanban } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from './ui/button';
-import { Receipt } from 'lucide-react';
+import { Receipt, Palmtree } from 'lucide-react';
 
 
 interface SidebarProps {
@@ -20,6 +20,7 @@ export function Sidebar({ currentView, onViewChange }: SidebarProps) {
     { id: 'pauta-pis', label: 'Pauta de PIs', icon: ClipboardList, roles: ['super_admin', 'agency_admin', 'user'] },
     { id: 'planos-midia', label: 'Planos de Mídia IA', icon: Sparkles, roles: ['super_admin', 'agency_admin', 'user'] },
     { id: 'notas-fiscais', label: 'Notas Fiscais', icon: Receipt, roles: ['super_admin', 'agency_admin', 'user'] },
+    { id: 'ferias', label: 'Férias', icon: Palmtree, roles: ['super_admin', 'agency_admin', 'user'] },
     { id: 'dashboard', label: 'Dashboard', icon: BarChart3, roles: ['super_admin', 'agency_admin'] },
     
     // Separador visual (admin)

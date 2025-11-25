@@ -17,6 +17,7 @@ export interface User {
   role: 'super_admin' | 'agency_admin' | 'user';
   agencyId?: string; // null para super_admin
   department?: 'midia' | 'checking' | 'financeiro'; // Departamento do colaborador
+  managerId?: string; // UID do gerente responsável (para aprovações)
   createdAt: Timestamp;
   lastLogin: Timestamp;
 }
@@ -675,4 +676,105 @@ export interface RHConfig {
   };
   createdAt: Timestamp;
   updatedAt: Timestamp;
+}
+
+/**
+ * Solicitação de Férias
+ */
+export interface VacationRequest {
+  id: string;
+  agencyId: string;
+  
+  // Solicitante
+  userId: string;
+  userEmail: string;
+  userDisplayName: string;
+  userDepartment?: string;
+  
+  // Período solicitado
+  startDate: Timestamp;
+  endDate: Timestamp;
+  totalDays: number; // Dias úteis (10, 15 ou 20)
+  
+  // Aprovação
+  status: 'pending_manager' | 'approved_manager' | 'rejected_manager' | 'approved_rh' | 'rejected_rh' | 'cancelled';
+  
+  // Gerente
+  managerId?: string;
+  managerApprovedAt?: Timestamp;
+  managerRejectionReason?: string;
+  
+  // RH
+  rhApprovedBy?: string;
+  rhApprovedAt?: Timestamp;
+  rhRejectionReason?: string;
+  rhNotes?: string;
+  
+  // Notificações
+  managerNotified: boolean;
+  rhNotified: boolean;
+  userNotified: boolean;
+  
+  // Metadados
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+}
+
+/**
+ * Saldo de Férias do Colaborador
+ */
+export interface VacationBalance {
+  id: string; // Mesmo UID do usuário
+  userId: string;
+  agencyId: string;
+  userEmail: string;
+  userDisplayName: string;
+  
+  // Saldo
+  totalDaysPerYear: number; // 30 dias
+  daysUsed: number; // Dias já utilizados
+  daysRemaining: number; // Dias disponíveis
+  
+  // Controle de períodos
+  periodsUsedThisYear: number; // Máximo 3
+  currentYear: number;
+  
+  // Período aquisitivo
+  acquisitionStartDate: Timestamp; // Data de admissão
+  acquisitionEndDate: Timestamp; // +12 meses
+  
+  // Histórico
+  lastVacationDate?: Timestamp;
+  
+  // Metadados
+  updatedAt: Timestamp;
+}
+
+/**
+ * Histórico de Férias (para relatórios)
+ */
+export interface VacationHistory {
+  id: string;
+  agencyId: string;
+  userId: string;
+  userEmail: string;
+  userDisplayName: string;
+  
+  requestId: string;
+  startDate: Timestamp;
+  endDate: Timestamp;
+  totalDays: number;
+  
+  approvedBy: string; // UID do gerente
+  approvedByName: string;
+  approvedAt: Timestamp;
+  
+  processedByRH: string; // UID do RH
+  processedByRHName: string;
+  processedAt: Timestamp;
+  
+  year: number;
+  month: number;
+  
+  createdAt: Timestamp;
 }

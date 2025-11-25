@@ -19,6 +19,7 @@ import { GPTDebugView } from './views/GPTDebugView';
 import { ProjectManagementHub } from './views/ProjectManagementHub';
 import { GPClientsView } from './views/GPClientsView';
 import { NotasFiscaisView } from './views/NotasFiscaisView';
+import { FeriasView } from './views/FeriasView';
 import { LoginView } from './components/LoginView';
 import { RegisterView } from './components/RegisterView';
 import { SuperAdminSetup } from './components/SuperAdminSetup';
@@ -61,6 +62,8 @@ function AppContent() {
         return <PlanosMidiaView />;
       case 'notas-fiscais':
         return <NotasFiscaisView />;
+      case 'ferias':
+        return <FeriasView />;
       case 'gpt-debug':
         return <GPTDebugView />;
       default:

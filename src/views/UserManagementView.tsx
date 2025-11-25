@@ -19,6 +19,7 @@ export function UserManagementView() {
     role: 'user' as 'super_admin' | 'agency_admin' | 'user',
     agencyId: '',
     department: '' as '' | 'midia' | 'checking' | 'financeiro',
+    managerId: '',
   });
 
   useEffect(() => {
@@ -75,7 +76,7 @@ export function UserManagementView() {
       
       setShowForm(false);
       setEditingUser(null);
-      setFormData({ email: '', displayName: '', role: 'user', agencyId: '', department: '' });
+      setFormData({ email: '', displayName: '', role: 'user', agencyId: '', department: '', managerId: '' });
       await loadData();
     } catch (error) {
       console.error('Erro ao salvar usuário:', error);
@@ -93,6 +94,7 @@ export function UserManagementView() {
       role: user.role,
       agencyId: user.agencyId || '',
       department: user.department || '',
+      managerId: user.managerId || '',
     });
     setShowForm(true);
   };
@@ -231,21 +233,46 @@ export function UserManagementView() {
               </div>
 
               {formData.role !== 'super_admin' && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Departamento
-                  </label>
-                  <select
-                    value={formData.department}
-                    onChange={(e) => setFormData({ ...formData, department: e.target.value as any })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  >
-                      <option value="">Nenhum</option>
-                      <option value="midia">Mídia</option>
-                      <option value="checking">Checking</option>
-                      <option value="financeiro">Financeiro</option>
-                    </select>
+                <>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Departamento
+                    </label>
+                    <select
+                      value={formData.department}
+                      onChange={(e) => setFormData({ ...formData, department: e.target.value as any })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    >
+                        <option value="">Nenhum</option>
+                        <option value="midia">Mídia</option>
+                        <option value="checking">Checking</option>
+                        <option value="financeiro">Financeiro</option>
+                      </select>
                   </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Gerente Responsável
+                    </label>
+                    <select
+                      value={formData.managerId || ''}
+                      onChange={(e) => setFormData({ ...formData, managerId: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    >
+                      <option value="">Nenhum</option>
+                      {users
+                        .filter(u => u.role === 'agency_admin' || u.role === 'super_admin')
+                        .map((manager) => (
+                          <option key={manager.uid} value={manager.uid}>
+                            {manager.displayName} ({manager.email})
+                          </option>
+                        ))}
+                    </select>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Gerente que aprovará solicitações de férias e outras aprovações
+                    </p>
+                  </div>
+                </>
               )}
 
               <div className="flex gap-3 pt-4">
